@@ -2,10 +2,13 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import * as cheerio from 'cheerio';
+import ejs from 'ejs';
 
 function factory(foo: string) {
   return function App() {
-    const $ = cheerio.load('<h1>hai</h1>');
+    const template = ejs.compile('<h1><%- greeting %></h1>');
+    const html = template({ greeting: 'hello world' });
+    const $ = cheerio.load(html);
 
     return (
       <View style={styles.container}>
