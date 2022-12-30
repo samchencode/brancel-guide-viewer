@@ -1,1 +1,3 @@
-export { default as cheerio } from 'cheerio';
+import * as cheerio from 'cheerio';
+
+export { cheerio };
