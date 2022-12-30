@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@types/node": "^18.11.9",
+    "cheerio": "^1.0.0-rc.12",
     "didi": "^8.0.0",
     "expo": "~47.0.3",
     "expo-status-bar": "~1.4.2",
