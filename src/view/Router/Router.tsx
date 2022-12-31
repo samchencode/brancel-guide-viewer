@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import type { Type as HomeScreen } from '@/view/HomeScreen';
+import { theme } from '@/theme';
 
 type AppNavigationParams = {
   HomeScreen: undefined;
@@ -16,7 +17,13 @@ function factory(HomeScreen: HomeScreen) {
 
   function AppNavigator() {
     return (
-      <AppStack.Navigator>
+      <AppStack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: theme.colors.surface },
+          headerTintColor: theme.colors.onSurface,
+          headerTitleStyle: theme.fonts.titleLarge,
+        }}
+      >
         <AppStack.Screen name="HomeScreen" component={HomeScreen} />
       </AppStack.Navigator>
     );

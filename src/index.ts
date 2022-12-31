@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import registerRootComponent from 'expo/build/launch/registerRootComponent';
 import type { Type as App } from '@/view/App';
 import { container } from '@/di';

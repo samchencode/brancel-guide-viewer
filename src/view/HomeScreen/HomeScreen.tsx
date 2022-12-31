@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import type { Article } from '@/domain/models/Article';
 import type { GetAllArticlesAction } from '@/application/GetAllArticlesAction';
+import { ArticleList } from '@/view/HomeScreen/ArticleList';
+import { theme } from '@/theme';
 
 function factory(getAllArticlesAction: GetAllArticlesAction) {
   return function HomeScreen() {
@@ -11,12 +13,18 @@ function factory(getAllArticlesAction: GetAllArticlesAction) {
     }, []);
 
     return (
-      <View>
-        <Text>{articles.map((a) => a.title).join('\n')}</Text>
+      <View style={styles.container}>
+        <ArticleList articles={articles} />
       </View>
     );
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: theme.colors.background,
+  },
+});
 
 export { factory };
 export type Type = ReturnType<typeof factory>;
