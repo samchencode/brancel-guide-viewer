@@ -1,7 +1,8 @@
+import type { ServiceDeclaration } from 'didi';
 import { factory as App } from '@/view/App';
 import { factory as Router } from '@/view/Router';
 import { factory as HomeScreen } from '@/view/HomeScreen';
-import type { ServiceDeclaration } from 'didi';
+import { factory as ArticleScreen } from '@/view/ArticleScreen';
 import { GetAllArticlesAction } from '@/application/GetAllArticlesAction';
 import { FakeArticleRepository } from '@/infrastructure/persistence/fake/FakeArticleRepository';
 
@@ -20,4 +21,5 @@ export const module: Module = {
   App: ['factory', App],
   Router: ['factory', Router],
   HomeScreen: ['factory', HomeScreen],
+  ArticleScreen: ['factory', ArticleScreen],
 };
