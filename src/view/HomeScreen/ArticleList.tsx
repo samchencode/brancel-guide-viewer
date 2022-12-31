@@ -26,13 +26,13 @@ function ArticleList({ articles, onSelectArticle }: Props) {
         [onSelectArticle]
       )}
       keyExtractor={getKey}
-      style={styles.container}
+      contentContainerStyle={styles.contentContainerStyle}
     />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainerStyle: {
     marginTop: theme.spaces.sm,
     marginBottom: theme.spaces.sm,
   },
