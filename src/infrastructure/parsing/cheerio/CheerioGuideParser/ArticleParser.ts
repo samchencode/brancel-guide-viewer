@@ -39,8 +39,8 @@ class ArticleParser {
   private getBody(id: string): string {
     const { $ } = this;
     const html = $(`a[name=${id}]`).next().html();
-    // TODO: probably should raise an alert to the user if null but not crash the app
-    return html ?? '';
+    if (html === null) throw new Error(`article ${id} not found`);
+    return html;
   }
 }
 
