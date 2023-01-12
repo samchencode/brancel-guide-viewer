@@ -1,3 +1,4 @@
+import { ArticleId } from '@/domain/models/Article';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/CheerioGuideParser';
 import { stubGuide } from './stubGuide';
 
@@ -21,6 +22,12 @@ describe('CheerioGuideParser', () => {
       });
     });
 
+    it('should set ArticleId to a[name] of article html', () => {
+      const parser = new CheerioGuideParser(stubGuide);
+      const [article] = parser.getArticles();
+      expect(article.id.is(new ArticleId('INJURY_GUIDELINES'))).toBe(true);
+    });
+
     it('should get "about" article', () => {
       const parser = new CheerioGuideParser(stubGuide);
       const about = parser.getAbout();
@@ -40,6 +47,20 @@ describe('CheerioGuideParser', () => {
       const instructions = parser.getUsageInstructions();
       expect(instructions).not.toBe('');
       expect(instructions.body.html).toMatchSnapshot();
+    });
+
+    it('should get section ids within article', () => {
+      const parser = new CheerioGuideParser(stubGuide);
+      const softTissueInjuries = parser.getArticles()[1];
+      expect(softTissueInjuries.hasSection('Neck_and_back_sprain')).toBe(true);
+      expect(softTissueInjuries.hasSection('unimportant-id')).toBe(false);
+      expect([...softTissueInjuries.sectionIds]).toHaveLength(38);
+    });
+
+    it('should get img uri within article', () => {
+      const parser = new CheerioGuideParser(stubGuide);
+      const lowerExtremityFractures = parser.getArticles()[10];
+      expect(lowerExtremityFractures.imageUrls).toContain('fracture.jpg');
     });
   });
 });
