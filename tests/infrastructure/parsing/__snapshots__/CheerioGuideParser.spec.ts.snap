@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheerioGuideParser Behavior should get "about" article 1`] = `
-"Orthopedic Trauma Primary Care Guidelines Mark Brancel, M.D.<br>
-                2021 (Version 1) These guidelines are to be used in conjunction with good clinical judgment and an awareness of local practice standards. We welcome your comments and suggestions, as well as any orders for print versions of this medical reference. 2263 Commonwealth Avenue St. Paul, MN  55108  U.S.A. MarkBrancelMD@gmail.com <a href="https://urldefense.com/v3/__http://brancelmedicalguides.com/__;!!GobTDDpD7A!e-q56EAwAlegq85qQpSNNR6_P6XZwbCezjb0WtVdvvwHb5ZpRG8F2SC6jw78dXWo$">http://brancelmedicalguides.com/</a> Content copyright © annually 1997-2021 Mark Brancel, M.D. Go to the <a href="#TABLE_OF_CONTENTS">Table of Contents</a> or the <a href="#INDEX">Index</a>  "
+"<h1>Orthopedic Trauma Primary Care Guidelines</h1><h2>Mark Brancel, M.D.<br>
+                2021 (Version 1)</h2><p>These guidelines are to be used in conjunction with good clinical judgment and an awareness of local practice standards.</p><p>We welcome your comments and suggestions, as well as any orders for print versions of this medical reference.</p><p>2263 Commonwealth Avenue</p><p>St. Paul, MN  55108  U.S.A.</p><p>MarkBrancelMD@gmail.com</p><p><a href="https://urldefense.com/v3/__http://brancelmedicalguides.com/__;!!GobTDDpD7A!e-q56EAwAlegq85qQpSNNR6_P6XZwbCezjb0WtVdvvwHb5ZpRG8F2SC6jw78dXWo$">http://brancelmedicalguides.com/</a></p><p>Content copyright © annually 1997-2021 Mark Brancel, M.D.</p><p>Go to the <a href="#TABLE_OF_CONTENTS">Table of Contents</a> or the <a href="#INDEX">Index</a></p><br><br>"
 `;
 
 exports[`CheerioGuideParser Behavior should get all articles within guide: body html 1`] = `

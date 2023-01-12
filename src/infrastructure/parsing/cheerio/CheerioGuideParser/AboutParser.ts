@@ -10,7 +10,7 @@ class AboutParser {
   private parse() {
     const { $ } = this;
     const elements = $('a[name=about], p:has(> a[name=about])').nextAll().get();
-    return elements.map((e) => $(e).html()).join(' ');
+    return $.html(elements);
   }
 
   makeArticle() {
