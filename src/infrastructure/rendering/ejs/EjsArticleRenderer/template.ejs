@@ -6,10 +6,123 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+  <style>
+    /* Global Styles */
+    :root {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    main {
+      padding: 1em 1em;
+      white-space: pre-wrap;
+    }
+
+    /* Text Styles */
+    h2,
+    h3 {
+      white-space: pre-wrap;
+    }
+
+    p {
+      white-space: pre-wrap;
+    }
+
+    /* Link Styles */
+    a[href],
+    a:visited {
+      border-radius: .2em;
+      padding: 0 .1em;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+    }
+
+    th,
+    td {
+      padding: .3em .5em;
+    }
+
+    .table__wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .table__wrapper::before {
+      content: "(If this table doesn't fit on your screen, scroll sideways!)";
+    }
+
+    tr:nth-child(2n + 1):not(:only-child) td {
+      background: lightgray;
+    }
+
+    /* Image Styles */
+    img {
+      width: 100%;
+    }
+
+    .img__wrapper {
+      width: 100%;
+    }
+
+    .img__wrapper::after {
+      content: "(If this image is too small, pinch to zoom!)";
+    }
+
+    /* List styles */
+    ul,
+    ol {
+      padding-left: .5em;
+      margin-left: 1em;
+      white-space: normal;
+    }
+
+    li {
+      white-space: pre-wrap;
+      padding: 0.5em 0;
+    }
+
+    mark {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </head>
 
 <body>
-  <%- body %>
+  <main><%- body %></main>
+  <script>
+    var anchors = document.getElementsByTagName('a');
+    for (var i = 0; i < anchors.length; i++) {
+      anchors[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        window.ReactNativeWebView.postMessage(this.href);
+      })
+    }
+
+    var tables = document.getElementsByTagName('table');
+    for (var i = 0; i < tables.length; i++) {
+      var wrapper = document.createElement('div');
+      wrapper.className = "table__wrapper";
+      wrapper.appendChild(tables[i].cloneNode(true));
+      tables[i].replaceWith(wrapper);
+    }
+
+    var images = document.getElementsByTagName('img');
+    for (var i = 0; i < images.length; i++) {
+      var wrapper = document.createElement('div');
+      wrapper.className = "img__wrapper";
+      wrapper.appendChild(images[i].cloneNode());
+      images[i].replaceWith(wrapper);
+    }
+  </script>
 </body>
 
 </html>
