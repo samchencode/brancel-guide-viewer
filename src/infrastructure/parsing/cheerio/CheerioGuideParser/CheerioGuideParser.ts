@@ -4,6 +4,8 @@ import { prepare } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/pre
 import type { Article } from '@/domain/models/Article';
 import { ArticleParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/ArticleParser';
 import { AboutParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/AboutParser';
+import { IndexParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/IndexParser';
+import { UsageInstructionsParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/UsageInstructionsParser';
 
 class CheerioGuideParser implements GuideParser {
   $: cheerio.CheerioAPI;
@@ -18,11 +20,11 @@ class CheerioGuideParser implements GuideParser {
   }
 
   getIndex(): Article {
-    throw new Error('Method not implemented.');
+    return new IndexParser(this.$).makeArticle();
   }
 
   getUsageInstructions(): Article {
-    throw new Error('Method not implemented.');
+    return new UsageInstructionsParser(this.$).makeArticle();
   }
 
   getArticles(): Article[] {

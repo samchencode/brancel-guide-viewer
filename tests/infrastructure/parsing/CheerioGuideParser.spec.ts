@@ -27,5 +27,19 @@ describe('CheerioGuideParser', () => {
       expect(about.body.html).not.toBe('');
       expect(about.body.html).toMatchSnapshot();
     });
+
+    it('should get "INDEX" article', () => {
+      const parser = new CheerioGuideParser(stubGuide);
+      const index = parser.getIndex();
+      expect(index.body.html).not.toBe('');
+      expect(index.body.html).toMatchSnapshot();
+    });
+
+    it('should get "Guideline_Usage_Instructions" article', () => {
+      const parser = new CheerioGuideParser(stubGuide);
+      const instructions = parser.getUsageInstructions();
+      expect(instructions).not.toBe('');
+      expect(instructions.body.html).toMatchSnapshot();
+    });
   });
 });
