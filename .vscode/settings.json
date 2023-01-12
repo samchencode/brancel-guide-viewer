@@ -3,7 +3,7 @@
   "editor.formatOnSave": true,
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "emmet.showSuggestionsAsSnippets": false,
-  "emmet.showExpandedAbbreviation": "never",
+  "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
   "editor.snippetSuggestions": "bottom",
   "emmet.includeLanguages": {
     "ejs": "html"
