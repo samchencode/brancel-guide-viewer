@@ -1,8 +1,6 @@
 import type { cheerio } from '@/vendor/cheerio';
-import { sanitizeHtml } from '@/vendor/sanitizeHtml';
-import { Article, ArticleId } from '@/domain/models/Article';
-import { RichText } from '@/domain/models/RichText';
 import * as constants from '@/infrastructure/parsing/cheerio/CheerioGuideParser/constants';
+import { makeArticle } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/articleFactory';
 
 class ArticleParser {
   constructor(private $: cheerio.CheerioAPI) {}
@@ -28,12 +26,8 @@ class ArticleParser {
       });
   }
 
-  private makeArticle(id: string, title: string) {
-    return new Article(
-      new ArticleId(id),
-      title,
-      new RichText(sanitizeHtml, this.getBody(id))
-    );
+  private makeArticle(idString: string, title: string) {
+    return makeArticle(idString, title, this.getBody(idString));
   }
 
   private getBody(id: string): string {

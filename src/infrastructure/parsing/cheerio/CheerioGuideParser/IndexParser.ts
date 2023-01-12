@@ -1,8 +1,6 @@
-import { Article, ArticleId } from '@/domain/models/Article';
 import type { cheerio } from '@/vendor/cheerio';
 import * as constants from '@/infrastructure/parsing/cheerio/CheerioGuideParser/constants';
-import { RichText } from '@/domain/models/RichText';
-import { sanitizeHtml } from '@/vendor/sanitizeHtml';
+import { makeArticle } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/articleFactory';
 
 class IndexParser {
   constructor(private $: cheerio.CheerioAPI) {}
@@ -19,13 +17,9 @@ class IndexParser {
   }
 
   makeArticle() {
-    const id = new ArticleId(constants.INDEX_ID);
     const html = this.parse();
-    return new Article(
-      id,
-      constants.INDEX_TITLE,
-      new RichText(sanitizeHtml, html)
-    );
+    if (html === '') throw Error('index html is empty');
+    return makeArticle(constants.INDEX_ID, constants.INDEX_TITLE, html);
   }
 }
 

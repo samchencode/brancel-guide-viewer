@@ -1,8 +1,6 @@
 import type { cheerio } from '@/vendor/cheerio';
-import { Article, ArticleId } from '@/domain/models/Article';
-import { RichText } from '@/domain/models/RichText';
-import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 import * as constants from '@/infrastructure/parsing/cheerio/CheerioGuideParser/constants';
+import { makeArticle } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/articleFactory';
 
 class AboutParser {
   constructor(private $: cheerio.CheerioAPI) {}
@@ -14,11 +12,9 @@ class AboutParser {
   }
 
   makeArticle() {
-    const id = new ArticleId(constants.ABOUT_ID);
     const html = this.parse();
     if (html === '') throw Error('about html is empty');
-    const body = new RichText(sanitizeHtml, html);
-    return new Article(id, constants.ABOUT_TITLE, body);
+    return makeArticle(constants.ABOUT_ID, constants.ABOUT_TITLE, html);
   }
 }
 
