@@ -2,11 +2,24 @@ import type { ArticleId } from '@/domain/models/Article/ArticleId';
 import type { RichText } from '@/domain/models/RichText';
 
 class Article {
+  public readonly imageUrls: Set<string> = new Set();
+
+  public readonly sectionIds: Set<string>;
+
   constructor(
     public readonly id: ArticleId,
     public readonly title: string,
-    public readonly body: RichText
-  ) {}
+    public readonly body: RichText,
+    sectionIds: string[] = [],
+    extractImageUris?: (html: string) => string[]
+  ) {
+    this.sectionIds = new Set(sectionIds).add(id.toString());
+    if (extractImageUris) this.imageUrls = new Set(extractImageUris(body.html));
+  }
+
+  hasSection(id: string) {
+    return this.sectionIds.has(id);
+  }
 }
 
 export { Article };
