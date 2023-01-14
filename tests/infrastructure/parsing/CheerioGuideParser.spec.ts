@@ -56,11 +56,5 @@ describe('CheerioGuideParser', () => {
       expect(softTissueInjuries.hasSection('unimportant-id')).toBe(false);
       expect([...softTissueInjuries.sectionIds]).toHaveLength(38);
     });
-
-    it('should get img uri within article', () => {
-      const parser = new CheerioGuideParser(stubGuide);
-      const lowerExtremityFractures = parser.getArticles()[10];
-      expect(lowerExtremityFractures.imageUrls).toContain('fracture.jpg');
-    });
   });
 });

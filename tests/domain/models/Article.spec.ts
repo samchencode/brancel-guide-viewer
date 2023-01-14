@@ -21,17 +21,6 @@ describe('Article', () => {
       const create = () => new Article(id, title, body, sectionIds);
       expect(create).not.toThrowError();
     });
-
-    it('should be created with id, title, RichText body, and a image uri extractor', () => {
-      const extractor = (html: string) =>
-        Array.from(html.matchAll(/src="(\S+)"/g)).map((m) => m[1]);
-      const id = new ArticleId('my-article');
-      const title = 'Example Article';
-      const body = new RichText(jest.fn(), 'Article Body');
-
-      const create = () => new Article(id, title, body, [], extractor);
-      expect(create).not.toThrowError();
-    });
   });
 
   describe('Behavior', () => {
@@ -67,20 +56,6 @@ describe('Article', () => {
       const article = new Article(id, title, body);
 
       expect(article.hasSection('my-article')).toBe(true);
-    });
-
-    it('should extract image uris using extractor', () => {
-      const extractor = (html: string) =>
-        Array.from(html.matchAll(/src="(\S+)"/g)).map((m) => m[1]);
-      const id = new ArticleId('image-article');
-      const title = 'Example Article';
-      const body = new RichText(
-        jest.fn(),
-        '<img src="foo.jpg"><img src="bar.png">'
-      );
-
-      const article = new Article(id, title, body, [], extractor);
-      expect([...article.imageUrls]).toEqual(['foo.jpg', 'bar.png']);
     });
   });
 });

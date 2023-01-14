@@ -7,14 +7,6 @@ function strIsDefined(str: string | undefined): str is string {
   return str !== undefined;
 }
 
-function getImageUris(html: string) {
-  const $ = cheerio.load(html);
-  return $('img')
-    .get()
-    .map((e) => $(e).attr('src'))
-    .filter(strIsDefined);
-}
-
 function getSectionIds(html: string) {
   const $ = cheerio.load(html);
   return $('a[name]')
@@ -27,5 +19,5 @@ export function makeArticle(idString: string, title: string, bodyHtml: string) {
   const id = new ArticleId(idString);
   const body = new RichText(sanitizeHtml, bodyHtml);
   const sectionIds = getSectionIds(bodyHtml);
-  return new Article(id, title, body, sectionIds, getImageUris);
+  return new Article(id, title, body, sectionIds);
 }
