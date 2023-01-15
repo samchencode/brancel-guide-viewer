@@ -15,6 +15,10 @@ class NodeFileSystem implements FileSystem<'jest'> {
     );
     return readUtf8File(filePath);
   }
+
+  cacheFile(): Promise<string> {
+    throw new Error('Method not implemented.');
+  }
 }
 
 export { NodeFileSystem };

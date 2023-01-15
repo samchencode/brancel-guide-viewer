@@ -13,6 +13,7 @@ interface FileSystem<T = unknown> {
       ? RequireAssetModuleOnPlatform[T]
       : ValueOf<RequireAssetModuleOnPlatform>
   ): Promise<string>;
+  cacheFile(uri: string): Promise<string>;
 }
 
 export type { FileSystem };
