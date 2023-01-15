@@ -15,7 +15,7 @@ function replaceImageUris(html: string, uriMap: Record<string, string>) {
   Object.entries(uriMap).forEach(([uri, replaceWith]) =>
     replaceImageUri($, uri, replaceWith)
   );
-  return $.html();
+  return $('body').html();
 }
 
 export { replaceImageUris };

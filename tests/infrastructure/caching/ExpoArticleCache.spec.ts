@@ -82,7 +82,7 @@ describe('ExpoArticleCache', () => {
       const article = new Article(
         new ArticleId('my-article'),
         'My Article Title',
-        new RichText(jest.fn(), 'Hello World')
+        new RichText(jest.fn(), '<b>Hello World</b>')
       );
       await cache.saveArticles([article, article]);
       expect(db.exec).toBeCalledWith(
@@ -92,11 +92,11 @@ describe('ExpoArticleCache', () => {
             args: [
               'my-article',
               'My Article Title',
-              '<html><head></head><body>Hello World</body></html>',
+              '<b>Hello World</b>',
               '["my-article"]',
               'my-article',
               'My Article Title',
-              '<html><head></head><body>Hello World</body></html>',
+              '<b>Hello World</b>',
               '["my-article"]',
             ],
           },
@@ -121,9 +121,7 @@ describe('ExpoArticleCache', () => {
       expect(db.exec).toBeCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
-            args: expect.arrayContaining([
-              '<html><head></head><body><img src="example-file.png"></body></html>',
-            ]),
+            args: expect.arrayContaining(['<img src="example-file.png">']),
           }),
         ]),
         false,
