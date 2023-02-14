@@ -4,22 +4,28 @@ import { View, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import { theme } from '@/theme';
 import type { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
-import type { Article } from '@/domain/models/Article';
+import type { RenderArticleAction } from '@/application/RenderArticleAction';
 
 type Props = AppNavigationProps<'ArticleScreen'>;
 
-function factory(getArticleByIdAction: GetArticleByIdAction) {
+function factory(
+  getArticleByIdAction: GetArticleByIdAction,
+  renderArticleAction: RenderArticleAction
+) {
   return function ArticleScreen({ route }: Props) {
     const { id } = route.params;
 
-    const [article, setArticle] = useState<Article | null>(null);
+    const [html, setHtml] = useState<string>('');
     useEffect(() => {
-      getArticleByIdAction.execute(id).then((a) => setArticle(a));
+      getArticleByIdAction
+        .execute(id)
+        .then((a) => renderArticleAction.execute(a))
+        .then((h) => setHtml(h));
     }, [id]);
 
     return (
       <View style={styles.container}>
-        {article && <WebView source={{ html: article.body.html }} />}
+        <WebView source={{ html }} />
       </View>
     );
   };
