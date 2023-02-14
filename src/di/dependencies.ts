@@ -5,6 +5,7 @@ import { factory as HomeScreen } from '@/view/HomeScreen';
 import { factory as ArticleScreen } from '@/view/ArticleScreen';
 import { GetAllArticlesAction } from '@/application/GetAllArticlesAction';
 import { FakeArticleRepository } from '@/infrastructure/persistence/fake/FakeArticleRepository';
+import { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -13,6 +14,7 @@ type Module = {
 export const module: Module = {
   // ACTIONS
   getAllArticlesAction: ['type', GetAllArticlesAction],
+  getArticleByIdAction: ['type', GetArticleByIdAction],
 
   // INFRASTRUCTURE
   articleRepository: ['type', FakeArticleRepository],
