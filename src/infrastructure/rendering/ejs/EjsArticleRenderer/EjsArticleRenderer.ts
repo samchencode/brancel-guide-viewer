@@ -1,7 +1,6 @@
 import { ejs } from '@/vendor/ejs';
 import type { FileSystem } from '@/infrastructure/file-system/FileSystem';
-import type { Article } from '@/domain/models/Article';
-import type { ArticleRenderer } from '@/infrastructure/rendering/ArticleRenderer';
+import type { Article, ArticleRenderer } from '@/domain/models/Article';
 
 class EjsArticleRenderer implements ArticleRenderer {
   prepareTemplate: Promise<ejs.TemplateFunction>;
