@@ -30,6 +30,12 @@ function factory(getAllArticlesAction: GetAllArticlesAction) {
           }}
           title="Open Index Modal"
         />
+        <Button
+          onPress={() => {
+            navigation.navigate('DisclaimerModal');
+          }}
+          title="Open Disclaimer Modal"
+        />
         <ArticleList articles={articles} onSelectArticle={onSelectArticle} />
       </View>
     );

@@ -18,6 +18,12 @@ export const theme = {
       letterSpacing: 0.5,
       weight: '400',
     },
+    bodyMedium: {
+      lineHeight: 20,
+      fontSize: 14,
+      letterSpacing: 0.25,
+      weight: '400',
+    },
     headlineSmall: {
       lineHeight: 32,
       fontSize: 24,
