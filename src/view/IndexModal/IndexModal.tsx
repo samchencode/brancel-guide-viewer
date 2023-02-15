@@ -25,7 +25,9 @@ function IndexButton({ letter, onPress }: IndexButtonProps) {
   );
 }
 
-function IndexModal({ navigation }: RootNavigationProps<'IndexModal'>) {
+type Props = RootNavigationProps<'IndexModal'>;
+
+function IndexModal({ navigation }: Props) {
   const goBack = useCallback(() => navigation.goBack(), [navigation]);
   const handlePressLetter = useCallback(
     (l: string) =>
