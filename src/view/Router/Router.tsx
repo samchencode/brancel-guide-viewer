@@ -4,10 +4,10 @@ import type { StackScreenProps } from '@react-navigation/stack';
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { Type as HomeScreen } from '@/view/HomeScreen';
 import type { Type as ArticleScreen } from '@/view/ArticleScreen';
-import { theme } from '@/theme';
 import type { ArticleId } from '@/domain/models/Article';
 import { IndexModal } from '@/view/IndexModal';
 import { DisclaimerModal } from '@/view/DisclaimerModal';
+import { Header } from '@/view/Router/Header';
 
 type AppNavigationParams = {
   HomeScreen: undefined;
@@ -26,13 +26,7 @@ function factory(HomeScreen: HomeScreen, ArticleScreen: ArticleScreen) {
 
   function AppNavigator() {
     return (
-      <AppStack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: theme.colors.surface },
-          headerTintColor: theme.colors.onSurface,
-          headerTitleStyle: theme.fonts.titleLarge,
-        }}
-      >
+      <AppStack.Navigator screenOptions={{ header: Header }}>
         <AppStack.Screen name="HomeScreen" component={HomeScreen} />
         <AppStack.Screen name="ArticleScreen" component={ArticleScreen} />
       </AppStack.Navigator>

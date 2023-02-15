@@ -54,6 +54,9 @@ export const theme = {
     onSecondary: '#ffffff',
     secondaryContainer: '#ccf8ff',
     onSecondaryContainer: '#002c33',
+    surfaceTint: {
+      elevationTwo: '#ecebf8',
+    },
   },
   modal: {
     borderRadius: 28,
