@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import type { Article, ArticleId } from '@/domain/models/Article';
 import type { GetAllArticlesAction } from '@/application/GetAllArticlesAction';
 import { ArticleList } from '@/view/HomeScreen/ArticleList';
@@ -24,6 +24,12 @@ function factory(getAllArticlesAction: GetAllArticlesAction) {
 
     return (
       <View style={styles.container}>
+        <Button
+          onPress={() => {
+            navigation.navigate('IndexModal');
+          }}
+          title="Open Index Modal"
+        />
         <ArticleList articles={articles} onSelectArticle={onSelectArticle} />
       </View>
     );

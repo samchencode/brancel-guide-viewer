@@ -18,6 +18,12 @@ export const theme = {
       letterSpacing: 0.5,
       weight: '400',
     },
+    headlineSmall: {
+      lineHeight: 32,
+      fontSize: 24,
+      letterSpacing: 0,
+      weight: '400',
+    },
   },
   spaces: {
     xs: 4,
@@ -42,5 +48,12 @@ export const theme = {
     onSecondary: '#ffffff',
     secondaryContainer: '#ccf8ff',
     onSecondaryContainer: '#002c33',
+  },
+  modal: {
+    borderRadius: 28,
+    minWidth: 280,
+    maxWidth: 560,
+    padding: 24,
+    margin: 24,
   },
 } as const;

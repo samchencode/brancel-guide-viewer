@@ -6,14 +6,16 @@ import type { Type as HomeScreen } from '@/view/HomeScreen';
 import type { Type as ArticleScreen } from '@/view/ArticleScreen';
 import { theme } from '@/theme';
 import type { ArticleId } from '@/domain/models/Article';
+import { IndexModal } from '@/view/IndexModal';
 
 type AppNavigationParams = {
   HomeScreen: undefined;
-  ArticleScreen: { id: ArticleId };
+  ArticleScreen: { id: ArticleId; sectionId?: string };
 };
 
 type RootNavigationParams = {
   AppNavigation: undefined;
+  IndexModal: undefined;
 };
 
 function factory(HomeScreen: HomeScreen, ArticleScreen: ArticleScreen) {
@@ -39,6 +41,9 @@ function factory(HomeScreen: HomeScreen, ArticleScreen: ArticleScreen) {
     return (
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="AppNavigation" component={AppNavigator} />
+        <RootStack.Group screenOptions={{ presentation: 'transparentModal' }}>
+          <RootStack.Screen name="IndexModal" component={IndexModal} />
+        </RootStack.Group>
       </RootStack.Navigator>
     );
   }
