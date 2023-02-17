@@ -1,19 +1,32 @@
 import type { WebSQLDatabase } from 'expo-sqlite';
 import type { Article, ArticleCache } from '@/domain/models/Article';
 import { ExpoArticleCacheRepository } from '@/infrastructure/caching/expo/ExpoArticleCache/ExpoArticleCacheRepostiory';
-import { getImageUris } from '@/infrastructure/caching/expo/ExpoArticleCache/getImageUrls';
 import type { FileSystem } from '@/infrastructure/file-system/FileSystem';
-import { replaceImageUris } from '@/infrastructure/caching/expo/ExpoArticleCache/replaceImageUris';
 import { cloneArticleWithNewHtml } from '@/infrastructure/caching/expo/ExpoArticleCache/articleFactory';
+import type {
+  GetImageUrisFromHtml,
+  ReplaceImageUrisInHtmlBody,
+} from '@/infrastructure/util/types';
 
 class ExpoArticleCache implements ArticleCache {
   private repo: ExpoArticleCacheRepository;
 
   private fs: FileSystem;
 
-  constructor(articleCacheDatabase: WebSQLDatabase, fileSystem: FileSystem) {
+  private getImageUris: GetImageUrisFromHtml;
+
+  private replaceImageUris: ReplaceImageUrisInHtmlBody;
+
+  constructor(
+    articleCacheDatabase: WebSQLDatabase,
+    fileSystem: FileSystem,
+    getImageUrisFromHtml: GetImageUrisFromHtml,
+    replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody
+  ) {
     this.repo = new ExpoArticleCacheRepository(articleCacheDatabase);
     this.fs = fileSystem;
+    this.getImageUris = getImageUrisFromHtml;
+    this.replaceImageUris = replaceImageUrisInHtmlBody;
   }
 
   async getAllArticles(): Promise<Article[]> {
@@ -22,7 +35,7 @@ class ExpoArticleCache implements ArticleCache {
 
   async saveArticles(articles: Article[]): Promise<void> {
     const articlesAndImageUris = articles.map(
-      (a) => [a, getImageUris(a.body.html)] as const
+      (a) => [a, this.getImageUris(a.body.html)] as const
     );
 
     const imageDownloads = articlesAndImageUris.map(([article, uris]) =>
@@ -39,7 +52,7 @@ class ExpoArticleCache implements ArticleCache {
         return [article, Object.fromEntries(uriPairs)] as const;
       })
       .map(([article, uriMap]) => {
-        const html = replaceImageUris(article.body.html, uriMap);
+        const html = this.replaceImageUris(article.body.html, uriMap);
         return cloneArticleWithNewHtml(article, html);
       });
 

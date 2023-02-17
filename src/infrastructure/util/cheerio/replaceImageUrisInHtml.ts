@@ -1,4 +1,5 @@
 import { cheerio } from '@/vendor/cheerio';
+import type { ReplaceImageUrisInHtmlBody } from '@/infrastructure/util/types';
 
 function replaceImageUri(
   $: cheerio.CheerioAPI,
@@ -10,12 +11,13 @@ function replaceImageUri(
   });
 }
 
-function replaceImageUris(html: string, uriMap: Record<string, string>) {
+export const replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody = (
+  html: string,
+  uriMap: Record<string, string>
+): string => {
   const $ = cheerio.load(html);
   Object.entries(uriMap).forEach(([uri, replaceWith]) =>
     replaceImageUri($, uri, replaceWith)
   );
   return $('body').html() ?? '';
-}
-
-export { replaceImageUris };
+};

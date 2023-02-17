@@ -3,6 +3,8 @@ import { RichText } from '@/domain/models/RichText';
 import { ExpoArticleCache } from '@/infrastructure/caching/expo/ExpoArticleCache';
 import { NodeFileSystem } from '@/infrastructure/file-system/node/NodeFileSystem';
 import type { WebSQLDatabase } from 'expo-sqlite';
+import { replaceImageUrisInHtmlBody as replaceImageUris } from '@/infrastructure/util/cheerio/replaceImageUrisInHtml';
+import { getImageUrisFromHtml as getImageUris } from '@/infrastructure/util/cheerio/getImageUrisFromHtml';
 
 type DbMock = WebSQLDatabase & {
   exec: jest.Mock;
@@ -24,7 +26,8 @@ describe('ExpoArticleCache', () => {
   describe('Instantiation', () => {
     it('should be created with a database and filesystem', () => {
       const db = makeDbMock();
-      const create = () => new ExpoArticleCache(db, fs);
+      const create = () =>
+        new ExpoArticleCache(db, fs, getImageUris, replaceImageUris);
       expect(create).not.toThrowError();
     });
   });
@@ -37,7 +40,12 @@ describe('ExpoArticleCache', () => {
         done();
       });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const cache = new ExpoArticleCache(db, fs);
+      const cache = new ExpoArticleCache(
+        db,
+        fs,
+        getImageUris,
+        replaceImageUris
+      );
       expect(db.exec).toBeCalledWith(
         [
           {
@@ -53,7 +61,12 @@ describe('ExpoArticleCache', () => {
     it('should get articles', async () => {
       const db = makeDbMock();
       db.exec.mockImplementationOnce((_q, _f, cb) => cb());
-      const cache = new ExpoArticleCache(db, fs);
+      const cache = new ExpoArticleCache(
+        db,
+        fs,
+        getImageUris,
+        replaceImageUris
+      );
       db.exec.mockImplementationOnce((_q, _f, cb) =>
         cb(null, [
           {
@@ -76,7 +89,12 @@ describe('ExpoArticleCache', () => {
     it('should save article to database', async () => {
       const db = makeDbMock();
       db.exec.mockImplementation((_q, _f, cb) => cb());
-      const cache = new ExpoArticleCache(db, fs);
+      const cache = new ExpoArticleCache(
+        db,
+        fs,
+        getImageUris,
+        replaceImageUris
+      );
       db.exec.mockClear();
 
       const article = new Article(
@@ -109,7 +127,12 @@ describe('ExpoArticleCache', () => {
     it('should replace image urls with cached file uri', async () => {
       const db = makeDbMock();
       db.exec.mockImplementation((_q, _f, cb) => cb());
-      const cache = new ExpoArticleCache(db, fs);
+      const cache = new ExpoArticleCache(
+        db,
+        fs,
+        getImageUris,
+        replaceImageUris
+      );
       db.exec.mockClear();
 
       const article = new Article(

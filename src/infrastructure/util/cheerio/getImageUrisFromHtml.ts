@@ -1,13 +1,16 @@
 import { cheerio } from '@/vendor/cheerio';
+import type { GetImageUrisFromHtml } from '@/infrastructure/util/types';
 
 function strIsDefined(str: string | undefined): str is string {
   return str !== undefined;
 }
 
-export function getImageUris(html: string) {
+export const getImageUrisFromHtml: GetImageUrisFromHtml = (
+  html: string
+): string[] => {
   const $ = cheerio.load(html);
-  return $('img')
+  return $('img[src]')
     .get()
     .map((e) => $(e).attr('src'))
     .filter(strIsDefined);
-}
+};
