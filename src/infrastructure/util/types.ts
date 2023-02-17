@@ -3,3 +3,6 @@ export type ReplaceImageUrisInHtmlBody = (
   html: string,
   uriMap: Record<string, string>
 ) => string;
+export type ReplaceImageUrisWithBase64InHtmlBody = (
+  html: string
+) => Promise<string>;
