@@ -9,6 +9,14 @@ import { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
 import { RenderArticleAction } from '@/application/RenderArticleAction';
 import { ExpoAssetFileSystem } from '@/infrastructure/file-system/expo/ExpoFileSystem';
 import { EjsArticleRenderer } from '@/infrastructure/rendering/ejs/EjsArticleRenderer/EjsArticleRenderer';
+import { RenderArticleByIdAndReplaceImagesAction } from '@/application/RenderArticleByIdAndReplaceImagesAction';
+import { sanitizeHtml } from '@/infrastructure/html-manipulation/sanitize-html/sanitizeHtml';
+import { getImageUrisFromHtml } from '@/infrastructure/html-manipulation/cheerio/getImageUrisFromHtml';
+import {
+  replaceImageUrisInHtml,
+  replaceImageUrisInHtmlBody,
+} from '@/infrastructure/html-manipulation/cheerio/replaceImageUrisInHtml';
+import { factory as replaceImageUrisWithBase64InHtml } from '@/infrastructure/html-manipulation/fetch/replaceImageUrisWithBase64InHtml';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -19,11 +27,25 @@ export const module: Module = {
   getAllArticlesAction: ['type', GetAllArticlesAction],
   getArticleByIdAction: ['type', GetArticleByIdAction],
   renderArticleAction: ['type', RenderArticleAction],
+  renderArticleByIdAndReplaceImagesAction: [
+    'type',
+    RenderArticleByIdAndReplaceImagesAction,
+  ],
 
   // INFRASTRUCTURE
   articleRepository: ['type', FakeArticleRepository],
   articleRenderer: ['type', EjsArticleRenderer],
   fileSystem: ['type', ExpoAssetFileSystem],
+
+  // INFRASTRUCTURE -> html-manipulation
+  sanitizeHtml: ['value', sanitizeHtml],
+  getImageUrisFromHtml: ['value', getImageUrisFromHtml],
+  replaceImageUrisInHtml: ['value', replaceImageUrisInHtml],
+  replaceImageUrisInHtmlBody: ['value', replaceImageUrisInHtmlBody],
+  replaceImageUrisWithBase64InHtml: [
+    'factory',
+    replaceImageUrisWithBase64InHtml,
+  ],
 
   // TEMPLATES
   App: ['factory', App],

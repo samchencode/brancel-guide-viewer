@@ -3,23 +3,20 @@ import type { AppNavigationProps } from '@/view/Router';
 import { View, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import { theme } from '@/theme';
-import type { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
-import type { RenderArticleAction } from '@/application/RenderArticleAction';
+import type { RenderArticleByIdAndReplaceImagesAction } from '@/application/RenderArticleByIdAndReplaceImagesAction';
 
 type Props = AppNavigationProps<'ArticleScreen'>;
 
 function factory(
-  getArticleByIdAction: GetArticleByIdAction,
-  renderArticleAction: RenderArticleAction
+  renderArticleByIdAndReplaceImagesAction: RenderArticleByIdAndReplaceImagesAction
 ) {
   return function ArticleScreen({ route }: Props) {
     const { id } = route.params;
 
     const [html, setHtml] = useState<string>('');
     useEffect(() => {
-      getArticleByIdAction
+      renderArticleByIdAndReplaceImagesAction
         .execute(id)
-        .then((a) => renderArticleAction.execute(a))
         .then((h) => setHtml(h));
     }, [id]);
 
