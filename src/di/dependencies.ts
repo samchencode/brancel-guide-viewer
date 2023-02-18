@@ -4,7 +4,6 @@ import { factory as Router } from '@/view/Router';
 import { factory as HomeScreen } from '@/view/HomeScreen';
 import { factory as ArticleScreen } from '@/view/ArticleScreen';
 import { GetAllArticlesAction } from '@/application/GetAllArticlesAction';
-import { FakeArticleRepository } from '@/infrastructure/persistence/fake/FakeArticleRepository';
 import { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
 import { RenderArticleAction } from '@/application/RenderArticleAction';
 import { ExpoAssetFileSystem } from '@/infrastructure/file-system/expo/ExpoFileSystem';
@@ -17,6 +16,7 @@ import {
   replaceImageUrisInHtmlBody,
 } from '@/infrastructure/html-manipulation/cheerio/replaceImageUrisInHtml';
 import { factory as replaceImageUrisWithBase64InHtml } from '@/infrastructure/html-manipulation/fetch/replaceImageUrisWithBase64InHtml';
+import { FakeGuideArticleRepository } from '@/infrastructure/persistence/fake/FakeGuideArticleRepository';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -33,7 +33,7 @@ export const module: Module = {
   ],
 
   // INFRASTRUCTURE
-  articleRepository: ['type', FakeArticleRepository],
+  articleRepository: ['type', FakeGuideArticleRepository],
   articleRenderer: ['type', EjsArticleRenderer],
   fileSystem: ['type', ExpoAssetFileSystem],
 

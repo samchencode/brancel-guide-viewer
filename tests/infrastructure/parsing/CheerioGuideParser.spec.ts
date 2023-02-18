@@ -1,7 +1,7 @@
 import { ArticleId } from '@/domain/models/Article';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/CheerioGuideParser';
 import { sanitizeHtml } from '@/infrastructure/html-manipulation/sanitize-html/sanitizeHtml';
-import { stubGuide } from './stubGuide';
+import { stubGuide } from '@/infrastructure/persistence/fake/stubGuide';
 
 describe('CheerioGuideParser', () => {
   describe('Instantiation', () => {
