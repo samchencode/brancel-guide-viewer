@@ -1,7 +1,7 @@
 import type {
   GetImageUrisFromHtml,
-  ReplaceImageUrisInHtmlBody,
-  ReplaceImageUrisWithBase64InHtmlBody,
+  ReplaceImageUrisInHtml,
+  ReplaceImageUrisWithBase64InHtml,
 } from '@/domain/models/RichText/htmlManipulationUtils';
 
 function blobToDataUrl(blob: Blob) {
@@ -21,15 +21,15 @@ async function toDataUrl(url: string) {
 
 function factory(
   getImageUrisFromHtml: GetImageUrisFromHtml,
-  replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody
-): ReplaceImageUrisWithBase64InHtmlBody {
-  return async function replaceImageUrisWithBase64InHtmlBody(html) {
+  replaceImageUrisInHtml: ReplaceImageUrisInHtml
+): ReplaceImageUrisWithBase64InHtml {
+  return async function replaceImageUrisWithBase64InHtml(html) {
     const imageUris = getImageUrisFromHtml(html);
     const promises = imageUris.map((uri) =>
       toDataUrl(uri).then((b64) => [uri, b64] as const)
     );
     const uriMap = Object.fromEntries(await Promise.all(promises));
-    return replaceImageUrisInHtmlBody(html, uriMap);
+    return replaceImageUrisInHtml(html, uriMap);
   };
 }
 
