@@ -1,9 +1,13 @@
 import type { cheerio } from '@/vendor/cheerio';
 import * as constants from '@/infrastructure/parsing/cheerio/CheerioGuideParser/constants';
 import { makeArticle } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/articleFactory';
+import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
 
 class UsageInstructionsParser {
-  constructor(private $: cheerio.CheerioAPI) {}
+  constructor(
+    private $: cheerio.CheerioAPI,
+    private sanitizeHtml: SanitizeHtml
+  ) {}
 
   private parse() {
     const { $ } = this;
@@ -19,7 +23,8 @@ class UsageInstructionsParser {
     return makeArticle(
       constants.INSTRUCTIONS_ID,
       constants.INSTRUCTIONS_TITLE,
-      html
+      html,
+      this.sanitizeHtml
     );
   }
 }

@@ -1,6 +1,7 @@
 import type { WebSQLDatabase, Query } from 'expo-sqlite';
 import { makeArticle } from '@/infrastructure/caching/expo/ExpoArticleCache/articleFactory';
 import type { Article } from '@/domain/models/Article';
+import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
 
 type ArticleResultRow = {
   id: string;
@@ -16,7 +17,7 @@ function makeQuery(sql: string, args: (string | number)[] = []): Query {
 class ExpoArticleCacheRepository {
   db: Promise<WebSQLDatabase>;
 
-  constructor(database: WebSQLDatabase) {
+  constructor(private sanitizeHtml: SanitizeHtml, database: WebSQLDatabase) {
     this.db = this.prepareDatabase(database);
   }
 
@@ -29,7 +30,9 @@ class ExpoArticleCacheRepository {
       section_ids
     FROM articles;`;
     const rows = await this.executeSql<ArticleResultRow>(query);
-    return rows.map((r) => makeArticle(r.id, r.title, r.body, r.section_ids));
+    return rows.map((r) =>
+      makeArticle(r.id, r.title, r.body, r.section_ids, this.sanitizeHtml)
+    );
   }
 
   async saveArticles(articles: Article[]) {

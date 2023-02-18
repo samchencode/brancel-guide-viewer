@@ -2,7 +2,7 @@ import type {
   GetImageUrisFromHtml,
   ReplaceImageUrisInHtmlBody,
   ReplaceImageUrisWithBase64InHtmlBody,
-} from '@/infrastructure/util/types';
+} from '@/domain/models/RichText/htmlManipulationUtils';
 
 function blobToDataUrl(blob: Blob) {
   return new Promise<string>((resolve, reject) => {

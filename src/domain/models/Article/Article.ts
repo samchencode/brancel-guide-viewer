@@ -1,5 +1,5 @@
 import type { ArticleId } from '@/domain/models/Article/ArticleId';
-import type { RichText } from '@/domain/models/RichText';
+import type { RichText } from '@/domain/models/RichText/RichText';
 
 class Article {
   public readonly sectionIds: Set<string>;

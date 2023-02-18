@@ -1,9 +1,13 @@
 import type { cheerio } from '@/vendor/cheerio';
 import * as constants from '@/infrastructure/parsing/cheerio/CheerioGuideParser/constants';
 import { makeArticle } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/articleFactory';
+import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
 
 class ArticleParser {
-  constructor(private $: cheerio.CheerioAPI) {}
+  constructor(
+    private $: cheerio.CheerioAPI,
+    private sanitizeHtml: SanitizeHtml
+  ) {}
 
   makeAllArticles() {
     return this.parseTableOfContents().map(({ id, title }) =>
@@ -27,7 +31,12 @@ class ArticleParser {
   }
 
   private makeArticle(idString: string, title: string) {
-    return makeArticle(idString, title, this.getBody(idString));
+    return makeArticle(
+      idString,
+      title,
+      this.getBody(idString),
+      this.sanitizeHtml
+    );
   }
 
   private getBody(id: string): string {

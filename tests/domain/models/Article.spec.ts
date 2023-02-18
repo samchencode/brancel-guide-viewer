@@ -1,5 +1,5 @@
 import { Article, ArticleId } from '@/domain/models/Article';
-import { RichText } from '@/domain/models/RichText';
+import { RichText } from '@/domain/models/RichText/RichText';
 
 describe('Article', () => {
   describe('Instantiation', () => {

@@ -2,7 +2,7 @@ import { Article, ArticleId } from '@/domain/models/Article';
 import type { ArticleRepository } from '@/domain/models/Article';
 import type { FakeArticle } from '@/infrastructure/persistence/fake/fakeArticles';
 import { fakeArticles } from '@/infrastructure/persistence/fake/fakeArticles';
-import { RichText } from '@/domain/models/RichText';
+import { RichText } from '@/domain/models/RichText/RichText';
 import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 
 class FakeArticleRepository implements ArticleRepository {

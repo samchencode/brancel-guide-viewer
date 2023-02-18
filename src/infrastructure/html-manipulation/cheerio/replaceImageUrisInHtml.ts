@@ -1,5 +1,5 @@
 import { cheerio } from '@/vendor/cheerio';
-import type { ReplaceImageUrisInHtmlBody } from '@/infrastructure/util/types';
+import type { ReplaceImageUrisInHtmlBody } from '@/domain/models/RichText/htmlManipulationUtils';
 
 function replaceImageUri(
   $: cheerio.CheerioAPI,

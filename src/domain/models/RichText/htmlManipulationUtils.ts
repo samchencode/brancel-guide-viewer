@@ -1,3 +1,4 @@
+export type SanitizeHtml = (html: string) => string;
 export type GetImageUrisFromHtml = (html: string) => string[];
 export type ReplaceImageUrisInHtmlBody = (
   html: string,

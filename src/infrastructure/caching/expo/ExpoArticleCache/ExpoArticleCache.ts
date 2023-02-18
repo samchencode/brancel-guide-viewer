@@ -6,7 +6,8 @@ import { cloneArticleWithNewHtml } from '@/infrastructure/caching/expo/ExpoArtic
 import type {
   GetImageUrisFromHtml,
   ReplaceImageUrisInHtmlBody,
-} from '@/infrastructure/util/types';
+  SanitizeHtml,
+} from '@/domain/models/RichText/htmlManipulationUtils';
 
 class ExpoArticleCache implements ArticleCache {
   private repo: ExpoArticleCacheRepository;
@@ -17,16 +18,23 @@ class ExpoArticleCache implements ArticleCache {
 
   private replaceImageUris: ReplaceImageUrisInHtmlBody;
 
+  private sanitizeHtml: SanitizeHtml;
+
   constructor(
     articleCacheDatabase: WebSQLDatabase,
     fileSystem: FileSystem,
     getImageUrisFromHtml: GetImageUrisFromHtml,
-    replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody
+    replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody,
+    sanitizeHtml: SanitizeHtml
   ) {
-    this.repo = new ExpoArticleCacheRepository(articleCacheDatabase);
+    this.repo = new ExpoArticleCacheRepository(
+      sanitizeHtml,
+      articleCacheDatabase
+    );
     this.fs = fileSystem;
     this.getImageUris = getImageUrisFromHtml;
     this.replaceImageUris = replaceImageUrisInHtmlBody;
+    this.sanitizeHtml = sanitizeHtml;
   }
 
   async getAllArticles(): Promise<Article[]> {
@@ -53,7 +61,7 @@ class ExpoArticleCache implements ArticleCache {
       })
       .map(([article, uriMap]) => {
         const html = this.replaceImageUris(article.body.html, uriMap);
-        return cloneArticleWithNewHtml(article, html);
+        return cloneArticleWithNewHtml(article, html, this.sanitizeHtml);
       });
 
     await this.repo.saveArticles(newArticles);

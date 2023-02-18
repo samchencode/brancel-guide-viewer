@@ -6,29 +6,30 @@ import { ArticleParser } from '@/infrastructure/parsing/cheerio/CheerioGuidePars
 import { AboutParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/AboutParser';
 import { IndexParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/IndexParser';
 import { UsageInstructionsParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/UsageInstructionsParser';
+import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
 
 class CheerioGuideParser implements GuideParser {
   $: cheerio.CheerioAPI;
 
-  constructor(html: string) {
+  constructor(html: string, private sanitizeHtml: SanitizeHtml) {
     this.$ = cheerio.load(html);
     prepare(this.$);
   }
 
   getAbout(): Article {
-    return new AboutParser(this.$).makeArticle();
+    return new AboutParser(this.$, this.sanitizeHtml).makeArticle();
   }
 
   getIndex(): Article {
-    return new IndexParser(this.$).makeArticle();
+    return new IndexParser(this.$, this.sanitizeHtml).makeArticle();
   }
 
   getUsageInstructions(): Article {
-    return new UsageInstructionsParser(this.$).makeArticle();
+    return new UsageInstructionsParser(this.$, this.sanitizeHtml).makeArticle();
   }
 
   getArticles(): Article[] {
-    return new ArticleParser(this.$).makeAllArticles();
+    return new ArticleParser(this.$, this.sanitizeHtml).makeAllArticles();
   }
 }
 

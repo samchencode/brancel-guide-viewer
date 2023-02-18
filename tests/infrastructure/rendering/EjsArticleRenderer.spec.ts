@@ -1,8 +1,8 @@
 import { Article, ArticleId } from '@/domain/models/Article';
-import { RichText } from '@/domain/models/RichText';
+import { RichText } from '@/domain/models/RichText/RichText';
 import { NodeFileSystem } from '@/infrastructure/file-system/node/NodeFileSystem';
 import { EjsArticleRenderer } from '@/infrastructure/rendering/ejs/EjsArticleRenderer/EjsArticleRenderer';
-import { sanitizeHtml } from '@/vendor/sanitizeHtml';
+import { sanitizeHtml } from '@/infrastructure/html-manipulation/sanitize-html/sanitizeHtml';
 
 describe('EjsArticleRenderer', () => {
   let fs: NodeFileSystem;

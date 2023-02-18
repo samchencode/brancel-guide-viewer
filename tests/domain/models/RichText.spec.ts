@@ -1,4 +1,4 @@
-import { RichText } from '@/domain/models/RichText';
+import { RichText } from '@/domain/models/RichText/RichText';
 
 describe('RichText', () => {
   describe('Instantiation', () => {

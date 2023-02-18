@@ -1,10 +1,11 @@
 import { Article, ArticleId } from '@/domain/models/Article';
-import { RichText } from '@/domain/models/RichText';
+import { RichText } from '@/domain/models/RichText/RichText';
 import { ExpoArticleCache } from '@/infrastructure/caching/expo/ExpoArticleCache';
 import { NodeFileSystem } from '@/infrastructure/file-system/node/NodeFileSystem';
 import type { WebSQLDatabase } from 'expo-sqlite';
-import { replaceImageUrisInHtmlBody as replaceImageUris } from '@/infrastructure/util/cheerio/replaceImageUrisInHtml';
-import { getImageUrisFromHtml as getImageUris } from '@/infrastructure/util/cheerio/getImageUrisFromHtml';
+import { replaceImageUrisInHtmlBody as replaceImageUris } from '@/infrastructure/html-manipulation/cheerio/replaceImageUrisInHtml';
+import { getImageUrisFromHtml as getImageUris } from '@/infrastructure/html-manipulation/cheerio/getImageUrisFromHtml';
+import { sanitizeHtml } from '@/infrastructure/html-manipulation/sanitize-html/sanitizeHtml';
 
 type DbMock = WebSQLDatabase & {
   exec: jest.Mock;
@@ -27,7 +28,13 @@ describe('ExpoArticleCache', () => {
     it('should be created with a database and filesystem', () => {
       const db = makeDbMock();
       const create = () =>
-        new ExpoArticleCache(db, fs, getImageUris, replaceImageUris);
+        new ExpoArticleCache(
+          db,
+          fs,
+          getImageUris,
+          replaceImageUris,
+          sanitizeHtml
+        );
       expect(create).not.toThrowError();
     });
   });
@@ -44,7 +51,8 @@ describe('ExpoArticleCache', () => {
         db,
         fs,
         getImageUris,
-        replaceImageUris
+        replaceImageUris,
+        sanitizeHtml
       );
       expect(db.exec).toBeCalledWith(
         [
@@ -65,7 +73,8 @@ describe('ExpoArticleCache', () => {
         db,
         fs,
         getImageUris,
-        replaceImageUris
+        replaceImageUris,
+        sanitizeHtml
       );
       db.exec.mockImplementationOnce((_q, _f, cb) =>
         cb(null, [
@@ -93,7 +102,8 @@ describe('ExpoArticleCache', () => {
         db,
         fs,
         getImageUris,
-        replaceImageUris
+        replaceImageUris,
+        sanitizeHtml
       );
       db.exec.mockClear();
 
@@ -131,7 +141,8 @@ describe('ExpoArticleCache', () => {
         db,
         fs,
         getImageUris,
-        replaceImageUris
+        replaceImageUris,
+        sanitizeHtml
       );
       db.exec.mockClear();
 
