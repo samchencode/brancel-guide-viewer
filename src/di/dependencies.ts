@@ -23,6 +23,11 @@ type Module = {
 };
 
 export const module: Module = {
+  // CONFIG
+  guideName: ['value', 'Urgent Care Medicine'],
+  wpApiHostUrl: ['value', 'http://localhost:8080'],
+  wpApiPageId: ['value', '27'],
+
   // ACTIONS
   getAllArticlesAction: ['type', GetAllArticlesAction],
   getArticleByIdAction: ['type', GetArticleByIdAction],
@@ -52,4 +57,7 @@ export const module: Module = {
   Router: ['factory', Router],
   HomeScreen: ['factory', HomeScreen],
   ArticleScreen: ['factory', ArticleScreen],
+
+  // CORE
+  fetch: ['value', fetch],
 };
