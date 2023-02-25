@@ -44,7 +44,8 @@
     ],
     "class-methods-use-this": "off",
     "import/no-default-export": "error",
-    "import/exports-last": "error"
+    "import/exports-last": "error",
+    "no-restricted-syntax": "off"
   },
   "settings": {
     "import/resolver": {

@@ -22,6 +22,7 @@ const config: Config.InitialOptions = {
     },
   },
   modulePathIgnorePatterns: ['<rootDir>/dist'],
+  setupFilesAfterEnv: ['jest-expect-message'],
 };
 
 export default config;
