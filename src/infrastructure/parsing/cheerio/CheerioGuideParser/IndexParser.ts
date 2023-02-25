@@ -11,12 +11,14 @@ class IndexParser {
 
   private parse() {
     const { $ } = this;
-    const elements = $('a[name=INDEX] ~ a[name=A]').nextUntil(
-      `hr,
+    const elements = $('a[name=INDEX] ~ a[name=A]')
+      .nextUntil(
+        `hr,
       a[name=Guideline_Navigation_Instructions],
       .content:has(hr),
       .content:has(a[name=Guideline_Navigation_Instructions])`
-    );
+      )
+      .addBack();
     return $.html(elements);
   }
 
