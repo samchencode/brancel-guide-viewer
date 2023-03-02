@@ -3,8 +3,7 @@ import type {
   ArticleId,
   ArticleRepository,
 } from '@/domain/models/Article';
-import type { SanitizeHtml } from '@/domain/models/RichText';
-import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
+import type { GuideParser } from '@/infrastructure/parsing/GuideParser';
 import { WpApiArticleNotFoundError } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiArticleNotFoundError';
 import { WpApiError } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiError';
 import type { WpApiErrorResponse } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiErrorResponse';
@@ -14,7 +13,7 @@ class WpApiGuideArticleRepository implements ArticleRepository {
   private articles: Promise<Article[]>;
 
   constructor(
-    private sanitizeHtml: SanitizeHtml,
+    private guideParser: GuideParser,
     private fetch: (url: string) => Promise<Response>,
     private wpApiHostUrl: string,
     private wpApiPageId: string
@@ -30,8 +29,7 @@ class WpApiGuideArticleRepository implements ArticleRepository {
       throw new WpApiError(response.status, data as WpApiErrorResponse);
     }
     const html = (data as WpApiPageResponse).content.rendered;
-    const parser = new CheerioGuideParser(html, this.sanitizeHtml);
-    return parser.getArticles();
+    return this.guideParser.getArticles(html);
   }
 
   async getAll(): Promise<Article[]> {

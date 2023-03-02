@@ -14,8 +14,8 @@ class FakeGuideArticleRepository implements ArticleRepository {
   private guideParser: GuideParser;
 
   constructor(sanitizeHtml: SanitizeHtml) {
-    this.guideParser = new CheerioGuideParser(stubGuide, sanitizeHtml);
-    this.articles = this.guideParser.getArticles();
+    this.guideParser = new CheerioGuideParser(sanitizeHtml);
+    this.articles = this.guideParser.getArticles(stubGuide);
   }
 
   async getAll(): Promise<Article[]> {

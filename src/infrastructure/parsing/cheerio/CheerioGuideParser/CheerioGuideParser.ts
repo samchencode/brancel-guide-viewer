@@ -1,35 +1,57 @@
-import { cheerio } from '@/vendor/cheerio';
-import type { GuideParser } from '@/infrastructure/parsing/GuideParser';
-import { prepare } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/prepare';
 import type { Article } from '@/domain/models/Article';
-import { ArticleParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/ArticleParser';
-import { AboutParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/AboutParser';
-import { IndexParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/IndexParser';
-import { UsageInstructionsParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/UsageInstructionsParser';
-import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
+import type { SanitizeHtml } from '@/domain/models/RichText';
+import { BaseCheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/BaseCheerioGuideParser';
+import { prepare } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/prepare';
+import type { GuideParser } from '@/infrastructure/parsing/GuideParser';
+import { cheerio } from '@/vendor/cheerio';
 
 class CheerioGuideParser implements GuideParser {
-  $: cheerio.CheerioAPI;
+  base: BaseCheerioGuideParser;
 
-  constructor(html: string, private sanitizeHtml: SanitizeHtml) {
-    this.$ = cheerio.load(html);
-    prepare(this.$);
+  $?: cheerio.CheerioAPI;
+
+  html?: string;
+
+  constructor(santizeHtml: SanitizeHtml) {
+    this.base = new BaseCheerioGuideParser(santizeHtml);
   }
 
-  getAbout(): Article {
-    return new AboutParser(this.$, this.sanitizeHtml).makeArticle();
+  private makeCheerioApi(html: string) {
+    const $ = cheerio.load(html);
+    prepare($);
+    return $;
   }
 
-  getIndex(): Article {
-    return new IndexParser(this.$, this.sanitizeHtml).makeArticle();
+  private shouldReload(html: string) {
+    return this.html !== html;
   }
 
-  getUsageInstructions(): Article {
-    return new UsageInstructionsParser(this.$, this.sanitizeHtml).makeArticle();
+  getAbout(html: string): Article {
+    if (!this.$ || this.shouldReload(html)) {
+      this.$ = this.makeCheerioApi(html);
+    }
+    return this.base.getAbout(this.$);
   }
 
-  getArticles(): Article[] {
-    return new ArticleParser(this.$, this.sanitizeHtml).makeAllArticles();
+  getIndex(html: string): Article {
+    if (!this.$ || this.shouldReload(html)) {
+      this.$ = this.makeCheerioApi(html);
+    }
+    return this.base.getIndex(this.$);
+  }
+
+  getUsageInstructions(html: string): Article {
+    if (!this.$ || this.shouldReload(html)) {
+      this.$ = this.makeCheerioApi(html);
+    }
+    return this.base.getUsageInstructions(this.$);
+  }
+
+  getArticles(html: string): Article[] {
+    if (!this.$ || this.shouldReload(html)) {
+      this.$ = this.makeCheerioApi(html);
+    }
+    return this.base.getArticles(this.$);
   }
 }
 
