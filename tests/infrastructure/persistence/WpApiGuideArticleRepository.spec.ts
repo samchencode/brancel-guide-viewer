@@ -8,9 +8,7 @@ describe('WpApiGuideArticleRepository', () => {
   const fetch = jest.fn().mockResolvedValue({
     ok: true,
     status: 200,
-    json: jest.fn().mockResolvedValue({
-      content: { rendered: stubApiResponse },
-    }),
+    json: jest.fn().mockResolvedValue(stubApiResponse),
   });
 
   describe('Instantiation', () => {
@@ -35,12 +33,12 @@ describe('WpApiGuideArticleRepository', () => {
       repo = new WpApiGuideArticleRepository(parser, fetch, host, pageId);
     });
 
-    it.skip('should get and parse all articles', async () => {
+    it('should get and parse all articles', async () => {
       const articles = await repo.getAll();
-      expect(articles).toHaveLength(10);
+      expect(articles).toHaveLength(11);
     });
 
-    it.skip('should get article by id', async () => {
+    it('should get article by id', async () => {
       const article = await repo.getById(
         new ArticleId('CERVICAL_SPINE_INJURIES')
       );
