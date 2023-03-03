@@ -10,9 +10,9 @@ class ArticleParser {
   ) {}
 
   makeAllArticles() {
-    return this.parseTableOfContents().map(({ id, title }) =>
-      this.makeArticle(id, title)
-    );
+    return this.parseTableOfContents()
+      .filter(({ id }) => this.idLeadsToArticle(id))
+      .map(({ id, title }) => this.makeArticle(id, title));
   }
 
   private parseTableOfContents() {
@@ -44,6 +44,11 @@ class ArticleParser {
     const html = $(`a[name=${id}]`).next().html();
     if (html === null) throw new Error(`article ${id} not found`);
     return html;
+  }
+
+  private idLeadsToArticle(id: string): boolean {
+    const { $ } = this;
+    return $(`a[name=${id}]`).next().hasClass('content');
   }
 }
 

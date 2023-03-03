@@ -72,7 +72,9 @@ describe('Guide Parsability Test', () => {
 
     for (const href of tocHrefs) {
       const article = articles.find((a) => a.id.is(new ArticleId(href)));
-      expect(article).toBeDefined();
+      const articleWithSubsection = articles.find((a) => a.hasSection(href));
+
+      expect(article || articleWithSubsection, `Testing: ${href}`).toBeTruthy();
     }
   });
 

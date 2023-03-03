@@ -57,5 +57,12 @@ describe('CheerioGuideParser', () => {
       expect(softTissueInjuries.hasSection('unimportant-id')).toBe(false);
       expect([...softTissueInjuries.sectionIds]).toHaveLength(38);
     });
+
+    it('should get table of contents', () => {
+      const parser = new CheerioGuideParser(sanitizeHtml);
+      const toc = parser.getTableOfContents(stubGuide);
+      expect(toc.items).toHaveLength(11);
+      expect(toc.items).toMatchSnapshot();
+    });
   });
 });

@@ -743,3 +743,52 @@ Toe distal phalanx fracture - splint x 3-6 wks; consult if displaced, angulated,
 Toe, 1st, sesamoid fracture - softly padded short leg walking cast (with toe extension) x 3-8 wks; consult if nonunion and if symptomatic after 6 months.
 "
 `;
+
+exports[`CheerioGuideParser Behavior should get table of contents 1`] = `
+[
+  TableOfContentsItem {
+    "destination": "INJURY_GUIDELINES",
+    "label": "Injury guidelines",
+  },
+  TableOfContentsItem {
+    "destination": "SOFT-TISSUE_INJURIES",
+    "label": "Soft-tissue injuries",
+  },
+  TableOfContentsItem {
+    "destination": "STEROID_INJECTIONS",
+    "label": "Steroid injections",
+  },
+  TableOfContentsItem {
+    "destination": "DISLOCATIONS/SUBLUXATIONS",
+    "label": "Dislocations / subluxations",
+  },
+  TableOfContentsItem {
+    "destination": "FRACTURE_HEALING_TIMES",
+    "label": "Fracture healing times",
+  },
+  TableOfContentsItem {
+    "destination": "PHYSIS/GROWTH_PLATE_FRACTURES",
+    "label": "Physis / growth plate fractures",
+  },
+  TableOfContentsItem {
+    "destination": "CERVICAL_SPINE_INJURIES",
+    "label": "Cervical spine injuries",
+  },
+  TableOfContentsItem {
+    "destination": "THORAX_AND_SPINE_FRACTURES",
+    "label": "Thorax and spine fractures",
+  },
+  TableOfContentsItem {
+    "destination": "PELVIS_FRACTURES",
+    "label": "Pelvis fractures",
+  },
+  TableOfContentsItem {
+    "destination": "UPPER-EXTREMITY_FRACTURES",
+    "label": "Upper-extremity fractures",
+  },
+  TableOfContentsItem {
+    "destination": "LOWER-EXTREMITY_FRACTURES",
+    "label": "Lower-extremity fractures",
+  },
+]
+`;

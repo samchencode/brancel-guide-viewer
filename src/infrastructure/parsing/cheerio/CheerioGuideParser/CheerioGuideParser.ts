@@ -4,6 +4,7 @@ import { BaseCheerioGuideParser } from '@/infrastructure/parsing/cheerio/Cheerio
 import { prepare } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/prepare';
 import type { GuideParser } from '@/domain/models/Guide';
 import { cheerio } from '@/vendor/cheerio';
+import type { TableOfContents } from '@/domain/models/TableOfContents';
 
 class CheerioGuideParser implements GuideParser {
   base: BaseCheerioGuideParser;
@@ -14,6 +15,13 @@ class CheerioGuideParser implements GuideParser {
 
   constructor(santizeHtml: SanitizeHtml) {
     this.base = new BaseCheerioGuideParser(santizeHtml);
+  }
+
+  getTableOfContents(html: string): TableOfContents {
+    if (!this.$ || this.shouldReload(html)) {
+      this.$ = this.makeCheerioApi(html);
+    }
+    return this.base.getTableOfContents(this.$);
   }
 
   private makeCheerioApi(html: string) {

@@ -5,9 +5,15 @@ import { AboutParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser
 import { IndexParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/IndexParser';
 import { UsageInstructionsParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/UsageInstructionsParser';
 import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
+import { TableOfContentsParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/TableOfContentsParser';
+import type { TableOfContents } from '@/domain/models/TableOfContents';
 
 class BaseCheerioGuideParser {
   constructor(private sanitizeHtml: SanitizeHtml) {}
+
+  getTableOfContents($: cheerio.CheerioAPI): TableOfContents {
+    return new TableOfContentsParser($).makeTableOfContents();
+  }
 
   getAbout($: cheerio.CheerioAPI): Article {
     return new AboutParser($, this.sanitizeHtml).makeArticle();
