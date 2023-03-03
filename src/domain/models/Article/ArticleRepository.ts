@@ -4,6 +4,7 @@ import type { ArticleId } from '@/domain/models/Article/ArticleId';
 interface ArticleRepository {
   getAll(): Promise<Article[]>;
   getById(id: ArticleId): Promise<Article>;
+  getBySectionId(sectionId: string): Promise<Article>;
 }
 
 export { ArticleRepository };

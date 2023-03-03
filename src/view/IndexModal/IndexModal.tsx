@@ -1,10 +1,8 @@
-import { ArticleId } from '@/domain/models/Article';
 import { theme } from '@/theme';
 import type { RootNavigationProps } from '@/view/Router';
 import React, { useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { INDEX_ID } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/constants';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -32,8 +30,7 @@ function IndexModal({ navigation }: Props) {
   const handlePressLetter = useCallback(
     (l: string) =>
       navigation.navigate('ArticleScreen', {
-        id: new ArticleId(INDEX_ID),
-        sectionId: l,
+        id: l,
       }),
     [navigation]
   );

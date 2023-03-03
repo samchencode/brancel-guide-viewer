@@ -3,23 +3,24 @@ import { StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import type { ListRenderItem } from 'react-native';
 import { ArticleRow } from '@/view/HomeScreen/ArticleRow';
-import type { Article, ArticleId } from '@/domain/models/Article';
 import { theme } from '@/theme';
+import type { TableOfContentsItem } from '@/domain/models/TableOfContents';
+import { EmptyArticleList } from '@/view/HomeScreen/EmptyArticleList';
 
 type Props = {
-  articles: Article[];
-  onSelectArticle: (id: ArticleId) => void;
+  articles: TableOfContentsItem[];
+  onSelectArticle: (dest: string) => void;
 };
 
-function getKey(article: Article) {
-  return article.id.toString();
+function getKey(item: TableOfContentsItem) {
+  return item.destination;
 }
 
 function ArticleList({ articles, onSelectArticle }: Props) {
   return (
     <FlatList
       data={articles}
-      renderItem={useCallback<ListRenderItem<Article>>(
+      renderItem={useCallback<ListRenderItem<TableOfContentsItem>>(
         ({ item: article }) => (
           <ArticleRow article={article} onPress={onSelectArticle} />
         ),
@@ -27,6 +28,7 @@ function ArticleList({ articles, onSelectArticle }: Props) {
       )}
       keyExtractor={getKey}
       contentContainerStyle={styles.contentContainerStyle}
+      ListEmptyComponent={<EmptyArticleList />}
     />
   );
 }

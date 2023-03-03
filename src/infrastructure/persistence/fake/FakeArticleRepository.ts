@@ -18,6 +18,10 @@ class FakeArticleRepository implements ArticleRepository {
     return this.makeArticle(article);
   }
 
+  async getBySectionId(): Promise<Article> {
+    throw new Error('Method Not Implemented');
+  }
+
   private makeArticle(a: FakeArticle) {
     return new Article(
       new ArticleId(a.id),

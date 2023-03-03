@@ -1,18 +1,18 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import type { Article, ArticleId } from '@/domain/models/Article';
 import { theme } from '@/theme';
+import type { TableOfContentsItem } from '@/domain/models/TableOfContents';
 
 type Props = {
-  article: Article;
-  onPress: (id: ArticleId) => void;
+  article: TableOfContentsItem;
+  onPress: (dest: string) => void;
 };
 
 class ArticleRow extends PureComponent<Props> {
   handlePress = () => {
     const { onPress, article } = this.props;
-    onPress(article.id);
+    onPress(article.destination);
   };
 
   render() {
@@ -25,7 +25,7 @@ class ArticleRow extends PureComponent<Props> {
       >
         <View style={styles.contentContainer}>
           <FontAwesome5 name="file" size={24} style={styles.icon} />
-          <Text style={styles.title}>{article.title}</Text>
+          <Text style={styles.title}>{article.label}</Text>
         </View>
       </TouchableHighlight>
     );

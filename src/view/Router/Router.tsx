@@ -4,14 +4,13 @@ import type { StackScreenProps } from '@react-navigation/stack';
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { Type as HomeScreen } from '@/view/HomeScreen';
 import type { Type as ArticleScreen } from '@/view/ArticleScreen';
-import type { ArticleId } from '@/domain/models/Article';
 import { IndexModal } from '@/view/IndexModal';
 import { DisclaimerModal } from '@/view/DisclaimerModal';
 import { Header } from '@/view/Router/Header';
 
 type AppNavigationParams = {
   HomeScreen: undefined;
-  ArticleScreen: { id: ArticleId; sectionId?: string };
+  ArticleScreen: { id: string };
 };
 
 type RootNavigationParams = {

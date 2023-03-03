@@ -33,5 +33,10 @@ describe('GuideArticleRepository', () => {
       );
       expect(article.title).toBe('Cervical spine injuries');
     });
+
+    it('should get article by section id within article', async () => {
+      const article = await repo.getBySectionId('ulna_shaft_fracture');
+      expect(article.title).toBe('Upper-extremity fractures');
+    });
   });
 });

@@ -1,23 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
-import type { Article, ArticleId } from '@/domain/models/Article';
-import type { GetAllArticlesAction } from '@/application/GetAllArticlesAction';
 import { ArticleList } from '@/view/HomeScreen/ArticleList';
 import { theme } from '@/theme';
 import type { AppNavigationProps } from '@/view/Router';
+import type { GetTableOfContentsAction } from '@/application/GetTableOfContentsAction';
+import type { TableOfContents } from '@/domain/models/TableOfContents';
 
 type Props = AppNavigationProps<'HomeScreen'>;
 
-function factory(getAllArticlesAction: GetAllArticlesAction) {
+function factory(getTableOfContentsAction: GetTableOfContentsAction) {
   return function HomeScreen({ navigation }: Props) {
-    const [articles, setArticles] = useState<Article[]>([]);
+    const [toc, setToc] = useState<TableOfContents | null>(null);
     useEffect(() => {
-      getAllArticlesAction.execute().then((a) => setArticles(a));
+      getTableOfContentsAction.execute().then((v) => setToc(v));
     }, []);
 
     const onSelectArticle = useCallback(
-      (id: ArticleId) => {
-        navigation.navigate('ArticleScreen', { id });
+      (destination: string) => {
+        navigation.navigate('ArticleScreen', { id: destination });
       },
       [navigation]
     );
@@ -36,7 +36,10 @@ function factory(getAllArticlesAction: GetAllArticlesAction) {
           }}
           title="Open Disclaimer Modal"
         />
-        <ArticleList articles={articles} onSelectArticle={onSelectArticle} />
+        <ArticleList
+          articles={toc?.items ?? []}
+          onSelectArticle={onSelectArticle}
+        />
       </View>
     );
   };

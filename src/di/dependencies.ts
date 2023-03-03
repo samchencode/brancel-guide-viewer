@@ -8,7 +8,6 @@ import { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
 import { RenderArticleAction } from '@/application/RenderArticleAction';
 import { ExpoAssetFileSystem } from '@/infrastructure/file-system/expo/ExpoFileSystem';
 import { EjsArticleRenderer } from '@/infrastructure/rendering/ejs/EjsArticleRenderer/EjsArticleRenderer';
-import { RenderArticleByIdAndReplaceImagesAction } from '@/application/RenderArticleByIdAndReplaceImagesAction';
 import { sanitizeHtml } from '@/infrastructure/html-manipulation/sanitize-html/sanitizeHtml';
 import { getImageUrisFromHtml } from '@/infrastructure/html-manipulation/cheerio/getImageUrisFromHtml';
 import {
@@ -21,6 +20,7 @@ import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuid
 import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuideRepository';
 import { GuideTableOfContentsRepository } from '@/infrastructure/persistence/guide/GuideTableOfContentsRepository';
 import { GetTableOfContentsAction } from '@/application/GetTableOfContentsAction';
+import { GetArticleByIdOrSectionIdAction } from '@/application/GetArticleByIdOrSectionIdAction';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -36,11 +36,8 @@ export const module: Module = {
   getAllArticlesAction: ['type', GetAllArticlesAction],
   getArticleByIdAction: ['type', GetArticleByIdAction],
   getTableOfContentsAction: ['type', GetTableOfContentsAction],
+  getArticleByIdOrSectionIdAction: ['type', GetArticleByIdOrSectionIdAction],
   renderArticleAction: ['type', RenderArticleAction],
-  renderArticleByIdAndReplaceImagesAction: [
-    'type',
-    RenderArticleByIdAndReplaceImagesAction,
-  ],
 
   // INFRASTRUCTURE
   articleRepository: ['type', GuideArticleRepository],
