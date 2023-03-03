@@ -5,7 +5,7 @@ import type {
 } from '@/domain/models/Article';
 import type { SanitizeHtml } from '@/domain/models/RichText';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
-import type { GuideParser } from '@/infrastructure/parsing/GuideParser';
+import type { GuideParser } from '@/domain/models/Guide';
 import { stubGuide } from '@/infrastructure/persistence/fake/stubGuide';
 
 class FakeGuideArticleRepository implements ArticleRepository {

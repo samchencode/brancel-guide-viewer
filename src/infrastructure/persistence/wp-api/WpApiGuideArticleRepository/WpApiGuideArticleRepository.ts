@@ -3,7 +3,7 @@ import type {
   ArticleId,
   ArticleRepository,
 } from '@/domain/models/Article';
-import type { GuideParser } from '@/infrastructure/parsing/GuideParser';
+import type { GuideParser } from '@/domain/models/Guide';
 import { WpApiArticleNotFoundError } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiArticleNotFoundError';
 import { WpApiError } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiError';
 import type { WpApiErrorResponse } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiErrorResponse';

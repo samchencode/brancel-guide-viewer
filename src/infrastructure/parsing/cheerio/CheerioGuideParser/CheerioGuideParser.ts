@@ -2,7 +2,7 @@ import type { Article } from '@/domain/models/Article';
 import type { SanitizeHtml } from '@/domain/models/RichText';
 import { BaseCheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/BaseCheerioGuideParser';
 import { prepare } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/prepare';
-import type { GuideParser } from '@/infrastructure/parsing/GuideParser';
+import type { GuideParser } from '@/domain/models/Guide';
 import { cheerio } from '@/vendor/cheerio';
 
 class CheerioGuideParser implements GuideParser {
