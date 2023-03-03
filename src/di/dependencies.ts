@@ -20,6 +20,7 @@ import { GuideArticleRepository } from '@/infrastructure/persistence/guide/Guide
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
 import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuideRepository';
 import { GuideTableOfContentsRepository } from '@/infrastructure/persistence/guide/GuideTableOfContentsRepository';
+import { GetTableOfContentsAction } from '@/application/GetTableOfContentsAction';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -34,6 +35,7 @@ export const module: Module = {
   // ACTIONS
   getAllArticlesAction: ['type', GetAllArticlesAction],
   getArticleByIdAction: ['type', GetArticleByIdAction],
+  getTableOfContentsAction: ['type', GetTableOfContentsAction],
   renderArticleAction: ['type', RenderArticleAction],
   renderArticleByIdAndReplaceImagesAction: [
     'type',
