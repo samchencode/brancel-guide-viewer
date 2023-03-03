@@ -13,8 +13,8 @@ class CheerioGuideParser implements GuideParser {
 
   html?: string;
 
-  constructor(santizeHtml: SanitizeHtml) {
-    this.base = new BaseCheerioGuideParser(santizeHtml);
+  constructor(sanitizeHtml: SanitizeHtml) {
+    this.base = new BaseCheerioGuideParser(sanitizeHtml);
   }
 
   getTableOfContents(html: string): TableOfContents {
