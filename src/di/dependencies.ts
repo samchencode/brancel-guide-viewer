@@ -18,6 +18,7 @@ import {
 import { factory as replaceImageUrisWithBase64InHtml } from '@/infrastructure/html-manipulation/fetch/replaceImageUrisWithBase64InHtml';
 import { FakeGuideArticleRepository } from '@/infrastructure/persistence/fake/FakeGuideArticleRepository';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
+import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuideRepository';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -41,6 +42,7 @@ export const module: Module = {
   // INFRASTRUCTURE
   articleRepository: ['type', FakeGuideArticleRepository],
   articleRenderer: ['type', EjsArticleRenderer],
+  guideRepository: ['type', FakeGuideRepository],
   fileSystem: ['type', ExpoAssetFileSystem],
   guideParser: ['type', CheerioGuideParser],
 
