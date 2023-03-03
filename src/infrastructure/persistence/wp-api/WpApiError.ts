@@ -1,4 +1,4 @@
-import type { WpApiErrorResponse } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiErrorResponse';
+import type { WpApiErrorResponse } from '@/infrastructure/persistence/wp-api/WpApiErrorResponse';
 
 class WpApiError extends Error {
   readonly name = 'WpApiHttpError';

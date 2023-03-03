@@ -1,8 +1,8 @@
 import type { GuideParser, GuideRepository } from '@/domain/models/Guide';
 import { Guide } from '@/domain/models/Guide';
-import { WpApiError } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiError';
-import type { WpApiErrorResponse } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiErrorResponse';
-import type { WpApiPageResponse } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiPageResponse';
+import { WpApiError } from '@/infrastructure/persistence/wp-api/WpApiError';
+import type { WpApiErrorResponse } from '@/infrastructure/persistence/wp-api/WpApiErrorResponse';
+import type { WpApiPageResponse } from '@/infrastructure/persistence/wp-api/WpApiPageResponse';
 
 class WpApiGuideRepository implements GuideRepository {
   constructor(
