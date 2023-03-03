@@ -1,5 +1,5 @@
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
-import { WpApiGuideRepository } from '@/infrastructure/persistence/wp-api/WpApiGuideArticleRepository/WpApiGuideRepository';
+import { WpApiGuideRepository } from '@/infrastructure/persistence/wp-api/WpApiGuideRepository';
 import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 import { stubApiResponse } from './stubApiResponse';
 
