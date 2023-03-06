@@ -1,5 +1,10 @@
 import { Article, ArticleId } from '@/domain/models/Article';
-import type { ArticleRepository } from '@/domain/models/Article';
+import type {
+  ArticleRepository,
+  About,
+  Index,
+  UsageInstructions,
+} from '@/domain/models/Article';
 import type { FakeArticle } from '@/infrastructure/persistence/fake/fakeArticles';
 import { fakeArticles } from '@/infrastructure/persistence/fake/fakeArticles';
 import { RichText } from '@/domain/models/RichText/RichText';
@@ -20,6 +25,18 @@ class FakeArticleRepository implements ArticleRepository {
 
   async getBySectionId(): Promise<Article> {
     throw new Error('Method Not Implemented');
+  }
+
+  getAbout(): Promise<About> {
+    throw new Error('Method not implemented.');
+  }
+
+  getIndex(): Promise<Index> {
+    throw new Error('Method not implemented.');
+  }
+
+  getUsageInstructions(): Promise<UsageInstructions> {
+    throw new Error('Method not implemented.');
   }
 
   private makeArticle(a: FakeArticle) {

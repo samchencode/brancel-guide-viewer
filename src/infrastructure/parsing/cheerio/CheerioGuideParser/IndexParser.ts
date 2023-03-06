@@ -1,6 +1,5 @@
 import type { cheerio } from '@/vendor/cheerio';
-import * as constants from '@/infrastructure/parsing/cheerio/CheerioGuideParser/constants';
-import { makeArticle } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/articleFactory';
+import { makeIndex } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/articleFactory';
 import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
 
 class IndexParser {
@@ -22,15 +21,10 @@ class IndexParser {
     return $.html(elements);
   }
 
-  makeArticle() {
+  makeIndex() {
     const html = this.parse();
     if (html === '') throw Error('index html is empty');
-    return makeArticle(
-      constants.INDEX_ID,
-      constants.INDEX_TITLE,
-      html,
-      this.sanitizeHtml
-    );
+    return makeIndex(html, this.sanitizeHtml);
   }
 }
 

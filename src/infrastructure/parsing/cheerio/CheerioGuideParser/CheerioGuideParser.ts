@@ -1,4 +1,9 @@
-import type { Article } from '@/domain/models/Article';
+import type {
+  About,
+  Article,
+  Index,
+  UsageInstructions,
+} from '@/domain/models/Article';
 import type { SanitizeHtml } from '@/domain/models/RichText';
 import { BaseCheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/BaseCheerioGuideParser';
 import { prepare } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/prepare';
@@ -34,21 +39,21 @@ class CheerioGuideParser implements GuideParser {
     return this.html !== html;
   }
 
-  getAbout(html: string): Article {
+  getAbout(html: string): About {
     if (!this.$ || this.shouldReload(html)) {
       this.$ = this.makeCheerioApi(html);
     }
     return this.base.getAbout(this.$);
   }
 
-  getIndex(html: string): Article {
+  getIndex(html: string): Index {
     if (!this.$ || this.shouldReload(html)) {
       this.$ = this.makeCheerioApi(html);
     }
     return this.base.getIndex(this.$);
   }
 
-  getUsageInstructions(html: string): Article {
+  getUsageInstructions(html: string): UsageInstructions {
     if (!this.$ || this.shouldReload(html)) {
       this.$ = this.makeCheerioApi(html);
     }

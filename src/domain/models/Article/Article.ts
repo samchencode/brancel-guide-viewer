@@ -4,6 +4,8 @@ import type { RichText } from '@/domain/models/RichText/RichText';
 class Article {
   public readonly sectionIds: Set<string>;
 
+  public type = 'base';
+
   constructor(
     public readonly id: ArticleId,
     public readonly title: string,

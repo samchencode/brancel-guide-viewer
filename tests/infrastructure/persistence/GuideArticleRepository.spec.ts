@@ -1,4 +1,9 @@
-import { ArticleId } from '@/domain/models/Article';
+import {
+  About,
+  ArticleId,
+  Index,
+  UsageInstructions,
+} from '@/domain/models/Article';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
 import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuideRepository';
 import { GuideArticleRepository } from '@/infrastructure/persistence/guide/GuideArticleRepository';
@@ -37,6 +42,32 @@ describe('GuideArticleRepository', () => {
     it('should get article by section id within article', async () => {
       const article = await repo.getBySectionId('ulna_shaft_fracture');
       expect(article.title).toBe('Upper-extremity fractures');
+      expect(article.body.html).toMatchSnapshot();
+    });
+
+    it('should get about section', async () => {
+      const about = await repo.getAbout();
+      expect(about.id.toString()).toBe(About.ABOUT_ID);
+      expect(about.title).toBe(About.ABOUT_TITLE);
+      expect(about.body.html).toMatchSnapshot();
+    });
+
+    it('should get index section', async () => {
+      const index = await repo.getIndex();
+      expect(index.id.toString()).toBe(Index.INDEX_ID);
+      expect(index.title).toBe(Index.INDEX_TITLE);
+      expect(index.body.html).toMatchSnapshot();
+    });
+
+    it('should get usage instructions section', async () => {
+      const instructions = await repo.getUsageInstructions();
+      expect(instructions.id.toString()).toBe(
+        UsageInstructions.USAGE_INSTRUCTIONS_ID
+      );
+      expect(instructions.title).toBe(
+        UsageInstructions.USAGE_INSTRUCTIONS_TITLE
+      );
+      expect(instructions.body.html).toMatchSnapshot();
     });
   });
 });

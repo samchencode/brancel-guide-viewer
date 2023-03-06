@@ -1,5 +1,11 @@
 import { cheerio } from '@/vendor/cheerio';
-import { Article, ArticleId } from '@/domain/models/Article';
+import {
+  About,
+  Article,
+  ArticleId,
+  Index,
+  UsageInstructions,
+} from '@/domain/models/Article';
 import { RichText } from '@/domain/models/RichText/RichText';
 import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
 
@@ -25,4 +31,25 @@ export function makeArticle(
   const body = new RichText(sanitizeHtml, bodyHtml);
   const sectionIds = getSectionIds(bodyHtml);
   return new Article(id, title, body, sectionIds);
+}
+
+export function makeAbout(bodyHtml: string, sanitizeHtml: SanitizeHtml) {
+  const body = new RichText(sanitizeHtml, bodyHtml);
+  const sectionIds = getSectionIds(bodyHtml);
+  return new About(body, sectionIds);
+}
+
+export function makeIndex(bodyHtml: string, sanitizeHtml: SanitizeHtml) {
+  const body = new RichText(sanitizeHtml, bodyHtml);
+  const sectionIds = getSectionIds(bodyHtml);
+  return new Index(body, sectionIds);
+}
+
+export function makeUsageInstructions(
+  bodyHtml: string,
+  sanitizeHtml: SanitizeHtml
+) {
+  const body = new RichText(sanitizeHtml, bodyHtml);
+  const sectionIds = getSectionIds(bodyHtml);
+  return new UsageInstructions(body, sectionIds);
 }
