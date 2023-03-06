@@ -123,13 +123,33 @@
       })
     }
 
+    function notifyIndexPressed() {
+      notify({
+        type: 'indexpressed',
+        data: {}
+      })
+    }
+
+    function notifyTableOfContentsPressed() {
+      notify({
+        type: 'tableofcontentspressed',
+        data: {}
+      })
+    }
+
     ; // capture link presses
     (function() {
+      var INDEX_ID = '#INDEX'
+      var TABLE_OF_CONTENTS_ID = '#TABLE_OF_CONTENTS'
+
       var anchors = document.querySelectorAll('a[href]');
       for (var i = 0; i < anchors.length; i++) {
         anchors[i].addEventListener('click', function(e) {
           e.preventDefault();
-          notifyLinkPressed(this.href);
+          var url = new URL(this.href);
+          if (url.hash === INDEX_ID) notifyIndexPressed();
+          else if (url.hash === TABLE_OF_CONTENTS_ID) notifyTableOfContentsPressed();
+          else notifyLinkPressed(this.href);
         })
       }
     })()

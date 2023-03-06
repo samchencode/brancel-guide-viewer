@@ -5,6 +5,16 @@ export type LinkPressedEvent = {
   };
 };
 
+export type IndexPressedEvent = {
+  type: 'indexpressed';
+  data: Record<string, never>;
+};
+
+export type TableOfContentsPressedEvent = {
+  type: 'tableofcontentspressed';
+  data: Record<string, never>;
+};
+
 export type ErrorEvent = {
   type: 'error';
   data: {
@@ -13,4 +23,8 @@ export type ErrorEvent = {
   };
 };
 
-export type WebViewEvent = LinkPressedEvent | ErrorEvent;
+export type WebViewEvent =
+  | LinkPressedEvent
+  | ErrorEvent
+  | IndexPressedEvent
+  | TableOfContentsPressedEvent;

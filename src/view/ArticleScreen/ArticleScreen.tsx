@@ -37,6 +37,12 @@ function factory(
             const nextId = href.slice(1);
             navigation.navigate('ArticleScreen', { id: nextId });
           },
+          handleIndexPressed() {
+            navigation.navigate('IndexModal');
+          },
+          handleTableOfContentsPressed() {
+            navigation.reset({ index: 0, routes: [{ name: 'HomeScreen' }] });
+          },
         }),
       [navigation]
     );
