@@ -99,29 +99,69 @@
 <body>
   <main><%- body %></main>
   <script>
-    var anchors = document.getElementsByTagName('a');
-    for (var i = 0; i < anchors.length; i++) {
-      anchors[i].addEventListener('click', function(e) {
-        e.preventDefault();
-        window.ReactNativeWebView.postMessage(this.href);
+    function notify(event) {
+      var message = JSON.stringify(event);
+      window.ReactNativeWebView.postMessage(message)
+    }
+
+    function notifyLinkPressed(href) {
+      notify({
+        type: 'linkpressed',
+        data: {
+          href: href,
+        }
       })
     }
 
-    var tables = document.getElementsByTagName('table');
-    for (var i = 0; i < tables.length; i++) {
-      var wrapper = document.createElement('div');
-      wrapper.className = "table__wrapper";
-      wrapper.appendChild(tables[i].cloneNode(true));
-      tables[i].replaceWith(wrapper);
+    function notifyError(name, msg) {
+      notify({
+        type: 'error',
+        data: {
+          name: name,
+          message: msg,
+        }
+      })
     }
 
-    var images = document.getElementsByTagName('img');
-    for (var i = 0; i < images.length; i++) {
-      var wrapper = document.createElement('div');
-      wrapper.className = "img__wrapper";
-      wrapper.appendChild(images[i].cloneNode());
-      images[i].replaceWith(wrapper);
-    }
+    ; // capture link presses
+    (function() {
+      var anchors = document.querySelectorAll('a[href]');
+      for (var i = 0; i < anchors.length; i++) {
+        anchors[i].addEventListener('click', function(e) {
+          e.preventDefault();
+          notifyLinkPressed(this.href);
+        })
+      }
+    })()
+
+    ; // capture errors
+    (function() {
+      window.addEventListener('error', (e) => {
+        notifyError(e.error.name, e.message);
+      })
+    })()
+
+    ; // wrap tables
+    (function() {
+      var tables = document.getElementsByTagName('table');
+      for (var i = 0; i < tables.length; i++) {
+        var wrapper = document.createElement('div');
+        wrapper.className = "table__wrapper";
+        wrapper.appendChild(tables[i].cloneNode(true));
+        tables[i].replaceWith(wrapper);
+      }
+    })()
+
+    ; // wrap images
+    (function() {
+      var images = document.getElementsByTagName('img');
+      for (var i = 0; i < images.length; i++) {
+        var wrapper = document.createElement('div');
+        wrapper.className = "img__wrapper";
+        wrapper.appendChild(images[i].cloneNode());
+        images[i].replaceWith(wrapper);
+      }
+    })()
   </script>
 </body>
 
