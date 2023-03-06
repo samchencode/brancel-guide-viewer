@@ -1,5 +1,6 @@
 import { Article } from '@/domain/models/Article/Article';
 import { ArticleId } from '@/domain/models/Article/ArticleId';
+import { ARTICLE_TYPES } from '@/domain/models/Article/constants';
 import type { RichText } from '@/domain/models/RichText';
 
 class UsageInstructions extends Article {
@@ -8,7 +9,7 @@ class UsageInstructions extends Article {
   static readonly USAGE_INSTRUCTIONS_TITLE =
     'Guideline Navigation Instructions';
 
-  readonly type = 'usage-instructions';
+  readonly type = ARTICLE_TYPES.USAGE_INSTRUCTIONS;
 
   constructor(body: RichText, sectionIds: string[] = []) {
     super(

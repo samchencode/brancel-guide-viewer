@@ -1,10 +1,11 @@
 import type { ArticleId } from '@/domain/models/Article/ArticleId';
+import { ARTICLE_TYPES } from '@/domain/models/Article/constants';
 import type { RichText } from '@/domain/models/RichText/RichText';
 
 class Article {
   public readonly sectionIds: Set<string>;
 
-  public type = 'base';
+  public type: string = ARTICLE_TYPES.BASE;
 
   constructor(
     public readonly id: ArticleId,
