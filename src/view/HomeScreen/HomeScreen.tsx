@@ -40,6 +40,12 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
           }}
           title="Open Disclaimer Modal"
         />
+        <Button
+          onPress={() => {
+            navigation.navigate('UsageInstructionsScreen');
+          }}
+          title="Go to Instructions Screen"
+        />
         <ArticleList
           articles={toc?.items ?? []}
           onSelectArticle={onSelectArticle}

@@ -3,6 +3,7 @@ import { factory as App } from '@/view/App';
 import { factory as Router } from '@/view/Router';
 import { factory as HomeScreen } from '@/view/HomeScreen';
 import { factory as ArticleScreen } from '@/view/ArticleScreen';
+import { factory as UsageInstructionsScreen } from '@/view/UsageInstructionsScreen';
 import { GetAllArticlesAction } from '@/application/GetAllArticlesAction';
 import { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
 import { RenderArticleAction } from '@/application/RenderArticleAction';
@@ -66,6 +67,7 @@ export const module: Module = {
   Router: ['factory', Router],
   HomeScreen: ['factory', HomeScreen],
   ArticleScreen: ['factory', ArticleScreen],
+  UsageInstructionsScreen: ['factory', UsageInstructionsScreen],
 
   // CORE
   fetch: ['value', fetch],

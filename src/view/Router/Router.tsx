@@ -8,6 +8,7 @@ import { IndexModal } from '@/view/IndexModal';
 import { DisclaimerModal } from '@/view/DisclaimerModal';
 import { Header } from '@/view/Router/Header';
 import type { ARTICLE_TYPES } from '@/domain/models/Article';
+import type { Type as UsageInstructionsScreen } from '@/view/UsageInstructionsScreen';
 
 type ValueOf<T> = T[keyof T];
 
@@ -17,6 +18,7 @@ type AppNavigationParams = {
     type: ValueOf<typeof ARTICLE_TYPES>;
     idOrSectionId: string;
   };
+  UsageInstructionsScreen: undefined;
 };
 
 type RootNavigationParams = {
@@ -25,7 +27,11 @@ type RootNavigationParams = {
   DisclaimerModal: undefined;
 };
 
-function factory(HomeScreen: HomeScreen, ArticleScreen: ArticleScreen) {
+function factory(
+  HomeScreen: HomeScreen,
+  ArticleScreen: ArticleScreen,
+  UsageInstructionsScreen: UsageInstructionsScreen
+) {
   const AppStack = createStackNavigator<AppNavigationParams>();
   const RootStack = createStackNavigator<RootNavigationParams>();
 
@@ -34,6 +40,10 @@ function factory(HomeScreen: HomeScreen, ArticleScreen: ArticleScreen) {
       <AppStack.Navigator screenOptions={{ header: Header }}>
         <AppStack.Screen name="HomeScreen" component={HomeScreen} />
         <AppStack.Screen name="ArticleScreen" component={ArticleScreen} />
+        <AppStack.Screen
+          name="UsageInstructionsScreen"
+          component={UsageInstructionsScreen}
+        />
       </AppStack.Navigator>
     );
   }
