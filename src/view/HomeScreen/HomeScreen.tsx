@@ -46,6 +46,12 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
           }}
           title="Go to Instructions Screen"
         />
+        <Button
+          onPress={() => {
+            navigation.navigate('LicenseScreen');
+          }}
+          title="Go to License Screen"
+        />
         <ArticleList
           articles={toc?.items ?? []}
           onSelectArticle={onSelectArticle}

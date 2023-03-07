@@ -4,6 +4,7 @@ import type { StackScreenProps } from '@react-navigation/stack';
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { Type as HomeScreen } from '@/view/HomeScreen';
 import type { Type as ArticleScreen } from '@/view/ArticleScreen';
+import type { Type as LicenseScreen } from '@/view/LicenseScreen';
 import { IndexModal } from '@/view/IndexModal';
 import { DisclaimerModal } from '@/view/DisclaimerModal';
 import { Header } from '@/view/Router/Header';
@@ -19,6 +20,7 @@ type AppNavigationParams = {
     idOrSectionId: string;
   };
   UsageInstructionsScreen: undefined;
+  LicenseScreen: undefined;
 };
 
 type RootNavigationParams = {
@@ -30,7 +32,8 @@ type RootNavigationParams = {
 function factory(
   HomeScreen: HomeScreen,
   ArticleScreen: ArticleScreen,
-  UsageInstructionsScreen: UsageInstructionsScreen
+  UsageInstructionsScreen: UsageInstructionsScreen,
+  LicenseScreen: LicenseScreen
 ) {
   const AppStack = createStackNavigator<AppNavigationParams>();
   const RootStack = createStackNavigator<RootNavigationParams>();
@@ -44,6 +47,7 @@ function factory(
           name="UsageInstructionsScreen"
           component={UsageInstructionsScreen}
         />
+        <AppStack.Screen name="LicenseScreen" component={LicenseScreen} />
       </AppStack.Navigator>
     );
   }
