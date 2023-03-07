@@ -102,29 +102,89 @@ exports[`EjsArticleRenderer Behavior should render html in the body 1`] = `
 <body>
   <main><h1>Hello World</h1></main>
   <script>
-    var anchors = document.getElementsByTagName('a');
-    for (var i = 0; i < anchors.length; i++) {
-      anchors[i].addEventListener('click', function(e) {
-        e.preventDefault();
-        window.ReactNativeWebView.postMessage(this.href);
+    function notify(event) {
+      var message = JSON.stringify(event);
+      window.ReactNativeWebView.postMessage(message)
+    }
+
+    function notifyLinkPressed(href) {
+      notify({
+        type: 'linkpressed',
+        data: {
+          href: href,
+        }
       })
     }
 
-    var tables = document.getElementsByTagName('table');
-    for (var i = 0; i < tables.length; i++) {
-      var wrapper = document.createElement('div');
-      wrapper.className = "table__wrapper";
-      wrapper.appendChild(tables[i].cloneNode(true));
-      tables[i].replaceWith(wrapper);
+    function notifyError(name, msg) {
+      notify({
+        type: 'error',
+        data: {
+          name: name,
+          message: msg,
+        }
+      })
     }
 
-    var images = document.getElementsByTagName('img');
-    for (var i = 0; i < images.length; i++) {
-      var wrapper = document.createElement('div');
-      wrapper.className = "img__wrapper";
-      wrapper.appendChild(images[i].cloneNode());
-      images[i].replaceWith(wrapper);
+    function notifyIndexPressed() {
+      notify({
+        type: 'indexpressed',
+        data: {}
+      })
     }
+
+    function notifyTableOfContentsPressed() {
+      notify({
+        type: 'tableofcontentspressed',
+        data: {}
+      })
+    }
+
+    ; // capture link presses
+    (function() {
+      var INDEX_ID = '#INDEX'
+      var TABLE_OF_CONTENTS_ID = '#TABLE_OF_CONTENTS'
+
+      var anchors = document.querySelectorAll('a[href]');
+      for (var i = 0; i < anchors.length; i++) {
+        anchors[i].addEventListener('click', function(e) {
+          e.preventDefault();
+          var url = new URL(this.href);
+          if (url.hash === INDEX_ID) notifyIndexPressed();
+          else if (url.hash === TABLE_OF_CONTENTS_ID) notifyTableOfContentsPressed();
+          else notifyLinkPressed(this.href);
+        })
+      }
+    })()
+
+    ; // capture errors
+    (function() {
+      window.addEventListener('error', (e) => {
+        notifyError(e.error.name, e.message);
+      })
+    })()
+
+    ; // wrap tables
+    (function() {
+      var tables = document.getElementsByTagName('table');
+      for (var i = 0; i < tables.length; i++) {
+        var wrapper = document.createElement('div');
+        wrapper.className = "table__wrapper";
+        wrapper.appendChild(tables[i].cloneNode(true));
+        tables[i].replaceWith(wrapper);
+      }
+    })()
+
+    ; // wrap images
+    (function() {
+      var images = document.getElementsByTagName('img');
+      for (var i = 0; i < images.length; i++) {
+        var wrapper = document.createElement('div');
+        wrapper.className = "img__wrapper";
+        wrapper.appendChild(images[i].cloneNode());
+        images[i].replaceWith(wrapper);
+      }
+    })()
   </script>
 </body>
 
