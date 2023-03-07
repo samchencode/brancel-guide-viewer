@@ -29,7 +29,23 @@ describe('GuideArticleRepository', () => {
 
     it('should get and parse all articles', async () => {
       const articles = await repo.getAll();
-      expect(articles).toHaveLength(11);
+      expect(articles).toHaveLength(14);
+    });
+
+    it('should get all articles including about, usage instructions, and index', async () => {
+      const articles = await repo.getAll();
+      const about = articles.find((a) =>
+        a.id.is(new ArticleId(About.ABOUT_ID))
+      );
+      expect(about).toBeDefined();
+      const instructions = articles.find((a) =>
+        a.id.is(new ArticleId(UsageInstructions.USAGE_INSTRUCTIONS_ID))
+      );
+      expect(instructions).toBeDefined();
+      const index = articles.find((a) =>
+        a.id.is(new ArticleId(Index.INDEX_ID))
+      );
+      expect(index).toBeDefined();
     });
 
     it('should get article by id', async () => {
@@ -43,6 +59,11 @@ describe('GuideArticleRepository', () => {
       const article = await repo.getBySectionId('ulna_shaft_fracture');
       expect(article.title).toBe('Upper-extremity fractures');
       expect(article.body.html).toMatchSnapshot();
+    });
+
+    it('should get index by section id within index', async () => {
+      const index = await repo.getBySectionId('A');
+      expect(index.title).toBe(Index.INDEX_TITLE);
     });
 
     it('should get about section', async () => {

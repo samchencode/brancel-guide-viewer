@@ -34,7 +34,11 @@ class GuideArticleRepository implements ArticleRepository {
 
   async getAll(): Promise<Article[]> {
     const guide = await this.guide;
-    return guide.getArticles();
+    const normalArticles = guide.getArticles();
+    const index = guide.getIndex();
+    const instructions = guide.getUsageInstructions();
+    const about = guide.getAbout();
+    return [...normalArticles, index, instructions, about];
   }
 
   async getById(id: ArticleId): Promise<Article> {
