@@ -1,60 +1,38 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import WebView from 'react-native-webview';
-import type { WebViewMessageEvent } from 'react-native-webview';
 import type { AppNavigationProps } from '@/view/Router';
 import { theme } from '@/theme';
-import type { GetArticleByIdOrSectionIdAction } from '@/application/GetArticleByIdOrSectionIdAction';
+import type { FindArticleAction } from '@/application/FindArticleAction';
 import type { RenderArticleAction } from '@/application/RenderArticleAction';
-import { WebViewEventHandler } from '@/infrastructure/rendering/WebViewEventHandler';
+import type { ArticleSearchResult } from '@/view/ArticleScreen/ArticleSearchResult';
+import {
+  FilledArticleSearchResult,
+  NullArticleSearchResult,
+} from '@/view/ArticleScreen/ArticleSearchResult';
 
 type Props = AppNavigationProps<'ArticleScreen'>;
 
 function factory(
-  getArticleByIdOrSectionIdAction: GetArticleByIdOrSectionIdAction,
+  findArticleAction: FindArticleAction,
   renderArticleAction: RenderArticleAction
 ) {
   return function ArticleScreen({ route, navigation }: Props) {
-    const { id } = route.params;
+    const { idOrSectionId, type } = route.params;
 
-    const [html, setHtml] = useState<string>('');
+    const [result, setResult] = useState<ArticleSearchResult>(
+      new NullArticleSearchResult()
+    );
     useEffect(() => {
-      getArticleByIdOrSectionIdAction
-        .execute(id)
-        .then((a) => renderArticleAction.execute(a))
-        .then((h) => setHtml(h));
-    }, [id]);
-
-    const handler = useMemo(
-      () =>
-        new WebViewEventHandler({
-          handleLinkPressed(e) {
-            const href = e.data.href.replace(/^about:blank/, '');
-            if (href[0] !== '#')
-              throw Error(
-                `Linking to external webpage is not implemented! Got:${e.data.href}`
-              );
-            const nextId = href.slice(1);
-            navigation.navigate('ArticleScreen', { id: nextId });
-          },
-          handleIndexPressed() {
-            navigation.navigate('IndexModal');
-          },
-          handleTableOfContentsPressed() {
-            navigation.reset({ index: 0, routes: [{ name: 'HomeScreen' }] });
-          },
-        }),
-      [navigation]
-    );
-
-    const handleMessage = useCallback(
-      (m: WebViewMessageEvent) => handler.handleMessage(m.nativeEvent.data),
-      [handler]
-    );
+      findArticleAction
+        .execute({ idOrSectionId, type })
+        .then((r) =>
+          setResult(new FilledArticleSearchResult(r.article, r.sectionId))
+        );
+    }, [idOrSectionId, type]);
 
     return (
       <View style={styles.container}>
-        <WebView source={{ html }} onMessage={handleMessage} />
+        {result.render(navigation, renderArticleAction)}
       </View>
     );
   };

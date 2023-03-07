@@ -7,10 +7,16 @@ import type { Type as ArticleScreen } from '@/view/ArticleScreen';
 import { IndexModal } from '@/view/IndexModal';
 import { DisclaimerModal } from '@/view/DisclaimerModal';
 import { Header } from '@/view/Router/Header';
+import type { ARTICLE_TYPES } from '@/domain/models/Article';
+
+type ValueOf<T> = T[keyof T];
 
 type AppNavigationParams = {
   HomeScreen: undefined;
-  ArticleScreen: { id: string };
+  ArticleScreen: {
+    type: ValueOf<typeof ARTICLE_TYPES>;
+    idOrSectionId: string;
+  };
 };
 
 type RootNavigationParams = {

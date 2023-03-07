@@ -5,6 +5,7 @@ import { theme } from '@/theme';
 import type { AppNavigationProps } from '@/view/Router';
 import type { GetTableOfContentsAction } from '@/application/GetTableOfContentsAction';
 import type { TableOfContents } from '@/domain/models/TableOfContents';
+import { ARTICLE_TYPES } from '@/domain/models/Article';
 
 type Props = AppNavigationProps<'HomeScreen'>;
 
@@ -17,7 +18,10 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
 
     const onSelectArticle = useCallback(
       (destination: string) => {
-        navigation.navigate('ArticleScreen', { id: destination });
+        navigation.navigate('ArticleScreen', {
+          idOrSectionId: destination,
+          type: ARTICLE_TYPES.BASE,
+        });
       },
       [navigation]
     );

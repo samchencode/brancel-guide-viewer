@@ -1,3 +1,4 @@
+import { ARTICLE_TYPES } from '@/domain/models/Article';
 import { theme } from '@/theme';
 import type { RootNavigationProps } from '@/view/Router';
 import React, { useCallback, useMemo } from 'react';
@@ -30,7 +31,8 @@ function IndexModal({ navigation }: Props) {
   const handlePressLetter = useCallback(
     (l: string) =>
       navigation.navigate('ArticleScreen', {
-        id: l,
+        type: ARTICLE_TYPES.INDEX,
+        idOrSectionId: l,
       }),
     [navigation]
   );
