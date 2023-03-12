@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ArticleList } from '@/view/HomeScreen/ArticleList';
 import { theme } from '@/theme';
 import type { AppNavigationProps } from '@/view/Router';
@@ -28,30 +28,6 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
 
     return (
       <View style={styles.container}>
-        <Button
-          onPress={() => {
-            navigation.navigate('IndexModal');
-          }}
-          title="Open Index Modal"
-        />
-        <Button
-          onPress={() => {
-            navigation.navigate('DisclaimerModal');
-          }}
-          title="Open Disclaimer Modal"
-        />
-        <Button
-          onPress={() => {
-            navigation.navigate('UsageInstructionsScreen');
-          }}
-          title="Go to Instructions Screen"
-        />
-        <Button
-          onPress={() => {
-            navigation.navigate('LicenseScreen');
-          }}
-          title="Go to License Screen"
-        />
         <ArticleList
           articles={toc?.items ?? []}
           onSelectArticle={onSelectArticle}
@@ -63,6 +39,7 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: theme.colors.background,
   },
 });
