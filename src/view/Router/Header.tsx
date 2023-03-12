@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import type { ViewStyle, StyleProp } from 'react-native';
+import type { ViewStyle, StyleProp, TextStyle } from 'react-native';
 import Constants from 'expo-constants';
 import type { StackHeaderProps } from '@react-navigation/stack';
 import { getHeaderTitle } from '@react-navigation/elements';
@@ -11,12 +11,22 @@ type IconButtonProps = {
   iconName: string;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
+  iconStyle?: StyleProp<ViewStyle | TextStyle>;
 };
 
-function IconButton({ iconName, onPress, style = {} }: IconButtonProps) {
+function IconButton({
+  iconName,
+  onPress,
+  style = {},
+  iconStyle = {},
+}: IconButtonProps) {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.iconButton, style]}>
-      <FontAwesome5 name={iconName} size={24} style={styles.icon} />
+      <FontAwesome5
+        name={iconName}
+        size={24}
+        style={[styles.icon, iconStyle]}
+      />
     </TouchableOpacity>
   );
 }
@@ -26,7 +36,17 @@ type Props = StackHeaderProps;
 function Header({ navigation, route, options, back }: Props) {
   const title = getHeaderTitle(options, route.name);
 
+  const isHomeScreen = route.name === 'HomeScreen';
+
   const handleBack = useCallback(() => navigation.goBack(), [navigation]);
+  const handleTocPress = useCallback(
+    () => navigation.navigate('HomeScreen'),
+    [navigation]
+  );
+  const handleIndexPress = useCallback(
+    () => navigation.navigate('IndexModal'),
+    [navigation]
+  );
 
   return (
     <View style={styles.container}>
@@ -40,6 +60,25 @@ function Header({ navigation, route, options, back }: Props) {
           />
         )}
         <Text style={styles.title}>{title}</Text>
+        <View style={styles.trailingIconGroup}>
+          {!isHomeScreen && (
+            <IconButton
+              iconName="clipboard-list"
+              onPress={handleTocPress}
+              iconStyle={styles.trailingIcon}
+            />
+          )}
+          <IconButton
+            iconName="list"
+            onPress={handleIndexPress}
+            iconStyle={styles.trailingIcon}
+          />
+          <IconButton
+            iconName="ellipsis-v"
+            onPress={() => alert('pressed')}
+            iconStyle={styles.trailingIcon}
+          />
+        </View>
       </View>
     </View>
   );
@@ -79,6 +118,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     left: 4,
+  },
+  trailingIconGroup: {
+    position: 'absolute',
+    top: 8,
+    right: 4,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  trailingIcon: {
+    color: theme.colors.onSurfaceVariant,
   },
 });
 
