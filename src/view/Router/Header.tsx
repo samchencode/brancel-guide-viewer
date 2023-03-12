@@ -7,7 +7,7 @@ import { getHeaderTitle } from '@react-navigation/elements';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { theme } from '@/theme';
 import { Menu } from '@/view/Router/Menu';
-import { About } from '@/domain/models/Article';
+import { ARTICLE_TYPES } from '@/domain/models/Article';
 
 type IconButtonProps = {
   iconName: string;
@@ -62,8 +62,7 @@ function Header({ navigation, route, options, back }: Props) {
     [navigation]
   );
   const handleAboutPress = useCallback(
-    () =>
-      navigation.navigate('ArticleScreen', { idOrSectionId: About.ABOUT_ID }),
+    () => navigation.navigate('ArticleScreen', { type: ARTICLE_TYPES.ABOUT }),
     [navigation]
   );
 
