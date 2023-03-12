@@ -57,6 +57,10 @@ export const theme = {
     surfaceTint: {
       elevationTwo: '#ecebf8',
     },
+    opacity: (percent: number) => ({
+      primary: `rgba(50, 48, 158, ${percent})`,
+      onSurface: `rgba(9, 5, 46, ${percent})`,
+    }),
   },
   modal: {
     borderRadius: 28,

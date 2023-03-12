@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import type { ViewStyle, StyleProp, TextStyle } from 'react-native';
 import Constants from 'expo-constants';
@@ -6,6 +6,8 @@ import type { StackHeaderProps } from '@react-navigation/stack';
 import { getHeaderTitle } from '@react-navigation/elements';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { theme } from '@/theme';
+import { Menu } from '@/view/Router/Menu';
+import { About } from '@/domain/models/Article';
 
 type IconButtonProps = {
   iconName: string;
@@ -47,6 +49,29 @@ function Header({ navigation, route, options, back }: Props) {
     () => navigation.navigate('IndexModal'),
     [navigation]
   );
+  const handleUsageInstructionsPress = useCallback(
+    () => navigation.navigate('UsageInstructionsScreen'),
+    [navigation]
+  );
+  const handleDisclaimerPress = useCallback(
+    () => navigation.navigate('DisclaimerModal'),
+    [navigation]
+  );
+  const handleLicensePress = useCallback(
+    () => navigation.navigate('LicenseScreen'),
+    [navigation]
+  );
+  const handleAboutPress = useCallback(
+    () =>
+      navigation.navigate('ArticleScreen', { idOrSectionId: About.ABOUT_ID }),
+    [navigation]
+  );
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuPress = useCallback(() => {
+    setMenuOpen(!menuOpen);
+  }, [menuOpen]);
 
   return (
     <View style={styles.container}>
@@ -75,10 +100,18 @@ function Header({ navigation, route, options, back }: Props) {
           />
           <IconButton
             iconName="ellipsis-v"
-            onPress={() => alert('pressed')}
+            onPress={handleMenuPress}
             iconStyle={styles.trailingIcon}
           />
         </View>
+        <Menu
+          visible={menuOpen}
+          style={styles.menu}
+          onPressAbout={handleAboutPress}
+          onPressDisclaimer={handleDisclaimerPress}
+          onPressLicense={handleLicensePress}
+          onPressUsageInstructions={handleUsageInstructionsPress}
+        />
       </View>
     </View>
   );
@@ -87,6 +120,8 @@ function Header({ navigation, route, options, back }: Props) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    elevation: 2,
+    shadowRadius: 0.15,
   },
   statusBar: {
     backgroundColor: theme.colors.surfaceTint.elevationTwo,
@@ -128,6 +163,13 @@ const styles = StyleSheet.create({
   },
   trailingIcon: {
     color: theme.colors.onSurfaceVariant,
+  },
+  menu: {
+    position: 'absolute',
+    top: '100%',
+    right: 0,
+    elevation: 2,
+    shadowRadius: 0.15,
   },
 });
 
