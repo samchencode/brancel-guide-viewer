@@ -1,12 +1,20 @@
 import * as ExpoFileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
 import { v4 as uuidv4 } from 'uuid';
-import type { FileSystem } from '@/infrastructure/file-system/FileSystem';
+import type {
+  EncodingType,
+  FileSystem,
+} from '@/infrastructure/file-system/FileSystem';
 
 class ExpoAssetFileSystem implements FileSystem<'expo'> {
-  async getAssetAsString(virtualAssetModule: number) {
+  async getAssetAsString(
+    virtualAssetModule: number,
+    encodingType: EncodingType = 'utf8'
+  ) {
     const asset = await Asset.fromModule(virtualAssetModule).downloadAsync();
-    return ExpoFileSystem.readAsStringAsync(asset.localUri as string);
+    return ExpoFileSystem.readAsStringAsync(asset.localUri as string, {
+      encoding: encodingType,
+    });
   }
 
   async cacheFile(uri: string) {
