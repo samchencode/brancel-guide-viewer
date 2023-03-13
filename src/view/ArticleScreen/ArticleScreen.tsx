@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import type { AppNavigationProps } from '@/view/Router';
 import { theme } from '@/theme';
 import type { FindArticleAction } from '@/application/FindArticleAction';
 import type { RenderArticleAction } from '@/application/RenderArticleAction';
-import type { ArticleSearchResult } from '@/view/ArticleScreen/ArticleSearchResult';
-import {
-  FilledArticleSearchResult,
-  NullArticleSearchResult,
-} from '@/view/ArticleScreen/ArticleSearchResult';
+import { usePromise } from '@/view/lib/usePromise';
+import { ProgressIndicatorView } from '@/view/ArticleScreen/ProgressIndicatorView';
+import { ArticleView } from '@/view/ArticleScreen/ArticleView';
+import { EmptyArticleView } from '@/view/ArticleScreen/EmptyArticleView';
 
 type Props = AppNavigationProps<'ArticleScreen'>;
 
@@ -19,22 +18,28 @@ function factory(
   return function ArticleScreen({ route, navigation }: Props) {
     const { idOrSectionId, type } = route.params;
 
-    const [result, setResult] = useState<ArticleSearchResult>(
-      new NullArticleSearchResult()
+    const promise = useMemo(
+      () => findArticleAction.execute({ idOrSectionId, type }),
+      [idOrSectionId, type]
     );
-    useEffect(() => {
-      findArticleAction
-        .execute({ idOrSectionId, type })
-        .then((r) =>
-          setResult(new FilledArticleSearchResult(r.article, r.sectionId))
-        );
-    }, [idOrSectionId, type]);
 
-    return (
-      <View style={styles.container}>
-        {result.render(navigation, renderArticleAction)}
-      </View>
-    );
+    const render = usePromise(promise, {
+      renderFinishedState: useCallback(
+        (res) => (
+          <ArticleView
+            article={res.article}
+            sectionId={res.sectionId}
+            navigation={navigation}
+            renderArticle={renderArticleAction}
+          />
+        ),
+        [navigation]
+      ),
+      renderLoadingState: useCallback(() => <ProgressIndicatorView />, []),
+      renderErrorState: useCallback(() => <EmptyArticleView />, []),
+    });
+
+    return <View style={styles.container}>{render()}</View>;
   };
 }
 

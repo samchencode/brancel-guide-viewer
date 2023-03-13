@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 function EmptyArticleList() {
   return (
     <View>
-      <Text>No articles found yet...</Text>
+      <Text>No articles found.</Text>
     </View>
   );
 }

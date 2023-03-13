@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text } from 'react-native';
 
 export function EmptyArticleView() {
-  return <View />;
+  return <Text>Uh oh! Something went wrong...</Text>;
 }

@@ -1,21 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ArticleList } from '@/view/HomeScreen/ArticleList';
 import { theme } from '@/theme';
 import type { AppNavigationProps } from '@/view/Router';
 import type { GetTableOfContentsAction } from '@/application/GetTableOfContentsAction';
-import type { TableOfContents } from '@/domain/models/TableOfContents';
 import { ARTICLE_TYPES } from '@/domain/models/Article';
+import { usePromise } from '@/view/lib/usePromise';
+import { ProgressIndicatorView } from '@/view/HomeScreen/ProgressIndicatorView';
 
 type Props = AppNavigationProps<'HomeScreen'>;
 
 function factory(getTableOfContentsAction: GetTableOfContentsAction) {
-  return function HomeScreen({ navigation }: Props) {
-    const [toc, setToc] = useState<TableOfContents | null>(null);
-    useEffect(() => {
-      getTableOfContentsAction.execute().then((v) => setToc(v));
-    }, []);
+  const get = getTableOfContentsAction.execute();
 
+  return function HomeScreen({ navigation }: Props) {
     const onSelectArticle = useCallback(
       (destination: string) => {
         navigation.navigate('ArticleScreen', {
@@ -26,14 +24,20 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
       [navigation]
     );
 
-    return (
-      <View style={styles.container}>
-        <ArticleList
-          articles={toc?.items ?? []}
-          onSelectArticle={onSelectArticle}
-        />
-      </View>
-    );
+    const render = usePromise(get, {
+      renderFinishedState: useCallback(
+        (toc) => (
+          <ArticleList
+            articles={toc.items ?? []}
+            onSelectArticle={onSelectArticle}
+          />
+        ),
+        [onSelectArticle]
+      ),
+      renderLoadingState: useCallback(() => <ProgressIndicatorView />, []),
+    });
+
+    return <View style={styles.container}>{render()}</View>;
   };
 }
 
