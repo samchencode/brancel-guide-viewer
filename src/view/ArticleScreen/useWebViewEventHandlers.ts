@@ -25,7 +25,7 @@ function useWebViewEventHandlers(navigation: Navigation) {
           navigation.navigate('IndexModal');
         },
         handleTableOfContentsPressed() {
-          navigation.reset({ index: 0, routes: [{ name: 'HomeScreen' }] });
+          navigation.navigate('HomeScreen');
         },
       }),
     [navigation]
