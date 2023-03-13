@@ -386,7 +386,7 @@ Copyright © Annually 1997-2021  Mark Brancel, M.D.</h3>
 <div class="content">
 <h3 class="clear">Lower-extremity fractures</h3>
 
-<img src="fracture.jpg" alt="Lower Leg Fractrue" width="400" height="500">
+<img src="fracture.jpg" alt="Lower Leg Fractrue" style="min-width:100px; min-height:100px;">
 
 <p><strong>(See</strong> <a href="#PELVIS_FRACTURES">PELVIS FRACTURES</a><strong> for lower extremity injury related pelvis avulsion fxs)</strong></p>
 <p><strong>Hip</strong> osteochondritis dissecans<a name="Hip_osteochondritis_dissecans"></a> - osteochondral fracture from injury with subsequent bony sclerosis +/- loose body; <i>consult</i>.</p>
