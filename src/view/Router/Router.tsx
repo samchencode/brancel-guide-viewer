@@ -46,7 +46,11 @@ function factory(
           component={HomeScreen}
           options={{ title: 'Articles' }}
         />
-        <AppStack.Screen name="ArticleScreen" component={ArticleScreen} />
+        <AppStack.Screen
+          name="ArticleScreen"
+          component={ArticleScreen}
+          getId={({ params }) => params.idOrSectionId ?? params.type}
+        />
         <AppStack.Screen
           name="UsageInstructionsScreen"
           component={UsageInstructionsScreen}
