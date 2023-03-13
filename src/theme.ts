@@ -30,6 +30,12 @@ export const theme = {
       letterSpacing: 0,
       weight: '400',
     },
+    headlineLarge: {
+      lineHeight: 40,
+      fontSize: 32,
+      letterSpacing: 0,
+      weight: '400',
+    },
   },
   spaces: {
     xs: 4,
@@ -54,6 +60,10 @@ export const theme = {
     onSecondary: '#ffffff',
     secondaryContainer: '#ccf8ff',
     onSecondaryContainer: '#002c33',
+    error: '#c10e0b',
+    onError: '#ffffff',
+    errorContainer: '#fcd0cf',
+    onErrorContainer: '#300403',
     surfaceTint: {
       elevationTwo: '#ecebf8',
     },
