@@ -40,6 +40,12 @@ function Header({ navigation, route, options, back }: Props) {
 
   const isHomeScreen = route.name === 'HomeScreen';
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuPress = useCallback(() => {
+    setMenuOpen(!menuOpen);
+  }, [menuOpen]);
+
   const handleBack = useCallback(() => navigation.goBack(), [navigation]);
   const handleTocPress = useCallback(
     () => navigation.navigate('HomeScreen'),
@@ -49,28 +55,22 @@ function Header({ navigation, route, options, back }: Props) {
     () => navigation.navigate('IndexModal'),
     [navigation]
   );
-  const handleUsageInstructionsPress = useCallback(
-    () => navigation.navigate('UsageInstructionsScreen'),
-    [navigation]
-  );
-  const handleDisclaimerPress = useCallback(
-    () => navigation.navigate('DisclaimerModal'),
-    [navigation]
-  );
-  const handleLicensePress = useCallback(
-    () => navigation.navigate('LicenseScreen'),
-    [navigation]
-  );
-  const handleAboutPress = useCallback(
-    () => navigation.navigate('ArticleScreen', { type: ARTICLE_TYPES.ABOUT }),
-    [navigation]
-  );
-
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleMenuPress = useCallback(() => {
-    setMenuOpen(!menuOpen);
-  }, [menuOpen]);
+  const handleUsageInstructionsPress = useCallback(() => {
+    setMenuOpen(false);
+    navigation.navigate('UsageInstructionsScreen');
+  }, [navigation]);
+  const handleDisclaimerPress = useCallback(() => {
+    setMenuOpen(false);
+    navigation.navigate('DisclaimerModal');
+  }, [navigation]);
+  const handleLicensePress = useCallback(() => {
+    setMenuOpen(false);
+    navigation.navigate('LicenseScreen');
+  }, [navigation]);
+  const handleAboutPress = useCallback(() => {
+    setMenuOpen(false);
+    navigation.navigate('ArticleScreen', { type: ARTICLE_TYPES.ABOUT });
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
