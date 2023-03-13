@@ -20,7 +20,7 @@ class ArticleRow extends PureComponent<Props> {
 
     return (
       <TouchableHighlight
-        underlayColor={pressedColor}
+        underlayColor={theme.colors.opacity(0.12).onSurface}
         onPress={this.handlePress}
       >
         <View style={styles.contentContainer}>
@@ -31,9 +31,6 @@ class ArticleRow extends PureComponent<Props> {
     );
   }
 }
-
-// theme.colors.surface with pressed state opacity
-const pressedColor = 'rgba(9, 5, 46, .12)';
 
 const styles = StyleSheet.create({
   contentContainer: {
