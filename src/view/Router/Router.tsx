@@ -40,8 +40,12 @@ function factory(
 
   function AppNavigator() {
     return (
-      <AppStack.Navigator screenOptions={{ header: Header }}>
-        <AppStack.Screen name="HomeScreen" component={HomeScreen} />
+      <AppStack.Navigator screenOptions={{ header: Header, title: '' }}>
+        <AppStack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ title: 'Articles' }}
+        />
         <AppStack.Screen name="ArticleScreen" component={ArticleScreen} />
         <AppStack.Screen
           name="UsageInstructionsScreen"
