@@ -16,7 +16,7 @@ import {
   replaceImageUrisInHtml,
   replaceImageUrisInHtmlBody,
 } from '@/infrastructure/html-manipulation/cheerio/replaceImageUrisInHtml';
-import { factory as replaceImageUrisWithBase64InHtml } from '@/infrastructure/html-manipulation/fetch/replaceImageUrisWithBase64InHtml';
+import { factory as replaceImageUrisWithBase64InHtml } from '@/infrastructure/html-manipulation/fake/replaceImageUrisWithBase64InHtml';
 import { GuideArticleRepository } from '@/infrastructure/persistence/guide/GuideArticleRepository';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
 import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuideRepository';
