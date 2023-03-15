@@ -1,3 +1,9 @@
+import type { ARTICLE_TYPES } from '@/domain/models/Article/constants';
+
+type ValueOf<T> = T[keyof T];
+
+export type ArticleType = ValueOf<typeof ARTICLE_TYPES>;
+
 export { About } from '@/domain/models/Article/About';
 export { Index } from '@/domain/models/Article/Index_';
 export { UsageInstructions } from '@/domain/models/Article/UsageInstructions';
