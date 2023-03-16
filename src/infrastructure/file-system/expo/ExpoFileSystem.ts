@@ -34,6 +34,11 @@ class ExpoAssetFileSystem implements FileSystem<'expo'> {
       encoding: encodingType,
     });
   }
+
+  async checkFileExists(path: string): Promise<boolean> {
+    const info = await ExpoFileSystem.getInfoAsync(path);
+    return info.exists;
+  }
 }
 
 export { ExpoAssetFileSystem };

@@ -41,6 +41,10 @@ class NodeFileSystem implements FileSystem<'jest'> {
   readFileAsString(): Promise<string> {
     throw new Error('Method not implemented.');
   }
+
+  checkFileExists(): Promise<boolean> {
+    throw new Error('Method not implemented.');
+  }
 }
 
 export { NodeFileSystem };
