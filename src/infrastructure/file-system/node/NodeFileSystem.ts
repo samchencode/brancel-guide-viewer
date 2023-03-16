@@ -37,6 +37,10 @@ class NodeFileSystem implements FileSystem<'jest'> {
   cacheFile(): Promise<string> {
     throw new Error('Method not implemented.');
   }
+
+  readFileAsString(): Promise<string> {
+    throw new Error('Method not implemented.');
+  }
 }
 
 export { NodeFileSystem };

@@ -25,6 +25,15 @@ class ExpoAssetFileSystem implements FileSystem<'expo'> {
     const result = await ExpoFileSystem.downloadAsync(uri, destination);
     return result.uri;
   }
+
+  async readFileAsString(
+    path: string,
+    encodingType?: EncodingType
+  ): Promise<string> {
+    return ExpoFileSystem.readAsStringAsync(path, {
+      encoding: encodingType,
+    });
+  }
 }
 
 export { ExpoAssetFileSystem };
