@@ -8,6 +8,10 @@ class FakeGuideRepository implements GuideRepository {
   async get() {
     return new Guide(stubGuide, this.guideParser);
   }
+
+  async getLastUpdatedTimestamp(): Promise<Date> {
+    return new Date(0);
+  }
 }
 
 export { FakeGuideRepository };

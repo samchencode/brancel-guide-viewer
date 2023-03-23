@@ -11,6 +11,7 @@ interface ArticleRepository {
   getAbout(): Promise<About>;
   getIndex(): Promise<Index>;
   getUsageInstructions(): Promise<UsageInstructions>;
+  getLastUpdatedTimestamp(): Promise<Date>;
 }
 
 export type { ArticleRepository };

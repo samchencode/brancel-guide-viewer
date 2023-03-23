@@ -54,6 +54,10 @@ class GuideArticleRepository implements ArticleRepository {
     if (!article) throw new GuideArticleSectionNotFoundError(sectionId);
     return article;
   }
+
+  async getLastUpdatedTimestamp(): Promise<Date> {
+    return this.guideRepository.getLastUpdatedTimestamp();
+  }
 }
 
 export { GuideArticleRepository };

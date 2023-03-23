@@ -39,6 +39,10 @@ class FakeArticleRepository implements ArticleRepository {
     throw new Error('Method not implemented.');
   }
 
+  async getLastUpdatedTimestamp(): Promise<Date> {
+    return new Date(0);
+  }
+
   private makeArticle(a: FakeArticle) {
     return new Article(
       new ArticleId(a.id),
