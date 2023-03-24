@@ -1,5 +1,9 @@
 import type { GuideParser, GuideRepository } from '@/domain/models/Guide';
 import { Guide } from '@/domain/models/Guide';
+import type {
+  GetImageUrisFromHtml,
+  ReplaceImageUrisInHtml,
+} from '@/domain/models/RichText';
 import { WpApiError } from '@/infrastructure/persistence/wp-api/WpApiError';
 import type { WpApiErrorResponse } from '@/infrastructure/persistence/wp-api/WpApiErrorResponse';
 import type { WpApiPageResponse } from '@/infrastructure/persistence/wp-api/WpApiPageResponse';
@@ -11,7 +15,9 @@ class WpApiGuideRepository implements GuideRepository {
     private fetch: (url: string) => Promise<Response>,
     private wpApiHostUrl: string,
     private wpApiPageId: string,
-    private guideParser: GuideParser
+    private guideParser: GuideParser,
+    private getImageUrisFromHtml: GetImageUrisFromHtml,
+    private replaceImageUrisInHtml: ReplaceImageUrisInHtml
   ) {}
 
   async get(): Promise<Guide> {
@@ -39,7 +45,31 @@ class WpApiGuideRepository implements GuideRepository {
 
   private async getHtml() {
     const apiResponse = await this.getApiResponse();
-    return apiResponse.content.rendered;
+    const html = apiResponse.content.rendered;
+    const htmlWithImgUrls = this.addHostUrlToImages(html);
+    return htmlWithImgUrls;
+  }
+
+  private isFullUrl(uri: string) {
+    return !!uri.match(/^https?:\/\//);
+  }
+
+  private addHostUrlToImages(html: string) {
+    const imageUris = this.getImageUrisFromHtml(html);
+    const imageUrls = imageUris.map((uri) => {
+      if (this.isFullUrl(uri)) return uri;
+      const hasSlash = uri.slice(0, 1) === '/';
+      if (hasSlash) return this.wpApiHostUrl + uri;
+      // NOTE: if there is no leading slash, it should be appended to the path of the article rather than host url
+      // Should never encounter that situation
+      return `${this.wpApiHostUrl}/${uri}`;
+    });
+
+    const uriMap = imageUris.reduce(
+      (ag, v, i) => ({ ...ag, [v]: imageUrls[i] }),
+      {} as Record<string, string>
+    );
+    return this.replaceImageUrisInHtml(html, uriMap);
   }
 }
 
