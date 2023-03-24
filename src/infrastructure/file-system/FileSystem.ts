@@ -23,6 +23,7 @@ interface FileSystem<T = unknown> {
   cacheFile(uri: string): Promise<string>;
   readFileAsString(path: string, encodingType?: EncodingType): Promise<string>;
   checkFileExists(path: string): Promise<boolean>;
+  deleteFile(uri: string): Promise<void>;
 }
 
 export type { FileSystem, EncodingType };

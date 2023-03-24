@@ -39,6 +39,12 @@ class ExpoAssetFileSystem implements FileSystem<'expo'> {
     const info = await ExpoFileSystem.getInfoAsync(path);
     return info.exists;
   }
+
+  async deleteFile(uri: string): Promise<void> {
+    return ExpoFileSystem.deleteAsync(uri, {
+      idempotent: true,
+    });
+  }
 }
 
 export { ExpoAssetFileSystem };
