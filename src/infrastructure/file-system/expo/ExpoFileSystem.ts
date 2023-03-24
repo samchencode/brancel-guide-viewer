@@ -20,8 +20,8 @@ class ExpoAssetFileSystem implements FileSystem<'expo'> {
   async cacheFile(uri: string) {
     const ext = uri.match(/\.[a-zA-Z]+$/)?.[0] ?? '';
     const destination = `${
-      ExpoFileSystem.documentDirectory
-    }images-v1/${uuidv4()}${ext}`;
+      ExpoFileSystem.cacheDirectory
+    }/images-v1/${uuidv4()}${ext}`;
     const result = await ExpoFileSystem.downloadAsync(uri, destination);
     return result.uri;
   }
