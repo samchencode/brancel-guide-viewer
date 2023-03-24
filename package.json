@@ -39,19 +39,21 @@
     "react-native-web": "~0.18.9",
     "react-native-webview": "11.23.1",
     "sanitize-html": "^2.8.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "websql": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@expo/metro-config": "^0.5.1",
     "@types/ejs": "^3.1.1",
-    "@types/jest": "^28.1.6",
+    "@types/jest": "^29.5.0",
     "@types/jest-expect-message": "^1.1.0",
     "@types/react": "^18.0.15",
     "@types/react-native": "^0.69.3",
     "@types/react-test-renderer": "^18.0.0",
     "@types/sanitize-html": "^2.8.0",
     "@types/uuid": "^9.0.0",
+    "@types/websql": "^0.0.27",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "babel-jest": "^28.1.3",
