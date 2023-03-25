@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --forceExit",
+    "test": "jest",
     "lint": "eslint .",
     "test-guide": "jest tests/infrastructure/parsing/CheerioGuideParserTestGuide.ts --test-match=\"**/*.[jt]s\""
   },
