@@ -38,7 +38,7 @@ class CacheArticleRepository implements ArticleRepository {
     private cacheRepository: CacheRepository,
     private fileSystem: FileSystem,
     getImageUrisFromHtml: GetImageUrisFromHtml,
-    replaeImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody,
+    replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody,
     sanitizeHtml: SanitizeHtml
   ) {
     const updateCachedImageBound = updateCachedImage.bind(
@@ -50,7 +50,7 @@ class CacheArticleRepository implements ArticleRepository {
     this.populateArticle = (article: CachedArticle) =>
       populateArticle(
         fileSystem,
-        replaeImageUrisInHtmlBody,
+        replaceImageUrisInHtmlBody,
         sanitizeHtml,
         updateCachedImageBound,
         article
