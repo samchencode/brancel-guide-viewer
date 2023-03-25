@@ -5,8 +5,6 @@ import { factory as HomeScreen } from '@/view/HomeScreen';
 import { factory as ArticleScreen } from '@/view/ArticleScreen';
 import { factory as UsageInstructionsScreen } from '@/view/UsageInstructionsScreen';
 import { factory as LicenseScreen } from '@/view/LicenseScreen';
-import { GetAllArticlesAction } from '@/application/GetAllArticlesAction';
-import { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
 import { RenderArticleAction } from '@/application/RenderArticleAction';
 import { ExpoAssetFileSystem } from '@/infrastructure/file-system/expo/ExpoFileSystem';
 import { EjsArticleRenderer } from '@/infrastructure/rendering/ejs/EjsArticleRenderer/EjsArticleRenderer';
@@ -23,7 +21,6 @@ import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuide
 import { GuideTableOfContentsRepository } from '@/infrastructure/persistence/guide/GuideTableOfContentsRepository';
 import { GetTableOfContentsAction } from '@/application/GetTableOfContentsAction';
 import { FindArticleAction } from '@/application/FindArticleAction';
-import { GetArticleBySectionIdAction } from '@/application/GetArticleBySectionIdAction';
 import { GetArticleByTypeAction } from '@/application/GetArticleByTypeAction';
 
 type Module = {
@@ -37,9 +34,6 @@ export const module: Module = {
   wpApiPageId: ['value', '27'],
 
   // ACTIONS
-  getAllArticlesAction: ['type', GetAllArticlesAction],
-  getArticleByIdAction: ['type', GetArticleByIdAction],
-  getArticleBySectionIdAction: ['type', GetArticleBySectionIdAction],
   getArticleByTypeAction: ['type', GetArticleByTypeAction],
   getTableOfContentsAction: ['type', GetTableOfContentsAction],
   findArticleAction: ['type', FindArticleAction],

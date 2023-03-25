@@ -1,7 +1,5 @@
-import type { GetArticleByIdAction } from '@/application/GetArticleByIdAction';
-import type { GetArticleBySectionIdAction } from '@/application/GetArticleBySectionIdAction';
 import type { GetArticleByTypeAction } from '@/application/GetArticleByTypeAction';
-import type { Article } from '@/domain/models/Article';
+import type { Article, ArticleRepository } from '@/domain/models/Article';
 import { ARTICLE_TYPES, ArticleId } from '@/domain/models/Article';
 
 type ValueOf<T> = T[keyof T];
@@ -24,8 +22,7 @@ type Result = {
 
 class FindArticleAction {
   constructor(
-    private getArticleByIdAction: GetArticleByIdAction,
-    private getArticleBySectionIdAction: GetArticleBySectionIdAction,
+    private articleRepository: ArticleRepository,
     private getArticleByTypeAction: GetArticleByTypeAction
   ) {}
 
@@ -42,7 +39,7 @@ class FindArticleAction {
   private async findByArticleId(idString: string): Promise<Result | undefined> {
     const id = new ArticleId(idString);
     try {
-      const article = await this.getArticleByIdAction.execute(id);
+      const article = await this.articleRepository.getById(id);
       return { article };
     } catch (e) {
       return undefined;
@@ -50,9 +47,7 @@ class FindArticleAction {
   }
 
   private async findBySectionId(sectionId: string): Promise<Result> {
-    const bySectionId = await this.getArticleBySectionIdAction.execute(
-      sectionId
-    );
+    const bySectionId = await this.articleRepository.getBySectionId(sectionId);
     return { article: bySectionId, sectionId };
   }
 
