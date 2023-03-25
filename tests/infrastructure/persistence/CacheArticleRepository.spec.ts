@@ -62,7 +62,7 @@ describe('CacheArticleRepository', () => {
       jest.spyOn(cacheRepository, 'saveAllArticles');
     });
 
-    it('should get from normal repo if cache empty', async () => {
+    it('should get from source repo if cache empty', async () => {
       const article = new Article(
         new ArticleId('MyId'),
         'MyTitle',
@@ -88,7 +88,7 @@ describe('CacheArticleRepository', () => {
       expect(result.body.html).toBe('MyBody');
     });
 
-    it('should save all articles from normal repo if cache empty', async () => {
+    it('should save all articles from source repo if cache empty', async () => {
       const article = new Article(
         new ArticleId('MyId'),
         'MyTitle',
@@ -172,7 +172,7 @@ describe('CacheArticleRepository', () => {
       jest.spyOn(articleRepository, 'getLastUpdatedTimestamp');
     });
 
-    it('should get from cache repo if repo rejects', async () => {
+    it('should get from cache repo if source repo rejects', async () => {
       jest
         .mocked(articleRepository.getById)
         .mockImplementation(() => Promise.reject());
@@ -225,7 +225,7 @@ describe('CacheArticleRepository', () => {
       expect(result.title).toBe('ArticleOneFromCache');
     });
 
-    it('should get from repo if it returns first', async () => {
+    it('should get from source repo if it returns first', async () => {
       jest.useFakeTimers({ advanceTimers: true });
 
       const repoArticle1 = new Article(
@@ -268,7 +268,7 @@ describe('CacheArticleRepository', () => {
       expect(result.title).toBe('ArticleOneFromRepo');
     });
 
-    it('should save results from normal repo if cache stale', async () => {
+    it('should save results from source repo if cache stale', async () => {
       jest.useFakeTimers({ advanceTimers: true });
 
       jest

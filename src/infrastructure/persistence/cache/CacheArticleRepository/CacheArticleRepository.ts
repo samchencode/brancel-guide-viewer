@@ -34,7 +34,7 @@ class CacheArticleRepository implements ArticleRepository {
   cachingArticles: Promise<void>;
 
   constructor(
-    private articleRepository: ArticleRepository,
+    private cacheSourceArticleRepository: ArticleRepository,
     private cacheRepository: CacheRepository,
     private fileSystem: FileSystem,
     getImageUrisFromHtml: GetImageUrisFromHtml,
@@ -72,15 +72,16 @@ class CacheArticleRepository implements ArticleRepository {
     if (await this.cacheRepository.isEmpty()) return this.cacheArticles();
     const [cacheUpdated, repoUpdated] = await Promise.all([
       this.cacheRepository.getLastUpdatedTimestamp(),
-      this.articleRepository.getLastUpdatedTimestamp(),
+      this.cacheSourceArticleRepository.getLastUpdatedTimestamp(),
     ]);
     if (cacheUpdated < repoUpdated) return this.cacheArticles();
     return Promise.resolve();
   }
 
   private async cacheArticles(): Promise<void> {
-    const articles = await this.articleRepository.getAll();
-    const timestamp = await this.articleRepository.getLastUpdatedTimestamp();
+    const articles = await this.cacheSourceArticleRepository.getAll();
+    const timestamp =
+      await this.cacheSourceArticleRepository.getLastUpdatedTimestamp();
     await this.clearCache();
     await this.saveAllArticles(articles, timestamp);
   }
@@ -88,11 +89,11 @@ class CacheArticleRepository implements ArticleRepository {
   async getAll(): Promise<Article[]> {
     // Caching is not implemented for this method!
     // Loading all images as Base64 into memory may be slow
-    return this.articleRepository.getAll();
+    return this.cacheSourceArticleRepository.getAll();
   }
 
   getById(id: ArticleId): Promise<Article> {
-    const repoPromise = this.articleRepository.getById(id);
+    const repoPromise = this.cacheSourceArticleRepository.getById(id);
 
     const getFromCache = async () => {
       if (await this.cacheRepository.isEmpty()) return repoPromise;
@@ -103,7 +104,8 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   getBySectionId(sectionId: string): Promise<Article> {
-    const repoPromise = this.articleRepository.getBySectionId(sectionId);
+    const repoPromise =
+      this.cacheSourceArticleRepository.getBySectionId(sectionId);
     const getFromCache = async () => {
       if (await this.cacheRepository.isEmpty()) return repoPromise;
       const cachedArticle = await this.cacheRepository.getArticleBySectionId(
@@ -115,7 +117,7 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   getAbout(): Promise<About> {
-    const repoPromise = this.articleRepository.getAbout();
+    const repoPromise = this.cacheSourceArticleRepository.getAbout();
     const getFromCache = async () => {
       if (await this.cacheRepository.isEmpty()) return repoPromise;
       const cachedArticle = await this.cacheRepository.getArticleByType(
@@ -128,7 +130,7 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   getIndex(): Promise<Index> {
-    const repoPromise = this.articleRepository.getIndex();
+    const repoPromise = this.cacheSourceArticleRepository.getIndex();
     const getFromCache = async () => {
       if (await this.cacheRepository.isEmpty()) return repoPromise;
       const cachedArticle = await this.cacheRepository.getArticleByType(
@@ -141,7 +143,8 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   getUsageInstructions(): Promise<UsageInstructions> {
-    const repoPromise = this.articleRepository.getUsageInstructions();
+    const repoPromise =
+      this.cacheSourceArticleRepository.getUsageInstructions();
     const getFromCache = async () => {
       if (await this.cacheRepository.isEmpty()) return repoPromise;
       const cachedArticle = await this.cacheRepository.getArticleByType(
