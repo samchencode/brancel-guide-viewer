@@ -4,7 +4,10 @@ import {
   TableOfContentsItem,
 } from '@/domain/models/TableOfContents';
 import type { ArticleToBeCached } from '@/infrastructure/persistence/cache/CacheArticleRepository';
-import { CachedArticle } from '@/infrastructure/persistence/cache/CacheArticleRepository';
+import {
+  CachedArticleImage,
+  CachedArticle,
+} from '@/infrastructure/persistence/cache/CacheArticleRepository';
 import type { CacheRepository } from '@/infrastructure/persistence/cache/CacheRepository';
 import type {
   ArticleRow,
@@ -209,6 +212,28 @@ class WebSqlCacheRepository implements CacheRepository {
     const [result] = await this.executeSql([query]);
     const [row] = resultSetToArray<MetadataRow>(result);
     return new Date(row.lastUpdatedGmtIso);
+  }
+
+  async delete(): Promise<void> {
+    const deleteArticles = sqlStr`DELETE FROM articles`;
+    const deleteToc = sqlStr`DELETE FROM tableOfContents`;
+    const deleteMetadata = sqlStr`DELETE FROM metadata`;
+    await this.executeSql([deleteArticles, deleteToc, deleteMetadata]);
+  }
+
+  async getAllCachedImages(): Promise<CachedArticleImage[]> {
+    const query = sqlStr`SELECT cachedImagesJson FROM articles`;
+    const [result] = await this.executeSql([query]);
+    const rows = resultSetToArray<Pick<ArticleRow, 'cachedImagesJson'>>(result);
+    return rows
+      .flatMap(
+        (r) =>
+          JSON.parse(r.cachedImagesJson) as {
+            originalUri: string;
+            fileUri: string;
+          }[]
+      )
+      .flatMap((v) => new CachedArticleImage(v.originalUri, v.fileUri));
   }
 }
 

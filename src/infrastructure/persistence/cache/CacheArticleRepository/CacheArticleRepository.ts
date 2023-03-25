@@ -36,7 +36,7 @@ class CacheArticleRepository implements ArticleRepository {
   constructor(
     private articleRepository: ArticleRepository,
     private cacheRepository: CacheRepository,
-    fileSystem: FileSystem,
+    private fileSystem: FileSystem,
     getImageUrisFromHtml: GetImageUrisFromHtml,
     replaeImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody,
     sanitizeHtml: SanitizeHtml
@@ -81,6 +81,7 @@ class CacheArticleRepository implements ArticleRepository {
   private async cacheArticles(): Promise<void> {
     const articles = await this.articleRepository.getAll();
     const timestamp = await this.articleRepository.getLastUpdatedTimestamp();
+    await this.clearCache();
     await this.saveAllArticles(articles, timestamp);
   }
 
@@ -154,6 +155,15 @@ class CacheArticleRepository implements ArticleRepository {
 
   getLastUpdatedTimestamp(): Promise<Date> {
     return this.cacheRepository.getLastUpdatedTimestamp();
+  }
+
+  async clearCache() {
+    const cachedImages = await this.cacheRepository.getAllCachedImages();
+    const deletions = cachedImages
+      .map((v) => v.fileUri)
+      .map((uri) => this.fileSystem.deleteFile(uri));
+    const removeFromRepo = await this.cacheRepository.delete();
+    await Promise.all([removeFromRepo, ...deletions]);
   }
 }
 

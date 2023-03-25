@@ -1,5 +1,6 @@
 import type { ArticleId, ArticleType } from '@/domain/models/Article';
 import type { TableOfContents } from '@/domain/models/TableOfContents';
+import type { CachedArticleImage } from '@/infrastructure/persistence/cache/CacheArticleRepository';
 import type { ArticleToBeCached } from '@/infrastructure/persistence/cache/CacheArticleRepository/ArticleToBeCached';
 import type { CachedArticle } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticle';
 
@@ -17,6 +18,8 @@ interface CacheRepository {
   getTableOfContents(): Promise<TableOfContents>;
   saveTableOfContents(tableOfContents: TableOfContents): Promise<void>;
   getLastUpdatedTimestamp(): Promise<Date>;
+  delete(): Promise<void>;
+  getAllCachedImages(): Promise<CachedArticleImage[]>;
 }
 
 export type { CacheRepository };

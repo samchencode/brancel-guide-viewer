@@ -307,6 +307,7 @@ describe('CacheArticleRepository', () => {
         getAssetAsString: jest.fn(),
         readFileAsString: jest.fn(),
         checkFileExists: jest.fn(),
+        deleteFile: jest.fn(),
       };
       cacheRepository = new WebSqlCacheRepository(db);
       articleRepository = new FakeArticleRepository();
@@ -392,10 +393,12 @@ describe('CacheArticleRepository', () => {
         getAssetAsString: jest.fn(),
         readFileAsString: jest.fn(),
         checkFileExists: jest.fn(),
+        deleteFile: jest.fn(),
       };
       cacheRepository = new WebSqlCacheRepository(db);
       articleRepository = new FakeArticleRepository();
       jest.spyOn(articleRepository, 'getById');
+      jest.spyOn(articleRepository, 'getAll');
 
       const cacheArticle1 = new Article(
         new ArticleId('first'),
@@ -434,6 +437,8 @@ describe('CacheArticleRepository', () => {
         ],
         new Date(0)
       );
+
+      jest.spyOn(articleRepository, 'getLastUpdatedTimestamp');
     });
 
     it('should replace images with base64 if getting from cache', async () => {
@@ -494,6 +499,59 @@ describe('CacheArticleRepository', () => {
       await cacheArticleRepository.getById(new ArticleId('first'));
 
       expect(cacheFile).toBeCalledTimes(1);
+    });
+
+    it('should remove all cached articles and images', async () => {
+      const deleteFile = jest.mocked(fs.deleteFile);
+
+      const cacheArticleRepository = new CacheArticleRepository(
+        articleRepository,
+        cacheRepository,
+        fs,
+        getImageUrisFromHtml,
+        replaceImageUrisInHtmlBody,
+        sanitizeHtml
+      );
+
+      await cacheArticleRepository.clearCache();
+      expect(deleteFile).toBeCalledTimes(2);
+      expect(deleteFile).toHaveBeenCalledWith('/path/to/foo.png');
+      expect(deleteFile).toHaveBeenCalledWith('/path/to/bar.png');
+      expect(await cacheRepository.isEmpty()).toBe(true);
+    });
+
+    it('should delete original images if cache stale', async () => {
+      const article = new Article(
+        new ArticleId('MyId'),
+        'MyTitle',
+        new RichText(sanitizeHtml, 'MyBody'),
+        []
+      );
+
+      jest.mocked(articleRepository.getAll).mockResolvedValue([article]);
+
+      jest
+        .mocked(articleRepository.getLastUpdatedTimestamp)
+        .mockResolvedValue(new Date(1000));
+
+      const deleteFile = jest.mocked(fs.deleteFile);
+
+      const cacheArticleRepository = new CacheArticleRepository(
+        articleRepository,
+        cacheRepository,
+        fs,
+        getImageUrisFromHtml,
+        replaceImageUrisInHtmlBody,
+        sanitizeHtml
+      );
+
+      await cacheArticleRepository.cachingArticles;
+
+      expect(deleteFile).toBeCalledTimes(2);
+      expect(deleteFile).toHaveBeenCalledWith('/path/to/foo.png');
+      expect(deleteFile).toHaveBeenCalledWith('/path/to/bar.png');
+
+      expect(await cacheArticleRepository.getAll()).toHaveLength(1);
     });
   });
 });

@@ -308,5 +308,23 @@ describe('WebSqlCacheRepository', () => {
       );
       expect(usageInstructions.bodyHtml).toBe('How to use this guide');
     });
+
+    it('should delete all records', async () => {
+      const isEmptyBefore = await repo.isEmpty();
+      expect(isEmptyBefore).toBe(false);
+      await repo.delete();
+      const isEmptyAfter = await repo.isEmpty();
+      expect(isEmptyAfter).toBe(true);
+    });
+
+    it('should get list of all images saved', async () => {
+      const images = await repo.getAllCachedImages();
+      expect(images).toEqual([
+        {
+          originalUri: '/img.png',
+          fileUri: '/path/to/file.png',
+        },
+      ]);
+    });
   });
 });
