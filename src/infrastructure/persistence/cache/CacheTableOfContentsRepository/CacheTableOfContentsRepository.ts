@@ -8,7 +8,7 @@ class CacheTableOfContentsRepository implements TableOfContentsRepository {
   cachingTableOfContents: Promise<void>;
 
   constructor(
-    private readonly tableOfContentsRepository: TableOfContentsRepository,
+    private readonly cacheSourceTableOfContentsRepository: TableOfContentsRepository,
     private readonly cacheRepository: CacheRepository
   ) {
     this.cachingTableOfContents = this.cacheTableOfContentsIfEmpty();
@@ -16,12 +16,12 @@ class CacheTableOfContentsRepository implements TableOfContentsRepository {
 
   async cacheTableOfContentsIfEmpty() {
     if (!(await this.cacheRepository.isEmpty())) return;
-    const toc = await this.tableOfContentsRepository.get();
+    const toc = await this.cacheSourceTableOfContentsRepository.get();
     await this.cacheRepository.saveTableOfContents(toc);
   }
 
   get(): Promise<TableOfContents> {
-    const repoPromise = this.tableOfContentsRepository.get();
+    const repoPromise = this.cacheSourceTableOfContentsRepository.get();
     const getFromCache = async () => {
       if (await this.cacheRepository.isEmpty()) return repoPromise;
       return this.cacheRepository.getTableOfContents();
