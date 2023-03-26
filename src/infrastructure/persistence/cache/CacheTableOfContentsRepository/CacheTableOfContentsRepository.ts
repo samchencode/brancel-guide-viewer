@@ -5,11 +5,13 @@ import type {
 import type { CacheRepository } from '@/infrastructure/persistence/cache/CacheRepository';
 
 class CacheTableOfContentsRepository implements TableOfContentsRepository {
+  cachingTableOfContents: Promise<void>;
+
   constructor(
     private readonly tableOfContentsRepository: TableOfContentsRepository,
     private readonly cacheRepository: CacheRepository
   ) {
-    this.cacheTableOfContentsIfEmpty();
+    this.cachingTableOfContents = this.cacheTableOfContentsIfEmpty();
   }
 
   async cacheTableOfContentsIfEmpty() {
@@ -24,7 +26,7 @@ class CacheTableOfContentsRepository implements TableOfContentsRepository {
       if (await this.cacheRepository.isEmpty()) return repoPromise;
       return this.cacheRepository.getTableOfContents();
     };
-    return Promise.race([repoPromise, getFromCache()]);
+    return Promise.any([repoPromise, getFromCache()]);
   }
 }
 
