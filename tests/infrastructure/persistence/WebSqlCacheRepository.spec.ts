@@ -326,5 +326,25 @@ describe('WebSqlCacheRepository', () => {
         },
       ]);
     });
+
+    it('should get table of contents in the original order', async () => {
+      const toc = new TableOfContents([
+        new TableOfContentsItem('Label1', 'id-string-1'),
+        new TableOfContentsItem('Label2', 'id-string-2'),
+        new TableOfContentsItem('Label3', 'id-string-1'),
+        new TableOfContentsItem('Label4', 'id-string-2'),
+        new TableOfContentsItem('Label5', 'id-string-3'),
+      ]);
+
+      await repo.saveTableOfContents(toc);
+
+      const result = await repo.getTableOfContents();
+      expect(result.items).toHaveLength(5);
+      expect(result.items[0].label).toBe('Label1');
+      expect(result.items[1].label).toBe('Label2');
+      expect(result.items[2].label).toBe('Label3');
+      expect(result.items[3].label).toBe('Label4');
+      expect(result.items[4].label).toBe('Label5');
+    });
   });
 });
