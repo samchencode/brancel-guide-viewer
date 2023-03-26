@@ -1,5 +1,7 @@
 import * as ExpoFileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import type {
   EncodingType,
