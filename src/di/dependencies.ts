@@ -17,11 +17,15 @@ import {
 import { factory as replaceImageUrisWithBase64InHtml } from '@/infrastructure/html-manipulation/fake/replaceImageUrisWithBase64InHtml';
 import { GuideArticleRepository } from '@/infrastructure/persistence/guide/GuideArticleRepository';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
-import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuideRepository';
 import { GuideTableOfContentsRepository } from '@/infrastructure/persistence/guide/GuideTableOfContentsRepository';
 import { GetTableOfContentsAction } from '@/application/GetTableOfContentsAction';
 import { FindArticleAction } from '@/application/FindArticleAction';
 import { GetArticleByTypeAction } from '@/application/GetArticleByTypeAction';
+import { CacheArticleRepository } from '@/infrastructure/persistence/cache/CacheArticleRepository';
+import { CacheTableOfContentsRepository } from '@/infrastructure/persistence/cache/CacheTableOfContentsRepository/CacheTableOfContentsRepository';
+import { WebSqlCacheRepository } from '@/infrastructure/persistence/web-sql/WebSqlCacheRepository/WebSqlCacheRepository';
+import { openExpoSqliteDatabase } from '@/infrastructure/persistence/web-sql/expo-sqlite/expoSqliteDatabase';
+import { WpApiGuideRepository } from '@/infrastructure/persistence/wp-api/WpApiGuideRepository';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -40,12 +44,25 @@ export const module: Module = {
   renderArticleAction: ['type', RenderArticleAction],
 
   // INFRASTRUCTURE
-  articleRepository: ['type', GuideArticleRepository],
+  articleRepository: [
+    'factory',
+    (cacheArticleRepository) => cacheArticleRepository,
+  ],
   articleRenderer: ['type', EjsArticleRenderer],
-  guideRepository: ['type', FakeGuideRepository],
-  tableOfContentsRepository: ['type', GuideTableOfContentsRepository],
+  guideRepository: ['type', WpApiGuideRepository],
+  tableOfContentsRepository: ['type', CacheTableOfContentsRepository],
   fileSystem: ['type', ExpoAssetFileSystem],
   guideParser: ['type', CheerioGuideParser],
+
+  // INFRASTRUCTURE -> caching
+  cacheSourceArticleRepository: ['type', GuideArticleRepository],
+  cacheSourceTableOfContentsRepository: [
+    'type',
+    GuideTableOfContentsRepository,
+  ],
+  cacheArticleRepository: ['type', CacheArticleRepository],
+  cacheRepository: ['type', WebSqlCacheRepository],
+  webSqlDatabase: ['factory', openExpoSqliteDatabase],
 
   // INFRASTRUCTURE -> html-manipulation
   sanitizeHtml: ['value', sanitizeHtml],
