@@ -7,7 +7,7 @@ import type { Type as ArticleScreen } from '@/view/ArticleScreen';
 import type { Type as LicenseScreen } from '@/view/LicenseScreen';
 import { IndexModal } from '@/view/IndexModal';
 import { DisclaimerModal } from '@/view/DisclaimerModal';
-import { Header } from '@/view/Router/Header';
+import type { Type as Header } from '@/view/Router/Header';
 import type { ARTICLE_TYPES } from '@/domain/models/Article';
 import type { Type as UsageInstructionsScreen } from '@/view/UsageInstructionsScreen';
 
@@ -33,7 +33,8 @@ function factory(
   HomeScreen: HomeScreen,
   ArticleScreen: ArticleScreen,
   UsageInstructionsScreen: UsageInstructionsScreen,
-  LicenseScreen: LicenseScreen
+  LicenseScreen: LicenseScreen,
+  Header: Header
 ) {
   const AppStack = createStackNavigator<AppNavigationParams>();
   const RootStack = createStackNavigator<RootNavigationParams>();

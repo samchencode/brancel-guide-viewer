@@ -1,6 +1,7 @@
 import type { ServiceDeclaration } from 'didi';
 import { factory as App } from '@/view/App';
 import { factory as Router } from '@/view/Router';
+import { factory as Header } from '@/view/Router/Header';
 import { factory as HomeScreen } from '@/view/HomeScreen';
 import { factory as ArticleScreen } from '@/view/ArticleScreen';
 import { factory as UsageInstructionsScreen } from '@/view/UsageInstructionsScreen';
@@ -26,6 +27,7 @@ import { CacheTableOfContentsRepository } from '@/infrastructure/persistence/cac
 import { WebSqlCacheRepository } from '@/infrastructure/persistence/web-sql/WebSqlCacheRepository/WebSqlCacheRepository';
 import { openExpoSqliteDatabase } from '@/infrastructure/persistence/web-sql/expo-sqlite/expoSqliteDatabase';
 import { WpApiGuideRepository } from '@/infrastructure/persistence/wp-api/WpApiGuideRepository';
+import { ClearCacheAction } from '@/application/ClearCacheAction';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -42,6 +44,7 @@ export const module: Module = {
   getTableOfContentsAction: ['type', GetTableOfContentsAction],
   findArticleAction: ['type', FindArticleAction],
   renderArticleAction: ['type', RenderArticleAction],
+  clearCacheAction: ['type', ClearCacheAction],
 
   // INFRASTRUCTURE
   articleRepository: [
@@ -77,6 +80,7 @@ export const module: Module = {
   // TEMPLATES
   App: ['factory', App],
   Router: ['factory', Router],
+  Header: ['factory', Header],
   HomeScreen: ['factory', HomeScreen],
   ArticleScreen: ['factory', ArticleScreen],
   UsageInstructionsScreen: ['factory', UsageInstructionsScreen],

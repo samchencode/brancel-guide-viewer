@@ -8,6 +8,7 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { theme } from '@/theme';
 import { Menu } from '@/view/Router/Menu';
 import { ARTICLE_TYPES } from '@/domain/models/Article';
+import type { ClearCacheAction } from '@/application/ClearCacheAction';
 
 type IconButtonProps = {
   iconName: string;
@@ -35,85 +36,92 @@ function IconButton({
 
 type Props = StackHeaderProps;
 
-function Header({ navigation, route, options, back }: Props) {
-  const title = getHeaderTitle(options, route.name);
+function factory(clearCacheAction: ClearCacheAction) {
+  return function Header({ navigation, route, options, back }: Props) {
+    const title = getHeaderTitle(options, route.name);
 
-  const isHomeScreen = route.name === 'HomeScreen';
+    const isHomeScreen = route.name === 'HomeScreen';
 
-  const [menuOpen, setMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleMenuPress = useCallback(() => {
-    setMenuOpen(!menuOpen);
-  }, [menuOpen]);
+    const handleMenuPress = useCallback(() => {
+      setMenuOpen(!menuOpen);
+    }, [menuOpen]);
 
-  const handleBack = useCallback(() => navigation.goBack(), [navigation]);
-  const handleTocPress = useCallback(
-    () => navigation.navigate('HomeScreen'),
-    [navigation]
-  );
-  const handleIndexPress = useCallback(
-    () => navigation.navigate('IndexModal'),
-    [navigation]
-  );
-  const handleUsageInstructionsPress = useCallback(() => {
-    setMenuOpen(false);
-    navigation.navigate('UsageInstructionsScreen');
-  }, [navigation]);
-  const handleDisclaimerPress = useCallback(() => {
-    setMenuOpen(false);
-    navigation.navigate('DisclaimerModal');
-  }, [navigation]);
-  const handleLicensePress = useCallback(() => {
-    setMenuOpen(false);
-    navigation.navigate('LicenseScreen');
-  }, [navigation]);
-  const handleAboutPress = useCallback(() => {
-    setMenuOpen(false);
-    navigation.navigate('ArticleScreen', { type: ARTICLE_TYPES.ABOUT });
-  }, [navigation]);
+    const handleBack = useCallback(() => navigation.goBack(), [navigation]);
+    const handleTocPress = useCallback(
+      () => navigation.navigate('HomeScreen'),
+      [navigation]
+    );
+    const handleIndexPress = useCallback(
+      () => navigation.navigate('IndexModal'),
+      [navigation]
+    );
+    const handleUsageInstructionsPress = useCallback(() => {
+      setMenuOpen(false);
+      navigation.navigate('UsageInstructionsScreen');
+    }, [navigation]);
+    const handleDisclaimerPress = useCallback(() => {
+      setMenuOpen(false);
+      navigation.navigate('DisclaimerModal');
+    }, [navigation]);
+    const handleLicensePress = useCallback(() => {
+      setMenuOpen(false);
+      navigation.navigate('LicenseScreen');
+    }, [navigation]);
+    const handleAboutPress = useCallback(() => {
+      setMenuOpen(false);
+      navigation.navigate('ArticleScreen', { type: ARTICLE_TYPES.ABOUT });
+    }, [navigation]);
+    const handleClearCachePress = useCallback(() => {
+      setMenuOpen(false);
+      clearCacheAction.execute();
+    }, []);
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.statusBar} />
-      <View style={styles.header}>
-        {back && (
-          <IconButton
-            iconName="arrow-left"
-            onPress={handleBack}
-            style={styles.backButton}
-          />
-        )}
-        <Text style={styles.title}>{title}</Text>
-        <View style={styles.trailingIconGroup}>
-          {!isHomeScreen && (
+    return (
+      <View style={styles.container}>
+        <View style={styles.statusBar} />
+        <View style={styles.header}>
+          {back && (
             <IconButton
-              iconName="clipboard-list"
-              onPress={handleTocPress}
-              iconStyle={styles.trailingIcon}
+              iconName="arrow-left"
+              onPress={handleBack}
+              style={styles.backButton}
             />
           )}
-          <IconButton
-            iconName="list"
-            onPress={handleIndexPress}
-            iconStyle={styles.trailingIcon}
-          />
-          <IconButton
-            iconName="ellipsis-v"
-            onPress={handleMenuPress}
-            iconStyle={styles.trailingIcon}
+          <Text style={styles.title}>{title}</Text>
+          <View style={styles.trailingIconGroup}>
+            {!isHomeScreen && (
+              <IconButton
+                iconName="clipboard-list"
+                onPress={handleTocPress}
+                iconStyle={styles.trailingIcon}
+              />
+            )}
+            <IconButton
+              iconName="list"
+              onPress={handleIndexPress}
+              iconStyle={styles.trailingIcon}
+            />
+            <IconButton
+              iconName="ellipsis-v"
+              onPress={handleMenuPress}
+              iconStyle={styles.trailingIcon}
+            />
+          </View>
+          <Menu
+            visible={menuOpen}
+            style={styles.menu}
+            onPressAbout={handleAboutPress}
+            onPressDisclaimer={handleDisclaimerPress}
+            onPressLicense={handleLicensePress}
+            onPressUsageInstructions={handleUsageInstructionsPress}
+            onPressClearCache={handleClearCachePress}
           />
         </View>
-        <Menu
-          visible={menuOpen}
-          style={styles.menu}
-          onPressAbout={handleAboutPress}
-          onPressDisclaimer={handleDisclaimerPress}
-          onPressLicense={handleLicensePress}
-          onPressUsageInstructions={handleUsageInstructionsPress}
-        />
       </View>
-    </View>
-  );
+    );
+  };
 }
 
 const styles = StyleSheet.create({
@@ -172,4 +180,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Header };
+export { factory };
+export type Type = ReturnType<typeof factory>;
