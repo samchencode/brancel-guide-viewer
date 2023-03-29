@@ -107,7 +107,7 @@ describe('CacheTableOfContentsRepository', () => {
             new Article(
               new ArticleId('prologue'),
               'Cached Prologue',
-              new RichText(jest.fn(), 'Hello World'),
+              new RichText('Hello World'),
               []
             ),
             []

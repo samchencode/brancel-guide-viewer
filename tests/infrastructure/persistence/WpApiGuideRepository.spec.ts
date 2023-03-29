@@ -3,7 +3,6 @@ import { replaceImageUrisInHtml } from '@/infrastructure/html-manipulation/cheer
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
 import { WpApiGuideRepository } from '@/infrastructure/persistence/wp-api/WpApiGuideRepository';
 import { cheerio } from '@/vendor/cheerio';
-import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 import { stubApiResponse } from './stubApiResponse';
 
 const fetch = jest.fn().mockResolvedValue({
@@ -17,7 +16,7 @@ describe('WpApiGuideRepository', () => {
     it('should be created with guide parser', () => {
       const host = 'https://wordpress.com';
       const pageId = '4321';
-      const parser = new CheerioGuideParser(sanitizeHtml);
+      const parser = new CheerioGuideParser();
       const create = () =>
         new WpApiGuideRepository(
           fetch,
@@ -36,7 +35,7 @@ describe('WpApiGuideRepository', () => {
     it('should get guide from wp api response', async () => {
       const host = 'https://wordpress.com';
       const pageId = '4321';
-      const parser = new CheerioGuideParser(sanitizeHtml);
+      const parser = new CheerioGuideParser();
       const repo = new WpApiGuideRepository(
         fetch,
         host,
@@ -52,7 +51,7 @@ describe('WpApiGuideRepository', () => {
     it('should get the last updated date', async () => {
       const host = 'https://wordpress.com';
       const pageId = '4321';
-      const parser = new CheerioGuideParser(sanitizeHtml);
+      const parser = new CheerioGuideParser();
       const repo = new WpApiGuideRepository(
         fetch,
         host,
@@ -70,7 +69,7 @@ describe('WpApiGuideRepository', () => {
     it('should prepend image src with api host if not already present', async () => {
       const host = 'https://example.com';
       const pageId = '4321';
-      const parser = new CheerioGuideParser(sanitizeHtml);
+      const parser = new CheerioGuideParser();
 
       const fetchWithImageInResult = jest.fn().mockResolvedValue({
         ok: true,

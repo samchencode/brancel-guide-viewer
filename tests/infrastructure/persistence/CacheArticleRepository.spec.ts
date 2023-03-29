@@ -5,7 +5,6 @@ import type { FileSystem } from '@/infrastructure/file-system/FileSystem';
 import { NodeFileSystem } from '@/infrastructure/file-system/node/NodeFileSystem';
 import { getImageUrisFromHtml } from '@/infrastructure/html-manipulation/cheerio/getImageUrisFromHtml';
 import { replaceImageUrisInHtmlBody } from '@/infrastructure/html-manipulation/cheerio/replaceImageUrisInHtml';
-import { sanitizeHtml } from '@/infrastructure/html-manipulation/sanitize-html/sanitizeHtml';
 import {
   ArticleToBeCached,
   CacheArticleRepository,
@@ -41,8 +40,7 @@ describe('CacheArticleRepository', () => {
           cacheRepository,
           fs,
           getImageUrisFromHtml,
-          replaceImageUrisInHtmlBody,
-          sanitizeHtml
+          replaceImageUrisInHtmlBody
         );
 
       expect(create).not.toThrowError();
@@ -66,7 +64,7 @@ describe('CacheArticleRepository', () => {
       const article = new Article(
         new ArticleId('MyId'),
         'MyTitle',
-        new RichText(sanitizeHtml, 'MyBody'),
+        new RichText('MyBody'),
         []
       );
 
@@ -77,8 +75,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       const result = await cacheArticleRepository.getById(
@@ -92,7 +89,7 @@ describe('CacheArticleRepository', () => {
       const article = new Article(
         new ArticleId('MyId'),
         'MyTitle',
-        new RichText(sanitizeHtml, 'MyBody'),
+        new RichText('MyBody'),
         []
       );
 
@@ -106,8 +103,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       await repo.cachingArticles;
@@ -131,13 +127,13 @@ describe('CacheArticleRepository', () => {
       const repoArticle1 = new Article(
         new ArticleId('first'),
         'ArticleOneFromRepo',
-        new RichText(sanitizeHtml, 'BodyOne'),
+        new RichText('BodyOne'),
         ['foo', 'bar']
       );
       const repoArticle2 = new Article(
         new ArticleId('second'),
         'ArticleTwoFromRepo',
-        new RichText(sanitizeHtml, 'BodyTwo'),
+        new RichText('BodyTwo'),
         ['baz']
       );
 
@@ -148,14 +144,14 @@ describe('CacheArticleRepository', () => {
       const cacheArticle1 = new Article(
         new ArticleId('first'),
         'ArticleOneFromCache',
-        new RichText(sanitizeHtml, 'BodyOne'),
+        new RichText('BodyOne'),
         ['foo', 'bar']
       );
 
       const cacheArticle2 = new Article(
         new ArticleId('second'),
         'ArticleTwoFromCache',
-        new RichText(sanitizeHtml, 'BodyTwo'),
+        new RichText('BodyTwo'),
         ['baz']
       );
 
@@ -182,8 +178,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       const result = await cacheArticleRepository.getById(
@@ -199,7 +194,7 @@ describe('CacheArticleRepository', () => {
       const repoArticle1 = new Article(
         new ArticleId('first'),
         'ArticleOneFromRepo',
-        new RichText(sanitizeHtml, 'BodyOne'),
+        new RichText('BodyOne'),
         ['foo', 'bar']
       );
 
@@ -212,8 +207,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       const result = await cacheArticleRepository.getById(
@@ -231,7 +225,7 @@ describe('CacheArticleRepository', () => {
       const repoArticle1 = new Article(
         new ArticleId('first'),
         'ArticleOneFromRepo',
-        new RichText(sanitizeHtml, 'BodyOne'),
+        new RichText('BodyOne'),
         ['foo', 'bar']
       );
 
@@ -255,8 +249,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       const result = await cacheArticleRepository.getById(
@@ -282,8 +275,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       await cacheArticleRepository.cachingArticles;
@@ -317,20 +309,14 @@ describe('CacheArticleRepository', () => {
       const repoArticle1 = new Article(
         new ArticleId('first'),
         'ArticleOneFromRepo',
-        new RichText(
-          sanitizeHtml,
-          'Foo <img src="https://example.com/foo.png">'
-        ),
+        new RichText('Foo <img src="https://example.com/foo.png">'),
         ['foo', 'bar']
       );
 
       const repoArticle2 = new Article(
         new ArticleId('second'),
         'ArticleTwoFromRepo',
-        new RichText(
-          sanitizeHtml,
-          'Bar <img src="https://example.com/bar.png">'
-        ),
+        new RichText('Bar <img src="https://example.com/bar.png">'),
         ['baz']
       );
 
@@ -353,8 +339,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       await cacheArticleRepository.cachingArticles;
@@ -403,20 +388,14 @@ describe('CacheArticleRepository', () => {
       const cacheArticle1 = new Article(
         new ArticleId('first'),
         'ArticleOneFromCache',
-        new RichText(
-          sanitizeHtml,
-          'Foo <img src="https://example.com/foo.png">'
-        ),
+        new RichText('Foo <img src="https://example.com/foo.png">'),
         ['foo', 'bar']
       );
 
       const cacheArticle2 = new Article(
         new ArticleId('second'),
         'ArticleTwoFromCache',
-        new RichText(
-          sanitizeHtml,
-          'Bar <img src="https://example.com/bar.png">'
-        ),
+        new RichText('Bar <img src="https://example.com/bar.png">'),
         ['baz']
       );
 
@@ -450,8 +429,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       const result = await cacheArticleRepository.getById(
@@ -470,8 +448,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       const result = await cacheArticleRepository.getById(
@@ -492,8 +469,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       await cacheArticleRepository.getById(new ArticleId('first'));
@@ -509,8 +485,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       await cacheArticleRepository.clearCache();
@@ -524,7 +499,7 @@ describe('CacheArticleRepository', () => {
       const article = new Article(
         new ArticleId('MyId'),
         'MyTitle',
-        new RichText(sanitizeHtml, 'MyBody'),
+        new RichText('MyBody'),
         []
       );
 
@@ -541,8 +516,7 @@ describe('CacheArticleRepository', () => {
         cacheRepository,
         fs,
         getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody,
-        sanitizeHtml
+        replaceImageUrisInHtmlBody
       );
 
       await cacheArticleRepository.cachingArticles;

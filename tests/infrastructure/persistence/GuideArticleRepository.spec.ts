@@ -9,7 +9,7 @@ import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuide
 import { GuideArticleRepository } from '@/infrastructure/persistence/guide/GuideArticleRepository';
 import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 
-const parser = new CheerioGuideParser(sanitizeHtml);
+const parser = new CheerioGuideParser();
 const guideRepo = new FakeGuideRepository(parser);
 
 describe('GuideArticleRepository', () => {

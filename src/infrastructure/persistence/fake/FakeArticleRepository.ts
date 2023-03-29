@@ -45,11 +45,7 @@ class FakeArticleRepository implements ArticleRepository {
   }
 
   private makeArticle(a: FakeArticle) {
-    return new Article(
-      new ArticleId(a.id),
-      a.title,
-      new RichText(sanitizeHtml, a.body)
-    );
+    return new Article(new ArticleId(a.id), a.title, new RichText(a.body));
   }
 
   async getAllSearchable(): Promise<SearchableArticle[]> {

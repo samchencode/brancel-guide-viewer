@@ -1,8 +1,5 @@
 import { Article, ArticleId } from '@/domain/models/Article';
-import type {
-  ReplaceImageUrisInHtml,
-  SanitizeHtml,
-} from '@/domain/models/RichText';
+import type { ReplaceImageUrisInHtml } from '@/domain/models/RichText';
 import { RichText } from '@/domain/models/RichText';
 import type { FileSystem } from '@/infrastructure/file-system/FileSystem';
 import type { CachedArticle } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticle';
@@ -34,7 +31,6 @@ const mimeTypes = {
 async function populateArticle(
   fileSystem: FileSystem,
   replaceImageUrisInHtml: ReplaceImageUrisInHtml,
-  sanitizeHtml: SanitizeHtml,
   updateCachedImage: UpdateCachedImage,
   cachedArticle: CachedArticle
 ) {
@@ -86,7 +82,7 @@ async function populateArticle(
   return new Article(
     new ArticleId(cachedArticle.idString),
     cachedArticle.title,
-    new RichText(sanitizeHtml, bodyHtml),
+    new RichText(bodyHtml),
     cachedArticle.sectionIds
   );
 }

@@ -6,7 +6,7 @@ describe('Article', () => {
     it('should be created with id, title, RichText body', () => {
       const id = new ArticleId('my-article');
       const title = 'Example Article';
-      const body = new RichText(jest.fn(), 'Article Body');
+      const body = new RichText('Article Body');
 
       const create = () => new Article(id, title, body);
       expect(create).not.toThrowError();
@@ -15,7 +15,7 @@ describe('Article', () => {
     it('should be created with id, title, RichText body, and a list of section ids', () => {
       const id = new ArticleId('my-article');
       const title = 'Example Article';
-      const body = new RichText(jest.fn(), 'Article Body');
+      const body = new RichText('Article Body');
       const sectionIds = ['important-id'];
 
       const create = () => new Article(id, title, body, sectionIds);
@@ -27,7 +27,7 @@ describe('Article', () => {
     it('should allow retrieval of id, title, and body', () => {
       const id = new ArticleId('my-article');
       const title = 'Example Article';
-      const body = new RichText(jest.fn(), 'Article Body');
+      const body = new RichText('Article Body');
 
       const article = new Article(id, title, body);
 
@@ -39,7 +39,7 @@ describe('Article', () => {
     it('should contain section ids it was given', () => {
       const id = new ArticleId('my-article');
       const title = 'Example Article';
-      const body = new RichText(jest.fn(), 'Article Body');
+      const body = new RichText('Article Body');
       const sectionIds = ['important-id'];
 
       const article = new Article(id, title, body, sectionIds);
@@ -51,7 +51,7 @@ describe('Article', () => {
     it('should add id string to list of section ids', () => {
       const id = new ArticleId('my-article');
       const title = 'Example Article';
-      const body = new RichText(jest.fn(), 'Article Body');
+      const body = new RichText('Article Body');
 
       const article = new Article(id, title, body);
 

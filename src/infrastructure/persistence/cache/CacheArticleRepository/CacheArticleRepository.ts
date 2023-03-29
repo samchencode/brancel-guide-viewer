@@ -11,7 +11,6 @@ import { ARTICLE_TYPES } from '@/domain/models/Article';
 import type {
   GetImageUrisFromHtml,
   ReplaceImageUrisInHtmlBody,
-  SanitizeHtml,
 } from '@/domain/models/RichText';
 import type { CacheRepository } from '@/infrastructure/persistence/cache/CacheRepository';
 import { populateArticle } from '@/infrastructure/persistence/cache/CacheArticleRepository/populateArticle';
@@ -39,8 +38,7 @@ class CacheArticleRepository implements ArticleRepository {
     private cacheRepository: CacheRepository,
     private fileSystem: FileSystem,
     getImageUrisFromHtml: GetImageUrisFromHtml,
-    replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody,
-    sanitizeHtml: SanitizeHtml
+    replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody
   ) {
     const updateCachedImageBound = updateCachedImage.bind(
       null,
@@ -52,7 +50,6 @@ class CacheArticleRepository implements ArticleRepository {
       populateArticle(
         fileSystem,
         replaceImageUrisInHtmlBody,
-        sanitizeHtml,
         updateCachedImageBound,
         article
       );

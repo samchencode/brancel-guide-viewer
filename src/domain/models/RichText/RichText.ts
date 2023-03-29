@@ -1,12 +1,5 @@
 class RichText {
-  constructor(
-    private readonly sanitizeHtml: (html: string) => string,
-    public readonly html: string
-  ) {}
-
-  getText() {
-    return this.sanitizeHtml(this.html);
-  }
+  constructor(public readonly html: string) {}
 
   toString() {
     return this.html;

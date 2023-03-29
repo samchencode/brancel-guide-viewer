@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs';
-import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
 import { cheerio } from '@/vendor/cheerio';
 import { ArticleId } from '@/domain/models/Article';
@@ -18,12 +17,12 @@ const guideText = fs.readFileSync(guidePath, 'utf-8');
 
 describe('Guide Parsability Test', () => {
   it('should create a guide parser', () => {
-    const create = () => new CheerioGuideParser(sanitizeHtml);
+    const create = () => new CheerioGuideParser();
     expect(create).not.toThrowError();
   });
 
   it('should parse the INDEX', async () => {
-    const parser = new CheerioGuideParser(sanitizeHtml);
+    const parser = new CheerioGuideParser();
     const index = await parser.getIndex(guideText);
 
     expect(index.body.html).not.toBe('');
@@ -31,21 +30,21 @@ describe('Guide Parsability Test', () => {
   });
 
   it('should parse the about section', async () => {
-    const parser = new CheerioGuideParser(sanitizeHtml);
+    const parser = new CheerioGuideParser();
     const about = await parser.getAbout(guideText);
 
     expect(about.body.html).not.toBe('');
   });
 
   it('should parse the guide navigation instructions', async () => {
-    const parser = new CheerioGuideParser(sanitizeHtml);
+    const parser = new CheerioGuideParser();
     const instructions = await parser.getUsageInstructions(guideText);
 
     expect(instructions.body.html).not.toBe('');
   });
 
   it('should retrieve articles other than the index, about, and nav instructions', async () => {
-    const parser = new CheerioGuideParser(sanitizeHtml);
+    const parser = new CheerioGuideParser();
     const articles = await parser.getArticles(guideText);
     expect(articles).not.toHaveLength(0);
     articles.forEach((a) => {
@@ -67,7 +66,7 @@ describe('Guide Parsability Test', () => {
     expect(tocHrefs).not.toHaveLength(0);
     expect(tocHrefs).toEqual(expect.arrayContaining([expect.any(String)]));
 
-    const parser = new CheerioGuideParser(sanitizeHtml);
+    const parser = new CheerioGuideParser();
     const articles = await parser.getArticles(guideText);
 
     for (const href of tocHrefs) {
@@ -103,7 +102,7 @@ describe('Guide Parsability Test', () => {
     expect(uniqIds).not.toHaveLength(0);
     expect(uniqIds).toEqual(expect.arrayContaining([expect.any(String)]));
 
-    const parser = new CheerioGuideParser(sanitizeHtml);
+    const parser = new CheerioGuideParser();
     const articles = [
       ...(await parser.getArticles(guideText)),
       await parser.getIndex(guideText),

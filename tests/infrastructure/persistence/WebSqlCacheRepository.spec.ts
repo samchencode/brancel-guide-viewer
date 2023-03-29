@@ -130,7 +130,7 @@ describe('WebSqlCacheRepository', () => {
       const article = new Article(
         new ArticleId('0'),
         'Example Title',
-        new RichText(jest.fn(), 'Example Body'),
+        new RichText('Example Body'),
         ['ref1', 'ref2']
       );
 
@@ -162,7 +162,7 @@ describe('WebSqlCacheRepository', () => {
       const article = new Article(
         new ArticleId('0'),
         'Example Title',
-        new RichText(jest.fn(), 'Example Body'),
+        new RichText('Example Body'),
         ['ref1', 'ref2']
       );
 
@@ -185,7 +185,7 @@ describe('WebSqlCacheRepository', () => {
       const article = new Article(
         new ArticleId('0'),
         'Example Title',
-        new RichText(jest.fn(), 'Example Body'),
+        new RichText('Example Body'),
         ['ref1', 'ref2']
       );
 
@@ -201,7 +201,7 @@ describe('WebSqlCacheRepository', () => {
       const newArticle = new Article(
         new ArticleId('1'),
         'Other Example Title',
-        new RichText(jest.fn(), 'Other Example Body'),
+        new RichText('Other Example Body'),
         ['ref1', 'ref3']
       );
 
@@ -254,18 +254,13 @@ describe('WebSqlCacheRepository', () => {
       const article = new Article(
         new ArticleId('myId'),
         'MyTitle',
-        new RichText(jest.fn(), 'MyBody'),
+        new RichText('MyBody'),
         ['innerId1', 'innerId2']
       );
-      const index = new Index(new RichText(jest.fn(), 'Index'), [
-        'A',
-        'C',
-        'D',
-        'E',
-      ]);
-      const about = new About(new RichText(jest.fn(), 'About this guide'), []);
+      const index = new Index(new RichText('Index'), ['A', 'C', 'D', 'E']);
+      const about = new About(new RichText('About this guide'), []);
       const usageInstructions = new UsageInstructions(
-        new RichText(jest.fn(), 'How to use this guide'),
+        new RichText('How to use this guide'),
         []
       );
       repo = new WebSqlCacheRepository(db);

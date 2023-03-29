@@ -4,7 +4,6 @@ import type {
   Index,
   UsageInstructions,
 } from '@/domain/models/Article';
-import type { SanitizeHtml } from '@/domain/models/RichText';
 import { BaseCheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/BaseCheerioGuideParser';
 import { prepare } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/prepare';
 import type { GuideParser } from '@/domain/models/Guide';
@@ -18,8 +17,8 @@ class CheerioGuideParser implements GuideParser {
 
   html?: string;
 
-  constructor(sanitizeHtml: SanitizeHtml) {
-    this.base = new BaseCheerioGuideParser(sanitizeHtml);
+  constructor() {
+    this.base = new BaseCheerioGuideParser();
   }
 
   getTableOfContents(html: string): TableOfContents {

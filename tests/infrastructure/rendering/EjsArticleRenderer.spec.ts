@@ -2,7 +2,6 @@ import { Article, ArticleId } from '@/domain/models/Article';
 import { RichText } from '@/domain/models/RichText/RichText';
 import { NodeFileSystem } from '@/infrastructure/file-system/node/NodeFileSystem';
 import { EjsArticleRenderer } from '@/infrastructure/rendering/ejs/EjsArticleRenderer/EjsArticleRenderer';
-import { sanitizeHtml } from '@/infrastructure/html-manipulation/sanitize-html/sanitizeHtml';
 
 describe('EjsArticleRenderer', () => {
   let fs: NodeFileSystem;
@@ -26,7 +25,7 @@ describe('EjsArticleRenderer', () => {
     it('should render html in the body', async () => {
       const id = new ArticleId('example');
       const title = 'Example Title';
-      const body = new RichText(sanitizeHtml, '<h1>Hello World</h1>');
+      const body = new RichText('<h1>Hello World</h1>');
       const article = new Article(id, title, body);
 
       const renderer = new EjsArticleRenderer(fs);
@@ -40,7 +39,7 @@ describe('EjsArticleRenderer', () => {
     it('should not render html in the title', async () => {
       const id = new ArticleId('example');
       const title = '<h1>Example Title</h1>';
-      const body = new RichText(sanitizeHtml, '<h1>Hello World</h1>');
+      const body = new RichText('<h1>Hello World</h1>');
       const article = new Article(id, title, body);
 
       const renderer = new EjsArticleRenderer(fs);

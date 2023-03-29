@@ -7,7 +7,6 @@ import {
   UsageInstructions,
 } from '@/domain/models/Article';
 import { RichText } from '@/domain/models/RichText/RichText';
-import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
 
 function strIsDefined(str: string | undefined): str is string {
   return str !== undefined;
@@ -21,35 +20,27 @@ function getSectionIds(html: string) {
     .filter(strIsDefined);
 }
 
-export function makeArticle(
-  idString: string,
-  title: string,
-  bodyHtml: string,
-  sanitizeHtml: SanitizeHtml
-) {
+export function makeArticle(idString: string, title: string, bodyHtml: string) {
   const id = new ArticleId(idString);
-  const body = new RichText(sanitizeHtml, bodyHtml);
+  const body = new RichText(bodyHtml);
   const sectionIds = getSectionIds(bodyHtml);
   return new Article(id, title, body, sectionIds);
 }
 
-export function makeAbout(bodyHtml: string, sanitizeHtml: SanitizeHtml) {
-  const body = new RichText(sanitizeHtml, bodyHtml);
+export function makeAbout(bodyHtml: string) {
+  const body = new RichText(bodyHtml);
   const sectionIds = getSectionIds(bodyHtml);
   return new About(body, sectionIds);
 }
 
-export function makeIndex(bodyHtml: string, sanitizeHtml: SanitizeHtml) {
-  const body = new RichText(sanitizeHtml, bodyHtml);
+export function makeIndex(bodyHtml: string) {
+  const body = new RichText(bodyHtml);
   const sectionIds = getSectionIds(bodyHtml);
   return new Index(body, sectionIds);
 }
 
-export function makeUsageInstructions(
-  bodyHtml: string,
-  sanitizeHtml: SanitizeHtml
-) {
-  const body = new RichText(sanitizeHtml, bodyHtml);
+export function makeUsageInstructions(bodyHtml: string) {
+  const body = new RichText(bodyHtml);
   const sectionIds = getSectionIds(bodyHtml);
   return new UsageInstructions(body, sectionIds);
 }

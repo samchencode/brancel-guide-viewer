@@ -9,34 +9,28 @@ import { ArticleParser } from '@/infrastructure/parsing/cheerio/CheerioGuidePars
 import { AboutParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/AboutParser';
 import { IndexParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/IndexParser';
 import { UsageInstructionsParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/UsageInstructionsParser';
-import type { SanitizeHtml } from '@/domain/models/RichText/htmlManipulationUtils';
 import { TableOfContentsParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser/TableOfContentsParser';
 import type { TableOfContents } from '@/domain/models/TableOfContents';
 
 class BaseCheerioGuideParser {
-  constructor(private sanitizeHtml: SanitizeHtml) {}
-
   getTableOfContents($: cheerio.CheerioAPI): TableOfContents {
     return new TableOfContentsParser($).makeTableOfContents();
   }
 
   getAbout($: cheerio.CheerioAPI): About {
-    return new AboutParser($, this.sanitizeHtml).makeAbout();
+    return new AboutParser($).makeAbout();
   }
 
   getIndex($: cheerio.CheerioAPI): Index {
-    return new IndexParser($, this.sanitizeHtml).makeIndex();
+    return new IndexParser($).makeIndex();
   }
 
   getUsageInstructions($: cheerio.CheerioAPI): UsageInstructions {
-    return new UsageInstructionsParser(
-      $,
-      this.sanitizeHtml
-    ).makeUsageInstructions();
+    return new UsageInstructionsParser($).makeUsageInstructions();
   }
 
   getArticles($: cheerio.CheerioAPI): Article[] {
-    return new ArticleParser($, this.sanitizeHtml).makeAllArticles();
+    return new ArticleParser($).makeAllArticles();
   }
 }
 
