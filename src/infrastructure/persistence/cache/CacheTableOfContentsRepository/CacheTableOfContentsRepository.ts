@@ -15,7 +15,7 @@ class CacheTableOfContentsRepository implements TableOfContentsRepository {
   }
 
   async cacheTableOfContentsIfEmpty() {
-    const { items } = await this.get();
+    const { items } = await this.cacheRepository.getTableOfContents();
     if (items.length > 0) return;
     const toc = await this.cacheSourceTableOfContentsRepository.get();
     await this.cacheRepository.saveTableOfContents(toc);
