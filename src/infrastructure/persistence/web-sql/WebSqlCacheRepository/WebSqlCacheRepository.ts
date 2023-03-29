@@ -1,4 +1,8 @@
-import type { ArticleId, ArticleType } from '@/domain/models/Article';
+import type {
+  ArticleId,
+  ArticleType,
+  SearchableArticle,
+} from '@/domain/models/Article';
 import {
   TableOfContents,
   TableOfContentsItem,
@@ -234,6 +238,17 @@ class WebSqlCacheRepository implements CacheRepository {
           }[]
       )
       .flatMap((v) => new CachedArticleImage(v.originalUri, v.fileUri));
+  }
+
+  async getAllSearchable(): Promise<SearchableArticle[]> {
+    const query = sqlStr`SELECT
+      id,
+      title,
+      body
+    FROM articles`;
+
+    const [result] = await this.executeSql([query]);
+    return resultSetToArray<SearchableArticle>(result);
   }
 }
 

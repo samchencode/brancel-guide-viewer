@@ -28,6 +28,7 @@ import { WebSqlCacheRepository } from '@/infrastructure/persistence/web-sql/WebS
 import { openExpoSqliteDatabase } from '@/infrastructure/persistence/web-sql/expo-sqlite/expoSqliteDatabase';
 import { WpApiGuideRepository } from '@/infrastructure/persistence/wp-api/WpApiGuideRepository';
 import { ClearCacheAction } from '@/application/ClearCacheAction';
+import { CompositeArticleSearch } from '@/infrastructure/search/CompositeArticleSearch';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -56,6 +57,7 @@ export const module: Module = {
   tableOfContentsRepository: ['type', CacheTableOfContentsRepository],
   fileSystem: ['type', ExpoAssetFileSystem],
   guideParser: ['type', CheerioGuideParser],
+  articleSearch: ['type', CompositeArticleSearch],
 
   // INFRASTRUCTURE -> caching
   cacheSourceArticleRepository: ['type', GuideArticleRepository],

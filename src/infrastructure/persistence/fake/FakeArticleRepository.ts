@@ -1,6 +1,7 @@
 import { Article, ArticleId } from '@/domain/models/Article';
 import type {
   ArticleRepository,
+  SearchableArticle,
   About,
   Index,
   UsageInstructions,
@@ -49,6 +50,15 @@ class FakeArticleRepository implements ArticleRepository {
       a.title,
       new RichText(sanitizeHtml, a.body)
     );
+  }
+
+  async getAllSearchable(): Promise<SearchableArticle[]> {
+    const articles = await this.getAll();
+    return articles.map((a) => ({
+      id: a.id.toString(),
+      title: a.title,
+      body: sanitizeHtml(a.body.html),
+    }));
   }
 }
 

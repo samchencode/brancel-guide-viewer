@@ -13,3 +13,9 @@ export type { ArticleRepository } from '@/domain/models/Article/ArticleRepositor
 export type { ArticleCache } from '@/domain/models/Article/ArticleCache';
 export type { ArticleRenderer } from '@/domain/models/Article/ArticleRenderer';
 export { ARTICLE_TYPES } from '@/domain/models/Article/constants';
+export { SearchableArticle } from '@/domain/models/Article/SearchableArticle';
+export {
+  ArticleSearchResult,
+  ArticleMatchData,
+} from '@/domain/models/Article/ArticleSearchResult';
+export { ArticleSearch } from '@/domain/models/Article/ArticleSearch';

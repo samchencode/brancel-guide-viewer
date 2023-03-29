@@ -4,6 +4,7 @@ import type {
   ArticleId,
   ArticleRepository,
   Index,
+  SearchableArticle,
   UsageInstructions,
 } from '@/domain/models/Article';
 import { ARTICLE_TYPES } from '@/domain/models/Article';
@@ -167,6 +168,10 @@ class CacheArticleRepository implements ArticleRepository {
       .map((uri) => this.fileSystem.deleteFile(uri));
     const removeFromRepo = await this.cacheRepository.delete();
     await Promise.all([removeFromRepo, ...deletions]);
+  }
+
+  async getAllSearchable(): Promise<SearchableArticle[]> {
+    return this.cacheRepository.getAllSearchable();
   }
 }
 

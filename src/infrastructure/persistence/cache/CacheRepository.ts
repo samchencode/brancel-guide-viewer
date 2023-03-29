@@ -1,4 +1,8 @@
-import type { ArticleId, ArticleType } from '@/domain/models/Article';
+import type {
+  ArticleId,
+  ArticleType,
+  SearchableArticle,
+} from '@/domain/models/Article';
 import type { TableOfContents } from '@/domain/models/TableOfContents';
 import type { CachedArticleImage } from '@/infrastructure/persistence/cache/CacheArticleRepository';
 import type { ArticleToBeCached } from '@/infrastructure/persistence/cache/CacheArticleRepository/ArticleToBeCached';
@@ -20,6 +24,7 @@ interface CacheRepository {
   getLastUpdatedTimestamp(): Promise<Date>;
   delete(): Promise<void>;
   getAllCachedImages(): Promise<CachedArticleImage[]>;
+  getAllSearchable(): Promise<SearchableArticle[]>;
 }
 
 export type { CacheRepository };

@@ -4,16 +4,21 @@ import type {
   ArticleId,
   ArticleRepository,
   Index,
+  SearchableArticle,
   UsageInstructions,
 } from '@/domain/models/Article';
 import type { Guide, GuideRepository } from '@/domain/models/Guide';
+import type { SanitizeHtml } from '@/domain/models/RichText';
 import { GuideArticleNotFoundError } from '@/infrastructure/persistence/guide/GuideArticleNotFoundError';
 import { GuideArticleSectionNotFoundError } from '@/infrastructure/persistence/guide/GuideArticleSectionNotFoundError';
 
 class GuideArticleRepository implements ArticleRepository {
   guide: Promise<Guide>;
 
-  constructor(private guideRepository: GuideRepository) {
+  constructor(
+    private guideRepository: GuideRepository,
+    private sanitizeHtml: SanitizeHtml
+  ) {
     this.guide = this.guideRepository.get();
   }
 
@@ -57,6 +62,15 @@ class GuideArticleRepository implements ArticleRepository {
 
   async getLastUpdatedTimestamp(): Promise<Date> {
     return this.guideRepository.getLastUpdatedTimestamp();
+  }
+
+  async getAllSearchable(): Promise<SearchableArticle[]> {
+    const articles = await this.getAll();
+    return articles.map((a) => ({
+      id: a.id.toString(),
+      title: a.title,
+      body: this.sanitizeHtml(a.body.html),
+    }));
   }
 }
 

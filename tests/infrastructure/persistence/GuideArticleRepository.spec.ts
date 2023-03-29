@@ -15,7 +15,7 @@ const guideRepo = new FakeGuideRepository(parser);
 describe('GuideArticleRepository', () => {
   describe('Instantiation', () => {
     it('should be created with a guide repo', () => {
-      const create = () => new GuideArticleRepository(guideRepo);
+      const create = () => new GuideArticleRepository(guideRepo, sanitizeHtml);
       expect(create).not.toThrowError();
     });
   });
@@ -24,7 +24,7 @@ describe('GuideArticleRepository', () => {
     let repo: GuideArticleRepository;
 
     beforeEach(() => {
-      repo = new GuideArticleRepository(guideRepo);
+      repo = new GuideArticleRepository(guideRepo, sanitizeHtml);
     });
 
     it('should get and parse all articles', async () => {
