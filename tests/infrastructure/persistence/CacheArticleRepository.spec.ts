@@ -12,6 +12,7 @@ import {
 } from '@/infrastructure/persistence/cache/CacheArticleRepository';
 import { FakeArticleRepository } from '@/infrastructure/persistence/fake/FakeArticleRepository';
 import { WebSqlCacheRepository } from '@/infrastructure/persistence/web-sql/WebSqlCacheRepository/WebSqlCacheRepository';
+import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 import { openDatabase } from '@/vendor/websql';
 
 const wait = (ms: number) =>
@@ -39,6 +40,7 @@ describe('CacheArticleRepository', () => {
           articleRepository,
           cacheRepository,
           fs,
+          sanitizeHtml,
           getImageUrisFromHtml,
           replaceImageUrisInHtmlBody
         );
@@ -74,6 +76,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -102,6 +105,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -177,6 +181,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -206,6 +211,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -248,6 +254,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -274,6 +281,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -338,6 +346,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -428,6 +437,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -447,6 +457,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -468,6 +479,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -484,6 +496,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
@@ -515,6 +528,7 @@ describe('CacheArticleRepository', () => {
         articleRepository,
         cacheRepository,
         fs,
+        sanitizeHtml,
         getImageUrisFromHtml,
         replaceImageUrisInHtmlBody
       );
