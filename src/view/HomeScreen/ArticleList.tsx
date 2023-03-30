@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import type { ListRenderItem } from 'react-native';
 import { ArticleRow } from '@/view/HomeScreen/ArticleRow';
@@ -22,6 +22,10 @@ function ArticleList({
   onSelectArticle,
   ListHeaderComponent = undefined,
 }: Props) {
+  const { height } = useWindowDimensions();
+  const LIST_ITEM_HEIGHT = 56;
+  const initialNumToRender = Math.ceil(height / LIST_ITEM_HEIGHT);
+
   return (
     <FlatList
       data={articles}
@@ -35,6 +39,7 @@ function ArticleList({
       contentContainerStyle={styles.contentContainerStyle}
       ListEmptyComponent={<EmptyArticleList />}
       ListHeaderComponent={ListHeaderComponent}
+      initialNumToRender={initialNumToRender}
     />
   );
 }
