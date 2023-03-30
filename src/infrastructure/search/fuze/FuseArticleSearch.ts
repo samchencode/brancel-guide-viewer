@@ -18,12 +18,10 @@ const fuseOptions = {
 function matchesToMatchData(
   matches: Readonly<Fuse.FuseResultMatch[]>
 ): ArticleMatchData {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const titleMatches = matches.find((m) => m.key === 'title')!;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const bodyMatches = matches.find((m) => m.key === 'body')!;
-  const titleIndices = titleMatches.indices.filter((i) => i[0] !== i[1]);
-  const bodyIndices = bodyMatches.indices.filter((i) => i[0] !== i[1]);
+  const titleMatches = matches.find((m) => m.key === 'title');
+  const bodyMatches = matches.find((m) => m.key === 'body');
+  const titleIndices = titleMatches?.indices.filter((i) => i[0] !== i[1]) ?? [];
+  const bodyIndices = bodyMatches?.indices.filter((i) => i[0] !== i[1]) ?? [];
   return {
     title: titleIndices,
     body: bodyIndices,
