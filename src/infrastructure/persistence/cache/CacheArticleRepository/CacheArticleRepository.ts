@@ -11,6 +11,7 @@ import { ARTICLE_TYPES } from '@/domain/models/Article';
 import type {
   GetImageUrisFromHtml,
   ReplaceImageUrisInHtmlBody,
+  SanitizeHtml,
 } from '@/domain/models/RichText';
 import type { CacheRepository } from '@/infrastructure/persistence/cache/CacheRepository';
 import { populateArticle } from '@/infrastructure/persistence/cache/CacheArticleRepository/populateArticle';
@@ -37,6 +38,7 @@ class CacheArticleRepository implements ArticleRepository {
     private cacheSourceArticleRepository: ArticleRepository,
     private cacheRepository: CacheRepository,
     private fileSystem: FileSystem,
+    private sanitizeHtml: SanitizeHtml,
     getImageUrisFromHtml: GetImageUrisFromHtml,
     replaceImageUrisInHtmlBody: ReplaceImageUrisInHtmlBody
   ) {
@@ -168,7 +170,11 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   async getAllSearchable(): Promise<SearchableArticle[]> {
-    return this.cacheRepository.getAllSearchable();
+    const articles = await this.cacheRepository.getAllSearchable();
+    return articles.map((article) => ({
+      ...article,
+      body: this.sanitizeHtml(article.body).replace(/\s+/g, ' ').trim(),
+    }));
   }
 }
 
