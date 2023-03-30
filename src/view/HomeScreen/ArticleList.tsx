@@ -10,13 +10,18 @@ import { EmptyArticleList } from '@/view/HomeScreen/EmptyArticleList';
 type Props = {
   articles: TableOfContentsItem[];
   onSelectArticle: (dest: string) => void;
+  ListHeaderComponent?: JSX.Element;
 };
 
 function getKey(item: TableOfContentsItem) {
   return item.destination;
 }
 
-function ArticleList({ articles, onSelectArticle }: Props) {
+function ArticleList({
+  articles,
+  onSelectArticle,
+  ListHeaderComponent = undefined,
+}: Props) {
   return (
     <FlatList
       data={articles}
@@ -29,6 +34,7 @@ function ArticleList({ articles, onSelectArticle }: Props) {
       keyExtractor={getKey}
       contentContainerStyle={styles.contentContainerStyle}
       ListEmptyComponent={<EmptyArticleList />}
+      ListHeaderComponent={ListHeaderComponent}
     />
   );
 }

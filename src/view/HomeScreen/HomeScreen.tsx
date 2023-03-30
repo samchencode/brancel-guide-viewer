@@ -7,6 +7,7 @@ import type { GetTableOfContentsAction } from '@/application/GetTableOfContentsA
 import { ARTICLE_TYPES } from '@/domain/models/Article';
 import { usePromise } from '@/view/lib/usePromise';
 import { ProgressIndicatorView } from '@/view/HomeScreen/ProgressIndicatorView';
+import { SearchBar } from '@/view/HomeScreen/SearchBar';
 
 type Props = AppNavigationProps<'HomeScreen'>;
 
@@ -30,6 +31,9 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
           <ArticleList
             articles={toc.items ?? []}
             onSelectArticle={onSelectArticle}
+            ListHeaderComponent={
+              <SearchBar style={styles.searchBar} onPress={() => alert(1)} />
+            }
           />
         ),
         [onSelectArticle]
@@ -45,6 +49,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+  },
+  searchBar: {
+    margin: theme.spaces.md,
   },
 });
 
