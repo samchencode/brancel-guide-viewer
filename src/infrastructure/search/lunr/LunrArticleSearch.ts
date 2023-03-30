@@ -13,18 +13,22 @@ type LunrMatchFieldMetadata = {
 
 type LunrMatchMetadata = {
   [v: string]: {
-    title: LunrMatchFieldMetadata;
-    body: LunrMatchFieldMetadata;
+    title?: LunrMatchFieldMetadata;
+    body?: LunrMatchFieldMetadata;
   };
 };
 
 function metadataToMatchRanges(meta: LunrMatchMetadata): ArticleMatchData {
   const groups = Object.values(meta);
   return groups.reduce<ArticleMatchData>(
-    (ag, v) => ({
-      title: [...ag.title, ...v.title.position],
-      body: [...ag.body, ...v.body.position],
-    }),
+    (ag, v) => {
+      const title = v.title?.position ?? [];
+      const body = v.body?.position ?? [];
+      return {
+        title: [...ag.title, ...title],
+        body: [...ag.body, ...body],
+      };
+    },
     { title: [], body: [] }
   );
 }
