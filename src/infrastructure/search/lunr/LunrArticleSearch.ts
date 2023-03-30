@@ -18,6 +18,13 @@ type LunrMatchMetadata = {
   };
 };
 
+function startAndLengthToRange([start, length]: [number, number]): [
+  number,
+  number
+] {
+  return [start, start + length];
+}
+
 function metadataToMatchRanges(meta: LunrMatchMetadata): ArticleMatchData {
   const groups = Object.values(meta);
   return groups.reduce<ArticleMatchData>(
@@ -25,8 +32,8 @@ function metadataToMatchRanges(meta: LunrMatchMetadata): ArticleMatchData {
       const title = v.title?.position ?? [];
       const body = v.body?.position ?? [];
       return {
-        title: [...ag.title, ...title],
-        body: [...ag.body, ...body],
+        title: [...ag.title, ...title.map(startAndLengthToRange)],
+        body: [...ag.body, ...body.map(startAndLengthToRange)],
       };
     },
     { title: [], body: [] }
