@@ -18,7 +18,7 @@ class CompositeArticleSearch implements ArticleSearch {
 
   async search(searchText: string): Promise<ArticleSearchResult[]> {
     const lunrResults = await this.lunrArticleSearch.search(searchText);
-    if (lunrResults) return lunrResults;
+    if (lunrResults.length !== 0) return lunrResults;
     const fuseResults = await this.fuseArticleSearch.search(searchText);
     return fuseResults;
   }
