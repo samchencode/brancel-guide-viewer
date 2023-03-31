@@ -114,4 +114,4 @@ class ArticleSearchResult {
 }
 
 export { ArticleSearchResult };
-export type { ArticleMatchData, MatchIndex };
+export type { ArticleMatchData, MatchIndex, StringSegment };

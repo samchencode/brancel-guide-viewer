@@ -25,6 +25,11 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
       [navigation]
     );
 
+    const onPressSearch = useCallback(
+      () => navigation.navigate('SearchScreen'),
+      [navigation]
+    );
+
     const render = usePromise(get, {
       renderFinishedState: useCallback(
         (toc) => (
@@ -32,11 +37,11 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
             articles={toc.items ?? []}
             onSelectArticle={onSelectArticle}
             ListHeaderComponent={
-              <SearchBar style={styles.searchBar} onPress={() => alert(1)} />
+              <SearchBar style={styles.searchBar} onPress={onPressSearch} />
             }
           />
         ),
-        [onSelectArticle]
+        [onPressSearch, onSelectArticle]
       ),
       renderLoadingState: useCallback(() => <ProgressIndicatorView />, []),
     });

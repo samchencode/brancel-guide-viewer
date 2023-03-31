@@ -17,5 +17,6 @@ export { SearchableArticle } from '@/domain/models/Article/SearchableArticle';
 export {
   ArticleSearchResult,
   ArticleMatchData,
+  StringSegment,
 } from '@/domain/models/Article/ArticleSearchResult';
 export { ArticleSearch } from '@/domain/models/Article/ArticleSearch';

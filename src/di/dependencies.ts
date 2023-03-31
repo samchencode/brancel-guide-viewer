@@ -6,6 +6,7 @@ import { factory as HomeScreen } from '@/view/HomeScreen';
 import { factory as ArticleScreen } from '@/view/ArticleScreen';
 import { factory as UsageInstructionsScreen } from '@/view/UsageInstructionsScreen';
 import { factory as LicenseScreen } from '@/view/LicenseScreen';
+import { factory as SearchScreen } from '@/view/SearchScreen';
 import { RenderArticleAction } from '@/application/RenderArticleAction';
 import { ExpoAssetFileSystem } from '@/infrastructure/file-system/expo/ExpoFileSystem';
 import { EjsArticleRenderer } from '@/infrastructure/rendering/ejs/EjsArticleRenderer/EjsArticleRenderer';
@@ -29,6 +30,7 @@ import { openExpoSqliteDatabase } from '@/infrastructure/persistence/web-sql/exp
 import { WpApiGuideRepository } from '@/infrastructure/persistence/wp-api/WpApiGuideRepository';
 import { ClearCacheAction } from '@/application/ClearCacheAction';
 import { CompositeArticleSearch } from '@/infrastructure/search/CompositeArticleSearch';
+import { SearchArticlesAction } from '@/application/SearchArticlesAction';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -46,6 +48,7 @@ export const module: Module = {
   findArticleAction: ['type', FindArticleAction],
   renderArticleAction: ['type', RenderArticleAction],
   clearCacheAction: ['type', ClearCacheAction],
+  searchArticlesAction: ['type', SearchArticlesAction],
 
   // INFRASTRUCTURE
   articleRepository: [
@@ -87,6 +90,7 @@ export const module: Module = {
   ArticleScreen: ['factory', ArticleScreen],
   UsageInstructionsScreen: ['factory', UsageInstructionsScreen],
   LicenseScreen: ['factory', LicenseScreen],
+  SearchScreen: ['factory', SearchScreen],
 
   // CORE
   fetch: ['value', fetch],
