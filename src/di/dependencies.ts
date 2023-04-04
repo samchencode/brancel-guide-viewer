@@ -16,7 +16,6 @@ import {
   replaceImageUrisInHtml,
   replaceImageUrisInHtmlBody,
 } from '@/infrastructure/html-manipulation/cheerio/replaceImageUrisInHtml';
-import { factory as replaceImageUrisWithBase64InHtml } from '@/infrastructure/html-manipulation/fake/replaceImageUrisWithBase64InHtml';
 import { GuideArticleRepository } from '@/infrastructure/persistence/guide/GuideArticleRepository';
 import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuideParser';
 import { GuideTableOfContentsRepository } from '@/infrastructure/persistence/guide/GuideTableOfContentsRepository';
@@ -77,10 +76,6 @@ export const module: Module = {
   getImageUrisFromHtml: ['value', getImageUrisFromHtml],
   replaceImageUrisInHtml: ['value', replaceImageUrisInHtml],
   replaceImageUrisInHtmlBody: ['value', replaceImageUrisInHtmlBody],
-  replaceImageUrisWithBase64InHtml: [
-    'factory',
-    replaceImageUrisWithBase64InHtml,
-  ],
 
   // TEMPLATES
   App: ['factory', App],
