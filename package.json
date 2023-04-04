@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "license": "GPL-3",
   "scripts": {
+    "dev": "NODE_ENV=development expo start --tunnel",
+    "android": "NODE_ENV=development expo start --android",
+    "ios": "NODE_ENV=development expo start --ios",
     "start": "expo start --tunnel",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",

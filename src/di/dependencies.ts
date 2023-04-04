@@ -31,15 +31,29 @@ import { ClearCacheAction } from '@/application/ClearCacheAction';
 import { CompositeArticleSearch } from '@/infrastructure/search/CompositeArticleSearch';
 import { SearchArticlesAction } from '@/application/SearchArticlesAction';
 
+import Constants from 'expo-constants';
+
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
 };
 
+const production = Constants.expoConfig?.extra?.NODE_ENV !== 'development';
+
+const wpApiConfig: Module = production
+  ? {
+      guideName: ['value', 'Orthopedic Anatomy'],
+      wpApiHostUrl: ['value', 'https://brancelmedicalguides.com'],
+      wpApiPageId: ['value', '19'],
+    }
+  : {
+      guideName: ['value', 'Urgent Care Medicine'],
+      wpApiHostUrl: ['value', 'http://localhost:8080'],
+      wpApiPageId: ['value', '27'],
+    };
+
 export const module: Module = {
   // CONFIG
-  guideName: ['value', 'Urgent Care Medicine'],
-  wpApiHostUrl: ['value', 'http://localhost:8080'],
-  wpApiPageId: ['value', '27'],
+  ...wpApiConfig,
 
   // ACTIONS
   getArticleByTypeAction: ['type', GetArticleByTypeAction],
