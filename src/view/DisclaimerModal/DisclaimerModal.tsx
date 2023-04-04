@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import * as Linking from 'expo-linking';
 import { theme } from '@/theme';
 import type { RootNavigationProps } from '@/view/Router';
+import { AcceptButton } from '@/view/DisclaimerModal/AcceptButton';
 
 type AProps = {
   children: string | JSX.Element;
@@ -53,6 +54,9 @@ function DisclaimerModal({ navigation }: Props) {
           American College of Sports Medicine at{' '}
           <A linkTo="https://www.acsm.org/">https://www.acsm.org/</A>.
         </Text>
+        <View style={styles.buttonGroup}>
+          <AcceptButton onPress={goBack} />
+        </View>
       </View>
     </View>
   );
@@ -76,8 +80,8 @@ const styles = StyleSheet.create({
   },
   buttonGroup: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    marginTop: theme.spaces.lg,
   },
   title: {
     ...theme.fonts.headlineSmall,
