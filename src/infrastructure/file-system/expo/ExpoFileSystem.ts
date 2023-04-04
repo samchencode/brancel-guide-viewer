@@ -9,6 +9,20 @@ import type {
 } from '@/infrastructure/file-system/FileSystem';
 
 class ExpoAssetFileSystem implements FileSystem<'expo'> {
+  private imageCacheDirectory = `${ExpoFileSystem.cacheDirectory}/images-v1`;
+
+  private cacheDirectoryReady: Promise<void>;
+
+  constructor() {
+    this.cacheDirectoryReady = this.makeCacheDirectoryIfNotExists();
+  }
+
+  private async makeCacheDirectoryIfNotExists() {
+    const info = await ExpoFileSystem.getInfoAsync(this.imageCacheDirectory);
+    if (!info.exists)
+      await ExpoFileSystem.makeDirectoryAsync(this.imageCacheDirectory);
+  }
+
   async getAssetAsString(
     virtualAssetModule: number,
     encodingType: EncodingType = 'utf8'
@@ -20,10 +34,9 @@ class ExpoAssetFileSystem implements FileSystem<'expo'> {
   }
 
   async cacheFile(uri: string) {
+    await this.cacheDirectoryReady;
     const ext = uri.match(/\.[a-zA-Z]+$/)?.[0] ?? '';
-    const destination = `${
-      ExpoFileSystem.cacheDirectory
-    }/images-v1/${uuidv4()}${ext}`;
+    const destination = `${this.imageCacheDirectory}/${uuidv4()}${ext}`;
     const result = await ExpoFileSystem.downloadAsync(uri, destination);
     return result.uri;
   }
