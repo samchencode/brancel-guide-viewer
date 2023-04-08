@@ -15,6 +15,7 @@ class WpApiGuideRepository implements GuideRepository {
     private fetch: (url: string) => Promise<Response>,
     private wpApiHostUrl: string,
     private wpApiPageId: string,
+    private wpApiKey: string,
     private guideParser: GuideParser,
     private getImageUrisFromHtml: GetImageUrisFromHtml,
     private replaceImageUrisInHtml: ReplaceImageUrisInHtml
@@ -34,7 +35,7 @@ class WpApiGuideRepository implements GuideRepository {
 
   private async getApiResponse() {
     if (this.apiResponse) return this.apiResponse;
-    const url = `${this.wpApiHostUrl}/wp-json/wp/v2/pages/${this.wpApiPageId}`;
+    const url = `${this.wpApiHostUrl}/wp-json/wp/v2/pages/${this.wpApiPageId}?password=${this.wpApiKey}`;
     const response = await this.fetch(url);
     const data = await response.json();
     if (!response.ok) {

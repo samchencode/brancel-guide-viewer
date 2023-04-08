@@ -43,12 +43,14 @@ const wpApiConfig: Module = production
   ? {
       guideName: ['value', 'Orthopedic Anatomy'],
       wpApiHostUrl: ['value', 'https://brancelmedicalguides.com'],
-      wpApiPageId: ['value', '19'],
+      wpApiPageId: ['value', Constants.expoConfig?.extra?.WP_API_PAGE_ID],
+      wpApiKey: ['value', Constants.expoConfig?.extra?.WP_API_KEY],
     }
   : {
       guideName: ['value', 'Urgent Care Medicine'],
       wpApiHostUrl: ['value', 'http://localhost:8080'],
       wpApiPageId: ['value', '27'],
+      wpApiKey: ['value', '1234'],
     };
 
 export const module: Module = {

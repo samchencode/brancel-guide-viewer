@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   expo: {
     name: 'brancel-guide-viewer',
@@ -29,6 +31,8 @@ module.exports = {
     },
     extra: {
       NODE_ENV: process.env.NODE_ENV,
+      WP_API_KEY: process.env.WP_API_KEY,
+      WP_API_PAGE_ID: process.env.WP_API_PAGE_ID,
     },
   },
 };
