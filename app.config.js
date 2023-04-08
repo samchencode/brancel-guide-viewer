@@ -33,6 +33,9 @@ module.exports = {
       NODE_ENV: process.env.NODE_ENV,
       WP_API_KEY: process.env.WP_API_KEY,
       WP_API_PAGE_ID: process.env.WP_API_PAGE_ID,
+      eas: {
+        projectId: 'b578f79f-380a-492a-9a29-75b1c6c79457',
+      },
     },
   },
 };
