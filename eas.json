@@ -16,6 +16,14 @@
         "resourceClass": "m1-medium"
       }
     },
+    "emulator": {
+      "ios": {
+        "simulator": true
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
     "production": {
       "ios": {
         "resourceClass": "m1-medium"

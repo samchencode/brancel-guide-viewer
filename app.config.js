@@ -19,12 +19,16 @@ module.exports = {
     assetBundlePatterns: ['**/*'],
     ios: {
       supportsTablet: true,
+      splash: {
+        xib: './assets/splash.ios.xib',
+        image: './assets/splash.png',
+      },
+      bundleIdentifier: 'com.samuel88835.brancel-guide-viewer',
     },
     android: {
-      adaptiveIcon: {
-        foregroundImage: './assets/adaptive-icon.png',
-        backgroundColor: '#FFFFFF',
-      },
+      permissions: [],
+      package: 'com.samuel88835.brancel-guide-viewer',
+      versionCode: 5,
     },
     web: {
       favicon: './assets/favicon.png',
