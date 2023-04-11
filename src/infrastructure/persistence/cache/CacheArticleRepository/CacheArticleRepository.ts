@@ -170,11 +170,16 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   async getAllSearchable(): Promise<SearchableArticle[]> {
-    const articles = await this.cacheRepository.getAllSearchable();
-    return articles.map((article) => ({
-      ...article,
-      body: this.sanitizeHtml(article.body).replace(/\s+/g, ' ').trim(),
-    }));
+    const repoPromise = this.cacheSourceArticleRepository.getAllSearchable();
+    const getFromCache = async () => {
+      const articles = await this.cacheRepository.getAllSearchable();
+      if (articles.length === 0) return repoPromise;
+      return articles.map((article) => ({
+        ...article,
+        body: this.sanitizeHtml(article.body).replace(/\s+/g, ' ').trim(),
+      }));
+    };
+    return Promise.any([repoPromise, getFromCache()]);
   }
 }
 
