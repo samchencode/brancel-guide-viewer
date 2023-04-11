@@ -1,5 +1,5 @@
 import type { ServiceDeclaration } from 'didi';
-import { factory as App } from '@/view/App';
+import { factory as App } from '@/view/App/App';
 import { factory as Router } from '@/view/Router';
 import { factory as Header } from '@/view/Router/Header';
 import { factory as HomeScreen } from '@/view/HomeScreen';

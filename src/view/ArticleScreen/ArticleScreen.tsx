@@ -1,13 +1,17 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import type { AppNavigationProps } from '@/view/Router';
 import { theme } from '@/theme';
-import type { FindArticleAction } from '@/application/FindArticleAction';
+import type {
+  FindArticleAction,
+  Result,
+} from '@/application/FindArticleAction';
 import type { RenderArticleAction } from '@/application/RenderArticleAction';
-import { usePromise } from '@/view/lib/usePromise';
 import { ProgressIndicatorView } from '@/view/ArticleScreen/ProgressIndicatorView';
 import { ArticleView } from '@/view/ArticleScreen/ArticleView';
 import { EmptyArticleView } from '@/view/ArticleScreen/EmptyArticleView';
+import { UseQueryResultView } from '@/view/lib/UseQueryResultView';
+import { useQuery } from '@tanstack/react-query';
 
 type Props = AppNavigationProps<'ArticleScreen'>;
 
@@ -18,28 +22,41 @@ function factory(
   return function ArticleScreen({ route, navigation }: Props) {
     const { idOrSectionId, type } = route.params;
 
-    const promise = useMemo(
-      () => findArticleAction.execute({ idOrSectionId, type }),
-      [idOrSectionId, type]
-    );
-
-    const render = usePromise(promise, {
-      renderFinishedState: useCallback(
-        (res) => (
-          <ArticleView
-            article={res.article}
-            sectionId={res.sectionId}
-            navigation={navigation}
-            renderArticle={renderArticleAction}
-          />
-        ),
-        [navigation]
-      ),
-      renderLoadingState: useCallback(() => <ProgressIndicatorView />, []),
-      renderErrorState: useCallback(() => <EmptyArticleView />, []),
+    const query = useQuery({
+      queryKey: ['article', idOrSectionId, type],
+      queryFn: () => findArticleAction.execute({ idOrSectionId, type }),
     });
 
-    return <View style={styles.container}>{render()}</View>;
+    return (
+      <View style={styles.container}>
+        <UseQueryResultView
+          query={query}
+          renderError={useCallback(
+            () => (
+              <EmptyArticleView />
+            ),
+            []
+          )}
+          renderData={useCallback(
+            (res: Result) => (
+              <ArticleView
+                article={res.article}
+                sectionId={res.sectionId}
+                navigation={navigation}
+                renderArticle={renderArticleAction}
+              />
+            ),
+            [navigation]
+          )}
+          renderLoading={useCallback(
+            () => (
+              <ProgressIndicatorView />
+            ),
+            []
+          )}
+        />
+      </View>
+    );
   };
 }
 

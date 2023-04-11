@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import Constants from 'expo-constants';
 import type { AppNavigationProps } from '@/view/Router';
@@ -6,10 +6,11 @@ import { theme } from '@/theme';
 import { Header } from '@/view/SearchScreen/Header';
 import type { SearchArticlesAction } from '@/application/SearchArticlesAction';
 import { debounceFactory } from '@/view/SearchScreen/debounceFactory';
-import { usePromise } from '@/view/lib/usePromise';
 import { ResultList } from '@/view/SearchScreen/ResultList';
 import type { ArticleSearchResult } from '@/domain/models/Article';
 import { ProgressIndicatorView } from '@/view/SearchScreen/ProgressIndicatorView';
+import { useQuery } from '@tanstack/react-query';
+import { UseQueryResultView } from '@/view/lib/UseQueryResultView';
 
 type Props = AppNavigationProps<'SearchScreen'>;
 
@@ -17,14 +18,14 @@ function factory(searchArticlesAction: SearchArticlesAction) {
   const debounce = debounceFactory(500);
 
   return function SearchScreen({ navigation }: Props) {
-    const [query, setQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handlePressBack = useCallback(
       () => navigation.goBack(),
       [navigation]
     );
 
-    const handlePressClear = useCallback(() => setQuery(''), []);
+    const handlePressClear = useCallback(() => setSearchQuery(''), []);
 
     const handleSelectResult = useCallback(
       ({ article }: ArticleSearchResult) => {
@@ -36,31 +37,44 @@ function factory(searchArticlesAction: SearchArticlesAction) {
       [navigation]
     );
 
-    const promise = useMemo(
-      () => debounce().then(() => searchArticlesAction.execute(query)),
-      [query]
-    );
-
-    const render = usePromise(promise, {
-      renderLoadingState: useCallback(() => <ProgressIndicatorView />, []),
-      renderFinishedState: useCallback(
-        (results) => (
-          <ResultList results={results} onSelectResult={handleSelectResult} />
-        ),
-        [handleSelectResult]
-      ),
-      renderErrorState: useCallback((e: Error) => <Text>{String(e)}</Text>, []),
+    const reactQuery = useQuery({
+      queryKey: ['search', searchQuery],
+      queryFn: () =>
+        debounce().then(() => searchArticlesAction.execute(searchQuery)),
     });
 
     return (
       <View style={styles.container}>
         <Header
-          value={query}
-          onChangeValue={setQuery}
+          value={searchQuery}
+          onChangeValue={setSearchQuery}
           onPressBack={handlePressBack}
           onPressClear={handlePressClear}
         />
-        {render()}
+        <UseQueryResultView
+          query={reactQuery}
+          renderError={useCallback(
+            (e: unknown) => (
+              <Text>Error: {String(e)}</Text>
+            ),
+            []
+          )}
+          renderData={useCallback(
+            (results: ArticleSearchResult[]) => (
+              <ResultList
+                results={results}
+                onSelectResult={handleSelectResult}
+              />
+            ),
+            [handleSelectResult]
+          )}
+          renderLoading={useCallback(
+            () => (
+              <ProgressIndicatorView />
+            ),
+            []
+          )}
+        />
       </View>
     );
   };

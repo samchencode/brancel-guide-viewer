@@ -61,3 +61,4 @@ class FindArticleAction {
 }
 
 export { FindArticleAction };
+export type { Result };
