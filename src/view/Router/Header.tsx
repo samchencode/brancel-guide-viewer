@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import type { ViewStyle, StyleProp, TextStyle } from 'react-native';
 import Constants from 'expo-constants';
+import { StatusBar } from 'expo-status-bar';
 import type { StackHeaderProps } from '@react-navigation/stack';
 import { getHeaderTitle } from '@react-navigation/elements';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -80,6 +81,7 @@ function factory(clearCacheAction: ClearCacheAction) {
 
     return (
       <View style={styles.container}>
+        <StatusBar translucent />
         <View style={styles.statusBar} />
         <View style={styles.header}>
           {back && (
