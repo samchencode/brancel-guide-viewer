@@ -27,7 +27,7 @@ module.exports = {
     },
     android: {
       permissions: [],
-      package: 'com.samuel88835.brancel-guide-viewer',
+      package: 'com.samuel88835.brancel_guide_viewer',
       versionCode: 5,
     },
     web: {
