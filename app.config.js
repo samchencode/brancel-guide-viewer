@@ -5,7 +5,7 @@ module.exports = {
     name: 'brancel-guide-viewer',
     slug: 'brancel-guide-viewer',
     version: '1.0.0',
-    orientation: 'portrait',
+    orientation: 'default',
     icon: './assets/icon.png',
     userInterfaceStyle: 'light',
     splash: {
