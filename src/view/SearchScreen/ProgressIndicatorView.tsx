@@ -1,11 +1,21 @@
 import { theme } from '@/theme';
 import React from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text } from 'react-native';
 
-function ProgressIndicatorView() {
+type Props = {
+  hasQuery: boolean;
+};
+
+function SearchLoading({ hasQuery }: Props) {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={theme.colors.primary} />
+      {hasQuery ? (
+        <ActivityIndicator size="large" color={theme.colors.primary} />
+      ) : (
+        <Text>
+          After a search term is entered, the results will be displayed here!
+        </Text>
+      )}
     </View>
   );
 }
@@ -19,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { ProgressIndicatorView };
+export { SearchLoading };

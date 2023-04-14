@@ -8,7 +8,7 @@ import type { SearchArticlesAction } from '@/application/SearchArticlesAction';
 import { debounceFactory } from '@/view/SearchScreen/debounceFactory';
 import { ResultList } from '@/view/SearchScreen/ResultList';
 import type { ArticleSearchResult } from '@/domain/models/Article';
-import { ProgressIndicatorView } from '@/view/SearchScreen/ProgressIndicatorView';
+import { SearchLoading } from '@/view/SearchScreen/ProgressIndicatorView';
 import { useQuery } from '@tanstack/react-query';
 import { UseQueryResultView } from '@/view/lib/UseQueryResultView';
 
@@ -41,6 +41,7 @@ function factory(searchArticlesAction: SearchArticlesAction) {
       queryKey: ['search', searchQuery],
       queryFn: () =>
         debounce().then(() => searchArticlesAction.execute(searchQuery)),
+      enabled: searchQuery !== '',
     });
 
     return (
@@ -70,9 +71,9 @@ function factory(searchArticlesAction: SearchArticlesAction) {
           )}
           renderLoading={useCallback(
             () => (
-              <ProgressIndicatorView />
+              <SearchLoading hasQuery={searchQuery !== ''} />
             ),
-            []
+            [searchQuery]
           )}
         />
       </View>
