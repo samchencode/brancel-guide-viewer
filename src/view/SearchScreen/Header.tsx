@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity } from 'react-native';
 import type { StyleProp, ViewStyle, TextStyle } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -32,6 +32,13 @@ type Props = {
 };
 
 function Header({ value, onPressBack, onPressClear, onChangeValue }: Props) {
+  const inputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+    inputRef.current.focus();
+  }, []);
+
   return (
     <View style={styles.container}>
       <IconButton iconName="arrow-left" onPress={onPressBack} />
@@ -40,6 +47,7 @@ function Header({ value, onPressBack, onPressClear, onChangeValue }: Props) {
         onChangeText={onChangeValue}
         placeholder="Search All Articles"
         style={styles.input}
+        ref={inputRef}
       />
       <IconButton iconName="times" onPress={onPressClear} />
     </View>
