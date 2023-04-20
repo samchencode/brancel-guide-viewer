@@ -32,7 +32,7 @@ function breakIntoSegments(
   const strs = splitAtIndicies(str, indices);
   const matches = indices.map(([start, stop]) => str.slice(start, stop));
   return strs.map((s) => ({
-    text: s,
+    text: s.replace(/\s+/g, ' '),
     includesMatch: matches.includes(s),
   }));
 }

@@ -176,7 +176,7 @@ class CacheArticleRepository implements ArticleRepository {
       if (articles.length === 0) return repoPromise;
       return articles.map((article) => ({
         ...article,
-        body: this.sanitizeHtml(article.body).replace(/\s+/g, ' ').trim(),
+        body: this.sanitizeHtml(article.body),
       }));
     };
     return Promise.any([repoPromise, getFromCache()]);

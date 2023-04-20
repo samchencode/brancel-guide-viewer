@@ -69,7 +69,7 @@ class GuideArticleRepository implements ArticleRepository {
     return articles.map((a) => ({
       id: a.id.toString(),
       title: a.title,
-      body: this.sanitizeHtml(a.body.html).replace(/\s+/g, ' ').trim(),
+      body: this.sanitizeHtml(a.body.html),
     }));
   }
 }
