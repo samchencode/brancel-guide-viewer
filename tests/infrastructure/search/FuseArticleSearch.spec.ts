@@ -4,14 +4,14 @@ import { CheerioGuideParser } from '@/infrastructure/parsing/cheerio/CheerioGuid
 import { FakeArticleRepository } from '@/infrastructure/persistence/fake/FakeArticleRepository';
 import { FakeGuideRepository } from '@/infrastructure/persistence/fake/FakeGuideRepository';
 import { GuideArticleRepository } from '@/infrastructure/persistence/guide/GuideArticleRepository';
-import { LunrArticleSearch } from '@/infrastructure/search/lunr/LunrArticleSearch';
+import { FuseArticleSearch } from '@/infrastructure/search/fuze/FuseArticleSearch';
 import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 
 describe('LunrArticleSearch', () => {
   describe('Instantiation', () => {
     it('should be created with article repo', () => {
       const repo = new FakeArticleRepository();
-      const create = () => new LunrArticleSearch(repo);
+      const create = () => new FuseArticleSearch(repo);
       expect(create).not.toThrowError();
     });
   });
@@ -26,9 +26,9 @@ describe('LunrArticleSearch', () => {
     });
 
     it('should get articles matching search term without html tags', async () => {
-      const lunrSearch = new LunrArticleSearch(repo);
+      const fuseSearch = new FuseArticleSearch(repo);
 
-      const results = await lunrSearch.search('evaluating all injuries');
+      const results = await fuseSearch.search('evaluating all injuries');
       const result = results[0];
       expect(result).toBeDefined();
       expect(result.article.body).not.toContain('<img');
@@ -36,9 +36,9 @@ describe('LunrArticleSearch', () => {
     });
 
     it('should find ranges within the SearchableArticle that correspond to the original article', async () => {
-      const lunrSearch = new LunrArticleSearch(repo);
+      const fuseSearch = new FuseArticleSearch(repo);
 
-      const results = await lunrSearch.search('evaluating all injuries');
+      const results = await fuseSearch.search('evaluating all injuries');
       const result = results[0];
 
       const matchingText = result

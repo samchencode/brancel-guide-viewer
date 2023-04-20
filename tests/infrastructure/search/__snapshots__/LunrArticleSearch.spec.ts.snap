@@ -4,24 +4,821 @@ exports[`LunrArticleSearch Behavior should get articles matching search term wit
 [
   ArticleSearchResult {
     "article": {
-      "body": "Hai my article Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-      "id": "bbf46939-a2eb-493c-9b64-c2b8c00203b2",
-      "title": "Resurrection, A",
+      "body": "
+Injury guidelines
+
+If any question about management, consult!
+
+
+In evaluating all injuries, consider underlying/overlying tissue/organ injury, as well as proximal/distal musculoskeletal/joint and neurovascular injury or compromise.
+In children comparison views may be needed to demonstrate a fracture (fx). If initial x-rays do not demonstrate a fracture, but suspicion is high, treat as fracture and repeat exam and x-ray in 1-2 weeks. Consider Salter I epiphysis fracture or apophysitis, if tender over growth plate but negative x-ray.
+X-ray all dislocations (except for radial head subluxation in children) before and after reduction.
+Most fractures encountered are stable and require protection more than immobilization, making removable splints treatment options, especially while swelling subsides. Consequently, in these guidelines splinting and casting are frequently interchangeable, including pneumatic splints.
+Spiral or oblique shaft, &gt;2 part/comminuted, intra-articular, &amp; post reduction fractures are potentially unstable!
+Unstable fractures require casting/splinting not only for protection but also stability (+/- cast molding), with splints/casts including the joint on both sides of the fracture; then re-evaluation (assessing cast/splint fit) and x-ray every 3-7 days until swelling gone and stability assured.
+All rotational deformities must be corrected at the time of fracture reduction, and treated as unstable.
+In these guidelines, recommendations for consultation assume findings after any attempted dislocation/fracture reduction, using appropriate analgesia. Attempt reductions only within your experience, or per consultants direction! Document neurovascular status after reductions.
+All injuries treated acutely with RICE (Rest, Ice, Compression, Elevation) x 2-7 days (until swelling decreased), analgesia, and immobilization. For soft-tissue injuries, after the acute injury phase, range of motion (ROM) with cold vs heat locally to speed healing.  Consult as needed for muscle, tendon, or ligament ruptures, and follow-up prn concerns about underlying injury or protracted recovery.
+If slow recovery, consider frequent follow-up visits, +/- orthopedic or physical therapy (PT) consult.
+
+
+If history and physical findings do not concur, consider underlying pathology/disease and/or physical abuse!
+
+Suspect physical abuse with the following fractures, especially in infants: fractures of ribs, long bone metaphysis, scapula, spinous process, and sternum; or if multiple fractures, fractures of different ages and/or stages of healing, or complex skull fractures.
+
+",
+      "id": "INJURY_GUIDELINES",
+      "title": "Injury guidelines",
     },
     "matchData": {
       "body": [
         [
-          0,
-          3,
+          68,
+          78,
         ],
         [
+          1231,
+          1241,
+        ],
+        [
+          1,
           7,
-          14,
+        ],
+        [
+          83,
+          92,
+        ],
+        [
+          136,
+          143,
+        ],
+        [
+          211,
+          217,
+        ],
+        [
+          1724,
+          1732,
+        ],
+        [
+          1881,
+          1890,
+        ],
+        [
+          1907,
+          1913,
+        ],
+        [
+          2092,
+          2098,
+        ],
+      ],
+      "title": [
+        [
+          0,
+          6,
+        ],
+      ],
+    },
+    "score": 2.7654946212205873,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Soft-tissue injuries
+
+Neck and back sprain/strain - RICE etc. +/- soft collar or back support, with early ROM; consult if acute or progressive neuro deficit, or serious musculoskeletal injury (see CERVICAL SPINE INJURIES and THORAX AND SPINE FRACTURES).
+Sterno-clavicular joint injury - reduce dislocations with lateral arm traction +/- anterior vs posterior clavicle pressure/traction; RICE etc. &amp; sling vs figure-eight harness x 1-6 wks, then ROM x 4-8 wks (longer times if dislocation with reduction); consult if posterior, unstable or neurovascular or tracheal injury.
+Go to the Table of Contents or the Index.
+Acromio-clavicular (AC) joint injury - weighted x-ray views unnecessary, and may exacerbate injury!
+Grade I - AC ligament strain with &lt;3 mm increased injured AC joint width (and no clavicle displacement superiorly) over uninjured AC joint, and with normal coracoclavicular (CC) distance.
+Grade II - AC ligament tear with CC ligament strain, with &gt;3 mm increased injured AC joint width (and no clavicle displacement superiorly), and with normal coracoclavicular (CC) distance.
+Grade III - AC and CC ligament tears, with &gt;5 mm increased injured AC joint width (or displaced superiorly &lt;50% clavicle diameter), and with increased coracoclavicular (CC) distance.
+Grade IV-VI - inferior, posterior, or gross superior clavicular displacement, including trapezius or deltoid injury/penetration.
+
+
+Grade I-III Rx with RICE, &amp; sling x 1-2 wks with early ROM +/- PT; for Grade III consider consult for heavy laborers or elite athletes. Avoid heavy lifting and contact sports for 4-12 wks, depending on grade of injury, and age and health of patient. Consult for all grade IV-VII injuries.
+
+Go to the Table of Contents or the Index.
+
+Shoulder injuries (musculotendinous strains and tears) - RICE etc. +/- sling; early ROM +/- PT in older adults and diabetics to avoid adhesive capsulitis; MRI &amp; consult if neurovascular injury, ongoing or marked weakness, or protracted healing &amp; pain (consider avulsion fractures, SLAP/superior labral AP tear, rotator cuff and other tendinous injuries).
+Shoulder pectoralis major or biceps (long head) tendon injury - RICE etc. +/- sling; early ROM in older adults to avoid adhesive capsulitis; consult if complete rupture in young, laborer, or athlete.
+Go to the Table of Contents or the Index.
+Elbow biceps tendon rupture - if partial, RICE, sling, early ROM; consult if complete, or strength loss.
+Elbow humeral lateral or medial epicondylitis - gradual onset of localized pain &amp; tenderness with overuse; x-ray (with peds comparison views) prn acute/trauma onset or protracted; rest, NSAID, +/- steroid injection (avoid in peds), +/- PT for stretching &amp; strengthening, &amp; refer prn protracted symptoms.
+Wrist sprain/strain - RICE etc. +/- splint vs ace; consider scaphoid fx, lunate dislocation, perilunate injuries (see below), hamate hook fx, posterior triquetrum avulsion/chip fx, triangular fibrocartilage or ligament tear, distal radial-ulnar junction tear +/- ulna subluxation, and see Wrist fractures.
+Go to the Table of Contents or the Index.
+Wrist perilunate injuries/dislocations - consult; include potential disruptions of ligaments between lunate and scaphoid, capitate, and triquetrum; look for increased spacing between carpals (&gt;2-4 mm) along with change in normal 30-60 degrees scapholunate angle or 0-15 degrees capitolunate angle; most common is scapholunate dissociation, with &gt;3 mm spacing.
+Thumb and Finger sprains - RICE etc. +/- splint; R/O tendon and ligament injuries, see below.
+Go to the Table of Contents or the Index.
+Thumb MCP joint ulnar/radial collateral ligament injuries (+/- avulsion fx) - thumb spica hand vs short arm cast x 4-6 wks; consult if complete tear (gross instability) or displaced fx.  See Finger proximal phalanx base fracture.
+Finger PIP joint volar plate injuries (tenderness +/- avulsion fx off volar base of middle phalanx) - splint PIP joint flexed at 20-45 degrees x 4-6 wks, with dynamic or extension-block splinting after 2 wks; untreated may cause swan-neck deformity. See Finger PIP joint fracture.
+Go to the Table of Contents or the Index.
+Finger PIP joint central slip injuries (tenderness +/- avulsion fx off dorsal base of middle phalanx) - dorsal splint of PIP joint in extension x 6-8 wks; untreated: boutonniere deformity. See Finger PIP joint fracture.
+Finger PIP and DIP joint collateral ligament injury (tenderness +/- avulsion fx over lateral joint) - buddy taping vs splinting in 30 degrees flexion for 2-6 wks; consult if unstable. See Finger PIP joint fracture and Finger DIP joint fracture.
+Go to the Table of Contents or the Index.
+Finger flexor digitorum profundus avulsion injury (Jersey finger - inability to flex DIP joint +/- avulsion fx) - consult for all finger flexor tendon injuries. See Finger DIP joint fracture.
+Finger extensor digitorum tendon avulsion injury (Mallet finger - inability to extend DIP joint +/- avulsion fx) - splint DIP joint in mild hyperextension x 6-8 wks, then at night x 2-3 wks; consult if fx and &gt;30 degrees articular surface, displaced &gt;2mm, or DIP joint unstable. See Finger DIP joint fracture.
+Go to the Table of Contents or the Index.
+
+Knee Osgood-Schlatter disease (tenderness over tibial tubercle in adolescent) or Sinding-Larsen-Johansson disease (tenderness at patellar tendon-patella attachment) - RICE (resistant cases may require knee immobilizer with quadriceps exercise program x 2-6 wks). See tibial tubercle avulsion fracture.
+Knee patellofemoral syndrome (including chondromalacia patella) - RICE etc., activity modification  and avoid flexion load, correct foot pronation with arch support, then quadriceps exercises in extension, with hamstring stretching; consult if protracted course.
+Go to the Table of Contents or the Index.
+Knee iliotibial band syndrome (lateral femoral epicondyle pain) - RICE etc., activity modification, avoid irritating activity esp. with knee hyperflexion, IT band stretching exercises with knee extended may be helpul; consult if protracted course.
+Knee ligament injury (ACL, PCL, MCL, &amp; LCL) - consider knee immobilizer and crutches with weekly follow-up +/- PT; MRI +/- consult if instability or complete ligament rupture suspected.
+Go to the Table of Contents or the Index.
+Knee meniscus injury - knee immobilizer and crutches with weekly follow-up +/- PT; MRI +/- consult if regression or not progression (esp. if effusion &amp; &lt;35 yrs), or if locking or unstable knee.
+Patellar/quadriceps tendon tear - if partial tear, immobilization in extension with knee immobilizer or cast x 4-6 wks, then gradual ROM; consult for complete tears (inability to actively extend knee).
+Go to the Table of Contents or the Index.
+Calf medial gastrocnemius muscle tear (vs plantaris tendon rupture) - ¬ìtake off¬î injury with sudden sharp pain and tenderness over medial calf; RICE and crutches +/- heel lift x 1-2 wks.
+Achille's tendon rupture - if laceration, R/O other tendons and neurovascular injury; partial tears splinted in hyperplantarflexion x 3-6 wks, with no sports x 6-12 months; consult if healing concerns, and for complete tears (casting vs functional bracing vs surgery).
+Ankle peroneal retinaculum tear - lateral tear confirmed by the palpable anterior popping or subluxing of the peroneal tendon that normally lies posterior to the lateral malleolus; extended splinting may produce resolution; consult if persistent or not wanting to try prolonged splinting.
+Go to the Table of Contents or the Index.
+Ankle sprain - grade I with ligament stretching, grade II with partial ligament tear, grade III with complete tear (ATF &amp; CF ligaments first) with positive anterior drawer test or talar tilt test &gt;10 degrees difference between ankles (latter test may require anesthesia).  Grade I, II, &amp; III Rx with RICE etc. +/- gel/air cast x 4 wks, with early ROM +/- PT.  R/O peroneal &amp; tibial nerve injury. Consult if gross instability, or not improved in 6 wks. See syndesmotic ligament injury.
+Ankle distal tibia/fibula syndesmotic ligament injury - squeeze and external rotation tests positive after external rotation injury, and consider if &gt;6mm tib-fib interdistance at 10mm above joint - Rx same as lateral ankle sprain, with recovery time up to double. Consult if associated fx or instability/diastasis with &gt;2 mm horizontal malleolar displacement.
+Go to the Table of Contents or the Index.
+Heel calcaneal apophysitis - RICE etc. +/- crutches +/- heel pad.
+Foot - see Ankle &amp; , which may include fractures of the metatarsals in particular.
+Toe PIP and DIP joint collateral ligament injury - buddy taping  for 3-6 wks; consult if unstable. See Toe injuries.
+",
+      "id": "SOFT-TISSUE_INJURIES",
+      "title": "Soft-tissue injuries",
+    },
+    "matchData": {
+      "body": [
+        [
+          13,
+          21,
+        ],
+        [
+          186,
+          192,
+        ],
+        [
+          213,
+          221,
+        ],
+        [
+          279,
+          285,
+        ],
+        [
+          570,
+          577,
+        ],
+        [
+          650,
+          656,
+        ],
+        [
+          712,
+          719,
+        ],
+        [
+          1637,
+          1644,
+        ],
+        [
+          1705,
+          1714,
+        ],
+        [
+          1768,
+          1776,
+        ],
+        [
+          1949,
+          1956,
+        ],
+        [
+          2111,
+          2121,
+        ],
+        [
+          2177,
+          2183,
+        ],
+        [
+          2889,
+          2897,
+        ],
+        [
+          3572,
+          3581,
+        ],
+        [
+          3684,
+          3692,
+        ],
+        [
+          3894,
+          3902,
+        ],
+        [
+          4218,
+          4226,
+        ],
+        [
+          4453,
+          4459,
+        ],
+        [
+          4738,
+          4744,
+        ],
+        [
+          4846,
+          4855,
+        ],
+        [
+          4929,
+          4935,
+        ],
+        [
+          6115,
+          6121,
+        ],
+        [
+          6347,
+          6353,
+        ],
+        [
+          6861,
+          6867,
+        ],
+        [
+          7045,
+          7052,
+        ],
+        [
+          7970,
+          7977,
+        ],
+        [
+          8059,
+          8066,
+        ],
+        [
+          8114,
+          8120,
+        ],
+        [
+          8192,
+          8199,
+        ],
+        [
+          8670,
+          8676,
+        ],
+        [
+          8735,
+          8744,
+        ],
+      ],
+      "title": [
+        [
+          12,
+          20,
+        ],
+      ],
+    },
+    "score": 0.22273863607376246,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Cervical spine injuries
+
+(beyond the common sprain/strain)
+
+
+if at risk for unstable fx, obtain and read cross-table lateral x-ray, before full c-spine series.
+R/O cord injury by hx and exam, and R/O neurogenic shock - Rx with vasopressors.
+all cervical spine fractures/dislocations/subluxations need CT and consult.
+all c-spine injuries require immobilization without traction prior to consult; stable injuries (beyond minor strains) Rx'ed with hard collar x 2 months, &amp; unstable injuries with skull traction +/- ORIF.
+
+
+Occipital condyle fracture or instability - &gt;2 mm from occiput to atlas, or &gt;12 mm from basion to odontoid.
+C1 isolated anterior or posterior arch fx - stable if non-displaced.
+C1 lateral mass fx - unstable; possible lateral mass displacement as in Jefferson fx below. 
+C1 Jefferson fx - unstable; blow-out/burst fx of ring with transverse ligament rupture, usually seen in lamina on lateral view and as lateral displacement (&gt;3 mm of either side) of C1 lateral masses on AP odontoid view; 1/3 also with C2 fx.
+C1 rotary subluxation - unstable; disparity in C1 lateral mass distance from odontoid +/- lateral mass overlap on C2; seen mostly in children with torticollis presentation post-injury - avoid attempts to derotate the injured neck!
+C2 odontoid dislocation - unstable; rupture of C1 transverse ligament with consequent posterior dislocation of dens, with predens space &gt;3mm (&gt;5mm peds); may occur without neuro findings as at this level spinal canal with cord in 1/3, dens in 1/3, and ligament/space in 1/3.
+C2 odontoid fx - unstable or stable.
+C2 Hangman's fx - unstable; C2 pedicle/posterior element fx +/- C2 body displaced anterior on C3.
+C2-C7 Injuries
+
+
+consider prevertebral hematoma (on lateral c-spine x-ray) if: 1. At C2-C3 anterior-inferior border, prevertebral soft-tissue thickness &gt;6mm in adults or &gt;2/3 thickness of C2 body in children (who are not crying or forcing expiration!). 2. Prevertebral soft tissue thickness below larynx is &gt;vertebral body thickness, or &gt;20-22 mm at C6.
+consider fx or dislocation if vertebral malalignment &gt;3 mm (&gt;4-5 mm peds).
+consider fx or dislocation if intervertebral angle &gt; 11 degrees.
+consider compression fx if anterior body height &gt;3 mm shorter than posterior.
+consider spinal cord compression if &gt;6 yrs old and AP spinal canal space &lt;10-13 mm.
+
+
+Teardrop fracture (flexion or extension) - unstable, with inclusion of posterior element injury; chip fx off anterior-inferior (flexion injury-very unstable) or anterior-superior aspect of vertebral body +/- body comminution.
+Bilateral facet dislocation - unstable; usually with &gt;50% body displacement.
+Unilateral facet dislocation/subluxation - unstable or stable; usually &lt;25% body displacement noted with overlapping facets on lateral view, anterior decreased disc space, posterior decreased disc space, and increased interspinous distance.
+Simple wedge and bursting vertebral body fracture - usually stable, unless fragments of burst enter canal.
+Posterior element fracture - usually stable if isolated.
+Spinous process fracture - stable; most commonly involving C6, C7, or T1 (Clay-Shoveler's fx)
+",
+      "id": "CERVICAL_SPINE_INJURIES",
+      "title": "Cervical spine injuries",
+    },
+    "matchData": {
+      "body": [
+        [
+          16,
+          24,
+        ],
+        [
+          170,
+          176,
+        ],
+        [
+          330,
+          338,
+        ],
+        [
+          404,
+          412,
+        ],
+        [
+          486,
+          494,
+        ],
+        [
+          1224,
+          1230,
+        ],
+        [
+          1700,
+          1708,
+        ],
+        [
+          2471,
+          2478,
+        ],
+        [
+          2518,
+          2524,
+        ],
+      ],
+      "title": [
+        [
+          15,
+          23,
+        ],
+      ],
+    },
+    "score": 0.21708178182427007,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Thorax and spine fractures
+
+(below the cervical spine)
+Thoracic &amp; lumbar vertebral wedge compression fracture - bed rest x 1-2 wks, analgesia, +/- corset/orthosis; consult if burst appearance (interpedicular widening on AP view +/- kyphotic angulation on lateral), posterior element involvement, neuro deficit, or ant. body collapse &gt;50% of post. body or &gt;20 degrees angulation.  Consider pathologic fx. Consult for all other thoracolumbar fx.
+Go to the Table of Contents or the Index.
+Sacrum fracture - bed rest &amp; analgesia acutely; if x-rays neg &amp; suspect in runner, elderly, or steroid user, R/O with bone scan or CT; consult if vertical fx (pelvic ring disruption), displaced, or neural Sx.
+Coccyx fracture - inflatable doughnut x 2-4 wks; consider reduction or consult if marked angulation or dislocation.
+Go to the Table of Contents or the Index.
+Clavicle fracture - sling +/- figure of eight splint for 2-8 weeks (less in children with torus or undisplaced fx); R/O underlying and neurovascular injury; consult if markedly displaced, proximal or distal fx with &lt;50% bony apposition or &gt;40 degrees angulation (+/- weights), displaced proximal or distal intraarticular fx, or if concern about mal/non-union (comminuted or &gt;2 cm initial overlap of mid-shaft fx).
+Scapula fracture - body or spine fx, sling for 1-4 weeks, with early ROM; R/O underlying injury; consult if neck angulation &gt;30 degrees,or if displaced, esp. if glenoid, acromion, or coracoid process involvement.
+Go to the Table of Contents or the Index.
+Sternum fracture - consult if displaced, and as usually with high-energy trauma, rule out underlying injury and polytrauma, and transfer if underlying injury, polytrauma, or isolated sternal fracture but anticipated poor outpatient pain control.
+Rib fracture - analgesia; only transient or intermittent prn use of rib belt, to avoid atlectasis/pneumonia; R/O underlying injury (esp. if multiple rib fxs); consult for displaced fx or flail chest injury.
+",
+      "id": "THORAX_AND_SPINE_FRACTURES",
+      "title": "Thorax and spine fractures",
+    },
+    "matchData": {
+      "body": [
+        [
+          1021,
+          1028,
+        ],
+        [
+          1384,
+          1391,
+        ],
+        [
+          1654,
+          1660,
+        ],
+        [
+          1704,
+          1711,
+        ],
+        [
+          1923,
+          1929,
+        ],
+        [
+          1998,
+          2005,
         ],
       ],
       "title": [],
     },
-    "score": 8.817621561396248,
+    "score": 0.14495689014324223,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Dislocations / subluxations
+
+Sterno-clavicular &amp; Acromio-clavicular (AC) joint dislocations - see Sterno-clavicular joint injury and Acromio-clavicular (AC) joint injury.
+Shoulder (glenohumeral) joint dislocation - reduce anterior dislocation by downward traction (+/- weights) with patient prone, or seated with inferior traction and external rotation while maintaining  adduction, or seated with arm straight and supported and shoulder extended at 90 degrees anteriorly while medially rotating the inferior tip of the scapula, or supine with arm by side with elbow flexed and gently slowly externally rotate the arm, or prone with arm from side to gently 90 degrees abduction with outward traction followed by elevation over the head while externally rotating the arm, and reduce anterior and posterior dislocations by inferior traction in line of deformity while applying counter/lateral traction with sheet in axilla; sling +/- swathe x 1-2 wks, with early ROM +/- PT at 2-4 wks; consult if not anterior dislocation, fx, failed reduction, unstable joint, recurrent (esp. in young), or neuro Sx (10-25% nerve injury, most transient neuropathy of axillary &amp; musculocutaneous nerves).
+Go to the Table of Contents or the Index.
+Elbow (radial/ulnar) dislocation - usually posterior; reduce by anterior longitudinal pressure on olecranon, or by traction on wrist while extending elbow +/- posterior pressure over ventral forearm, with counter-traction on shoulder with sheet or while prone; posterior splint at 90 degrees the, then early ROM with extension block splint x 3-4 wks; consult prior to reducing, esp. if fx, unstable joint, recurrent, dislocation other than posterior, or persistent contracture. R/O neurovascular injury.
+Elbow radial head subluxation (Nursemaide's elbow occurs in &lt;5-6 yrs age) - reduce by extending elbow, supinating forearm, then flexing elbow (or hyperpronating forearm), while maintaining posterior pressure over anterior aspect of radial head; no immobilization necessary.
+Go to the Table of Contents or the Index.
+Elbow radial head dislocation (on x-ray, radial head malalignment with capitellum) - consult.
+Wrist radiocarpal dislocation (dorsal or ventral displacement of carpals on radius) or distal ulna subluxation (with ligament tear) - consult.
+Go to the Table of Contents or the Index.
+Wrist ulnar translocation of carpals on radius - loss of articulation of lunate &amp; medial radius; consult.
+Wrist perilunate injuries/dislocations - consult; see perilunate injuries.
+Go to the Table of Contents or the Index.
+Finger metacarpophalangeal joint dislocation - reduce in extension if dorsal dislocation and in flexion if volar dislocation, &amp; minimize traction; buddy tape vs splint in 30 degrees flexion x 1-2 wks; consult if unable to reduce due to soft tissue interposition, joint instability, or 1st MCP joint. See Finger proximal phalanx base fracture.
+Finger PIP and DIP joint dislocation - reduce in extension if dorsal dislocation and in flexion if volar dislocation; splint  x 1-2 wks in extension if volar dislocation and in 30 degrees flexion if dorsal dislocation, then consider dynamic splinting x 2-4 wks; if collateral ligament rupture, see Finger PIP and DIP joint collateral ligament injury; consult if unstable +/- fx or with ligament or tendon rupture. See Finger PIP joint fracture and Finger DIP joint fracture.
+Go to the Table of Contents or the Index.
+Hip dislocation - consult immediately to avoid femoral head avascular necrosis.
+Patella dislocation/subluxation - usually lateral; reduce by extending knee and flexing hip, then gentle pressure over lateral patella; consider knee immobilizer x 1-6 wk, then knee extension exercises; consult if recurrent, internal knee derangement, or if other than lateral dislocation.
+Go to the Table of Contents or the Index.
+Knee dislocation - consult &amp; consider angiogram as approx 30% with popliteal artery rupture (+/- absent pedal pulses), a surgical emergency; and approx 20% with peroneal +/-tibial nerve injury.
+Ankle &amp; foot dislocations, including tibiotalar, Chopart's joint (talocalcaneus - naviculocuboid), and Lisfranc's joint (tarsal-metatarsal, esp. 2nd metatarsal – suspect on x-ray if distance between bases of 1st and 2nd metarsals &gt;2 mm or if avulsion fx off medial base of 2nd metatarsal or adjacent cuneiform) dislocations; if negative x-ray and suspect based on degree of swelling about the affected joints, consider CT to confirm diagnosis - consult; R/O neurovascular injury.
+Go to the Table of Contents or the Index.
+Toe metatarsophalangeal joint dislocation - reduce in extension if dorsal dislocation and in flexion if volar dislocation; buddy tape vs splint  x 1-2 wks; consult if unable to reduce due to soft-tissue interposition, joint instability, or 1st MTP joint. See Toe injuries.
+Toe PIP and DIP joint dislocation - reduce in extension if dorsal dislocation and in flexion if volar dislocation; buddy tape vs splint  x 1-2 wks; if collateral ligament instability, splint at 30 degrees flexion x 4-6 wks;  consult if unstable with ligament or tendon rupture. See Toe injuries.
+",
+      "id": "DISLOCATIONS/SUBLUXATIONS",
+      "title": "Dislocations / subluxations",
+    },
+    "matchData": {
+      "body": [
+        [
+          127,
+          133,
+        ],
+        [
+          168,
+          175,
+        ],
+        [
+          1117,
+          1124,
+        ],
+        [
+          1733,
+          1740,
+        ],
+        [
+          2514,
+          2523,
+        ],
+        [
+          3256,
+          3263,
+        ],
+        [
+          4032,
+          4039,
+        ],
+        [
+          4519,
+          4526,
+        ],
+        [
+          4832,
+          4841,
+        ],
+        [
+          5128,
+          5137,
+        ],
+      ],
+      "title": [],
+    },
+    "score": 0.1428355697996826,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Upper-extremity fractures
+
+Shoulder proximal humerus epiphysis fracture (children) - sling &amp; swathe for 3-4 wks; consult if displaced.
+Shoulder proximal humerus fracture (including surgical neck impaction and greater tuberosity fx) - sling or sling &amp; swathe for 1-6 weeks, with early ROM &amp; PT after confirming fx stability +/- radiologic union; consult if &gt;0.5-1 cm displacement, &gt;45 degrees angulation of any bone fragment, any rotation, intra-articular fx, any disruption of bicipital groove, comminuted or unstable fx, physis involved in children, neurovascular injury, or anatomic neck fx, or marked shoulder dysfunction at 2-3 wks.
+Humerus shaft fracture - sling &amp; swath vs sugartong splint x 2-3 wks, then fx orthosis &amp; ROM x 6-10 wks; consult if varus/valgus angulation &gt;20 degrees, AP angulation &gt;20 degrees, rotation &gt;15 degrees, shortening &gt;2-3 cm, or displaced, unstable fx (i.e. oblique) for reduction +/-hanging cast.  R/O neurovascular injury.
+Go to the Table of Contents or the Index.
+Elbow humerus epicondylar fracture vs apophysitis (primarily children) - long arm cast for 2 weeks with elbow at 90 degrees, and for medial fx forearm pronated and wrist mildly flexed, and for lateral fx forearm supinated and wrist mildly extended; consult if displacement &gt;2-4mm (5-10 mm in children).
+Elbow humerus supracondylar/trans-condylar/condylar fracture - long arm cast for 3-4 wks, then ROM &amp; protective splint for 3-12 more wks; consult, esp. if displaced &gt;2 mm, angulated, or intraarticular.
+Go to the Table of Contents or the Index.
+Elbow osteochondritis dissecans - osteochondral fx from injury with subsequent bony sclerosis +/- loose body; rest vs casting x 4-6 wks; consult if persistent loose body affecting function.
+Elbow radial head or neck fracture - sling (+/- initial posterior splint) x 2-3 weeks with early ROM (within 1 wk) if stable fx; consult if comminuted, displaced &gt;2-3 mm, depressed &gt;3 mm, &gt;1/3 radial head articular surface involvement, or neck &gt;25 degrees angulation (&gt;30-45 degrees in children).
+Go to the Table of Contents or the Index.
+Elbow ulnar olecranon fracture - posterior 45 degrees splint x 2-3 weeks, then sling &amp; ROM x 2-3 weeks; consider weekly x-rays to verify continued stability; consult if displaced &gt;2 mm, comminuted, or unstable.
+Elbow ulnar coronoid fracture - long arm splint x 1-2 wks with early ROM; consult if displaced &gt;4 mm, &gt;50% coronoid fragment, or unstable.
+Go to the Table of Contents or the Index.
+Radius/ulna shaft fracture - short vs long arm cast depending on fx stability x 4-6 wks; consult if unstable (radius and ulna fxs at same level, comminuted, or spiral/oblique fxs not at same level), displaced with &lt;50% overlap, angulation &gt;10-15 degrees, or associated injury to elbow (Monteggia fx - ulna fx with radial head dislocation) or wrist (Galeazzi fx - radius fx with distal radioulnar joint disruption).
+Wrist extra-articular distal radius/ulna fracture with dorsal angulation (Colle's)  - short arm cast x 4-6 wks,+/- 2 wks of splint and ROM (long arm cast required for reduced or unstable fx); consult if dorsal angulation &gt;10-15 degrees (&gt;15-20 degrees in children), radial tilt &gt;15 degrees, radial/ulnar joint incongruity &gt;2 mm, &gt;4-5 mm radial shortening, comminuted, or unstable fx.
+Go to the Table of Contents or the Index.
+Wrist extra-articular distal radius/ulna fracture with volar angulation (Smith's - reverse Colle's) - short vs long arm cast x 4-6 wks; consult if any volar angulation &gt;11 degrees normal, radial tilt &gt;15 degrees, radial/ ulnar joint incongruity &gt;2 mm, &gt;4-5 mm radial shortening, displaced, comminuted, or unstable fx.
+Wrist intra-articular distal radius/ulna fracture (see Colle's and Smith's fxs above) - short vs long arm cast depending on stability x 4-6 wks +/- 2 wks splint and ROM; consult if displaced or intra-articular step-off &gt;2 mm, and otherwise same criteria as for extra-articular fxs as above.
+Go to the Table of Contents or the Index.
+Wrist navicular/scaphoid fracture - if suspect &amp; negative x-rays, Rx as fx &amp; repeat x-rays in 1-2 wks, and if still suspect and neg. x-rays, consider thin cut CT or bone scan; short arm vs long arm thumb spica cast x 6-12 wks; consider consult as avascular necrosis risk if displaced &gt;1 mm, any angulation, oblique, waist, or proximal fx.
+Wrist lunate &amp; capitate fracture - consult due to risk of osteonecrosis.
+Go to the Table of Contents or the Index.
+Wrist hamate (including hook), trapezium, trapezoid, triquetral &amp; pisiform fx ¬ñ short arm cast x 6 wks; consider CT &amp; consult if displaced or comminuted. (See Triquetral dorsal avulsion fx below)
+Wrist triquetral dorsal avulsion fracture - short arm cast x 4-6 wks; consult if protracted healing.
+Go to the Table of Contents or the Index.
+Hand metacarpal base fracture - short arm cast (that extends to PIP joint of digits) x 4-8 wks; consult if rotated, displaced, intra-articular, or unstable (esp. 1st &amp; 5th metacarpals).
+Hand metacarpal shaft fracture - short arm cast (that extends to PIP joint, with MCP 60 degrees) x 2-6 wks +/- splint vs glove cast x 2-4 wks; consult if &gt;2-3 mm shortening or step-off, rotation with digital scissoring with MCP flexion, any angulation in 1st metacarpal, &gt;10 degrees angulation in 2nd and 3rd metacarpals, &gt;20 degrees angulation in 4th and 5th metacarpals, or if multiple or unstable fxs (i.e. oblique).
+Go to the Table of Contents or the Index.
+Hand metacarpal neck fracture - short arm cast (that extends to PIP joint, with MCP 70-90 degrees) x 3-6 wks; consult if rotation, any angulation of 1st metacarpal, &gt;10-20 degrees angulation of 2nd and 3rd metacarpals, &gt;30-45 degrees of 4th and 5th metacarpals, (any dorsal angulation), or if multiple or unstable fxs.
+Hand metacarpal head fracture - short arm cast (with MCP joints flexed that extends to include the affected digits) x 2-8 wks (early ROM when stable); consult if displaced, intra-articular with &gt;30% of joint surface, or unstable.
+Go to the Table of Contents or the Index.
+Finger proximal phalanx base fracture ¬ñ buddy taping vs splint vs short arm cast (that extends to include the affected digits - thumb spica if thumb fx - see Thumb MCP collateral ligament injuries) x 4-8 wks, with ROM at 3-5 wks; consult if displaced &gt; 2 mm, &gt;30% of articular surface, or unstable.
+Finger proximal and middle phalanx shaft fracture ¬ñ buddy taping vs splint vs short arm cast (that extends to include the affected digits) x 3-6 wks; consult if displaced, &gt;15 degrees (&gt;20-30 degrees in children) volar angulation, any dorsal angulation, any rotation, scissoring, or unstable.
+Go to the Table of Contents or the Index.
+Finger PIP joint fracture - see volar plate injuries, central slip injuries, and Finger PIP and DIP joint collateral ligament injury in SOFT-TISSUE INJURIES; splint x 3-6 wks; consult if &gt;30% articular surface, displaced &gt;2 mm, or unstable.
+Finger DIP joint fracture - see Mallet finger extensor digitorum tendon avulsion injury, flexor digitorum profundus avulsion injury, and Finger PIP and DIP joint collateral ligament injury in SOFT-TISSUE INJURIES; splint DIP joint x 3-6 wks; consult if &gt;30% articular surface, displaced &gt;2 mm, or unstable.
+Finger distal phalanx fracture (including tuft fracture) - splint distal phalanx x 3-6 wks; consult if displaced, angulated, or unstable.
+",
+      "id": "UPPER-EXTREMITY_FRACTURES",
+      "title": "Upper-extremity fractures",
+    },
+    "matchData": {
+      "body": [
+        [
+          584,
+          591,
+        ],
+        [
+          989,
+          996,
+        ],
+        [
+          1652,
+          1658,
+        ],
+        [
+          2820,
+          2826,
+        ],
+        [
+          6340,
+          6349,
+        ],
+        [
+          6843,
+          6852,
+        ],
+        [
+          6866,
+          6875,
+        ],
+        [
+          6925,
+          6931,
+        ],
+        [
+          6947,
+          6956,
+        ],
+        [
+          7127,
+          7134,
+        ],
+        [
+          7171,
+          7178,
+        ],
+        [
+          7228,
+          7234,
+        ],
+        [
+          7250,
+          7259,
+        ],
+      ],
+      "title": [],
+    },
+    "score": 0.13859292911256332,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Lower-extremity fractures
+
+
+
+(See PELVIS FRACTURES for lower extremity injury related pelvis avulsion fxs)
+Hip osteochondritis dissecans - osteochondral fracture from injury with subsequent bony sclerosis +/- loose body; consult.
+Hip fx (femoral head, neck, inter- &amp; sub-trochanteric) - if x-rays negative and suspect, consider bone scan or CT, hospitalize (except young &amp; neck stress fx) , IV, and consult.
+Go to the Table of Contents or the Index.
+Hip femur greater(insertion of gluteus medius/minimus) or lesser(insertion of iliopsoas) trochanteric avulsion fracture - RICE etc., rest muscle +/- crutches; consult if displaced (&gt;1 cm) or pro athlete.
+Hip femur slipped capital epiphysis - posterior slip in overweight 9-15 yrs old; consider comparison x-ray views to confirm the diagnosis, but once diagnosis confirmed or suspected, consult.
+Go to the Table of Contents or the Index.
+Femur shaft fracture - IV, hospitalize, and consult.
+Knee femur supra-, inter-, &amp; intracondylar fracture - R/O neurovascular injury, and consult.
+Go to the Table of Contents or the Index.
+Knee tibia plateau or eminence fracture, or proximal fibula fracture - R/O neurovascular injury, and consult.
+Knee tibial tubercle avulsion fracture (includes pediatric growth plate injury) - knee immobilizer or cast in extension x 2-4 wks, then ROM &amp; quadriceps strengthening x 4-6 wks; consult if displaced &gt;5 mm in peds (&gt;2 mm in adults). See Osgood-Schlatter disease.
+Go to the Table of Contents or the Index.
+Knee osteochondritis dissecans - osteochondral fracture from injury with subsequent bony sclerosis +/- loose body, on x-ray or MRI; modify activity +/- knee immobilizer +/- crutches x 4-8 wks; consult.
+Patella fracture - if undisplaced, knee immobilizer or cast in extension x 6 wks (2-4 wks for undisplaced vertical fx), &amp; weekly x-rays &amp; partial weight bearing x 1-3 wks prior to D/C immobilization at 6 wks; consult if articular step-off &gt; 2 mm, displaced &gt; 3 mm, comminuted, or extensor disruption.
+Go to the Table of Contents or the Index.
+Tibia shaft fracture - long leg cast x 2-3 wks, then long leg 30 degrees knee flexion cast x 4-6 wks (stress fx Rx symptomatic +/- crutches/cast); R/O ankle injury; consult if &gt;50% displacement of tibial shaft transverse diameter, &gt;1cm shortening, valgus angulation &gt;5-10 degrees, varus angulation &gt;5 degrees, AP angulation &gt;10 degrees, any rotation, concurrent knee/ankle injury, unstable, or neurovascular compromise. Stress fx consult if protracted healing. Most tibial fxs need at least initial consult!
+Fibula shaft fracture - short leg walking cast x 2-6 wks; consult if displaced &gt;50% transverse diameter, angulated, or unstable +/- ankle injury (Maisonneuve - proximal fibula fx +/- medial malleolar fx).
+Go to the Table of Contents or the Index.
+Ankle distal fibula/lateral malleolar fracture - short leg sugar tong splint with crutches x 1-2 wks, until swelling gone &amp; stability assured, then short leg walking cast or air/gel cast (depending on stability &amp; location - 1-2mm avulsion fx Rx as grade II sprain) x 4-8 wks; consult if &gt;2-3 mm horizontal or lateral displacement of malleoli or talus, talar tilt (based on exam, consider inversion &amp; eversion stress films to R/O instability &amp; deltoid ligament rupture) on x-ray &gt;2 mm (difference between medial and lateral joint space at top of talar dome), fx proximal to mortise/joint space, or other fx sites with displacement, or comminution (see below).
+Ankle medial, posterior, bi- &amp; tri-malleolar fracture - splint until swelling gone, then long leg 30 degrees knee flexion cast x 6-8 wks; consult, esp. if &gt;2-3 mm displacement in any plane of malleoli or talus, talar tilt on x-ray &gt;1mm (difference between medial and lateral mortise), fx proximal to mortise/joint space, displaced or comminuted fx. Most of these fxs are unstable &amp; will need a consult!
+Go to the Table of Contents or the Index.
+Ankle talus body &amp; neck fracture - 25-50% avascular necrosis for body, &gt;10% for neck; consult.
+Ankle talus head fracture - non-weight bearing short leg cast x 6-12 weeks, with arch support x 3-6 months; consult if displaced, comminuted, or intra-articular.
+Go to the Table of Contents or the Index.
+Ankle talus avulsion or osteochondral dome fracture - ongoing injury predisposes to osteochondritis dissecans (bony sclerosis +/- loose body); non-weight bearing short leg cast x 6-12 weeks; consult if displaced/detached or protracted healing.
+Ankle talus lateral process fracture - usually undisplaced; short leg non-weight bearing cast x 2-6 weeks(shorter time if small avulsion fx); consult if displaced &gt; 2 mm or failure to heal.
+Go to the Table of Contents or the Index.
+Ankle talus posterior process (medial or lateral tubercles)/os trigonum fracture - short leg non-weight bearing cast at 15 degrees plantar flexion x 4-6 weeks; consult if displaced or comminuted.
+Heel calcaneus fracture (see Soft Tissue Injuries for Calcaneal Apophysitis) - RICE x 2-4 days, along with ROM and non-weight bearing; when ankle ROM intact, non-weight bearing short leg cast x 2-4 wks, then splint with ROM +/- PT with non-weight bearing until confirmed radiologic union; consult if displaced &gt; 2 mm, or intra-articular (i.e. sustentacular-talar, calcaneo-cuboid, or calcaneo-navicular). 40% of fxs from falls also have lumbar spine fx.
+Go to the Table of Contents or the Index.
+Foot navicular fracture - short leg walking (non-weight bearing for stress fx) cast x 2-8 wks, less time for small avulsion fx (dorsal &amp; posteromedial tuberosity fx); consult if large fragment, displaced &gt;2 mm or comminuted.
+Foot cuboid or cuneiform fracture - short leg walking cast x 6 wks; consult if displaced or comminuted.
+Foot - see Ankle &amp; , which may include fractures of the metatarsals in particular.
+Go to the Table of Contents or the Index.
+Foot metatarsal fracture (including stress fracture) - shoe/arch support vs short leg walking or non-weight-bearing cast for 4-8 wks depending on stability; consult if angulation &gt;10 degrees in any plane, displaced &gt;2-4 mm, &gt;2-4 mm shortening, rotational deformity, &gt;30% of articular surface, unstable, or multiple fxs.
+Foot 5th Metatarsal tuberosity fracture (peroneal brevis/abductor digiti minimi avulsion fracture - pseudo-Jones fracture) - strapping vs supportive footwear vs short leg walking cast x 2-6 wks; consult if persistently displaced &gt; 2-3 mm, comminuted, or &gt;30% of the metatarso-cuboid joint. See Jones fx below.
+Go to the Table of Contents or the Index.
+Foot 5th Metatarsal base/proximal shaft fracture (Jones fracture) - short leg non-weight-bearing cast x 6-12 wks; consult for ORIF if displaced or pt desiring more rapid ambulatory status. See tuberosity fx above.
+Toe proximal phalanx base fracture - short leg cast (with toe extension) x 4-8 wks, with ROM at 3-5 wks; consult if displaced, or &gt;30% of articular surface, or unstable (esp. if 1st MTP joint).
+Go to the Table of Contents or the Index.
+Toe proximal and middle phalanx shaft fracture - buddy tape or if unstable, short leg cast (with toe extension) x 4-6 wks; consult if displaced, or &gt;15 degrees plantar angulation, any dorsal angulation, any rotation, or unstable (esp. if 1st toe).
+Toe PIP and DIP joint fracture - buddy tape or if unstable, short leg cast (with toe extension) x 4-6 wks; consult if &gt;30% articular surface, displaced, or unstable (esp. if 1st toe IP joint).
+Go to the Table of Contents or the Index.
+Toe distal phalanx fracture - splint x 3-6 wks; consult if displaced, angulated, or unstable (esp. if 1st toe).
+Toe, 1st, sesamoid fracture - softly padded short leg walking cast (with toe extension) x 3-8 wks; consult if nonunion and if symptomatic after 6 months.
+",
+      "id": "LOWER-EXTREMITY_FRACTURES",
+      "title": "Lower-extremity fractures",
+    },
+    "matchData": {
+      "body": [
+        [
+          72,
+          78,
+        ],
+        [
+          168,
+          174,
+        ],
+        [
+          1028,
+          1035,
+        ],
+        [
+          1180,
+          1187,
+        ],
+        [
+          1273,
+          1280,
+        ],
+        [
+          1576,
+          1582,
+        ],
+        [
+          2231,
+          2238,
+        ],
+        [
+          2462,
+          2469,
+        ],
+        [
+          2738,
+          2744,
+        ],
+        [
+          4355,
+          4361,
+        ],
+        [
+          5009,
+          5017,
+        ],
+      ],
+      "title": [],
+    },
+    "score": 0.13435028842544403,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Steroid injections
+
+
+for injury-related inflammation
+steroids should always be reserved for injuries that have not responded to the usual healing times and conservative measures, and there is no infection component.  Avoid use in children/teens!
+conditions that may respond to steroid use: rotator cuff tendinitis, impingement syndrome, subacromial bursitis, adhesive capsulitis, bicipital tendinitis, triceps tendinitis, humeral (medial and lateral) epicondylitis, olecranon bursitis, extensor carpi radialis tendinitis, de Quervain's tendinitis (extensor pollicis brevis and abductor pollicis longus tendons), carpal tunnel syndrome, trigger finger (flexor tenosynovitis), trochanteric bursitis, patellar tendinitis, prepatellar bursitis, popliteus tendinitis and iliotibial band inflammation (over lateral femoral condyle), anserine bursitis (over posteromedial tibial condyle), Achilles tendinitis, tarsal tunnel syndrome, plantar fasciitis, and any non-infectious arthritis. Avoid injecting into tendons!
+Use: 0.5-1.5 inch, 22-25 gauge  needle (18-20 gauge if aspirating); &lt;0.5-10 ml of local anesthetic; &amp; &lt;0.5-2 ml of steroid (betamethasone and dexamethasone 1-10 mg, triamcinolone and methylprednisolone 2-80 mg) - larger needles &amp; doses for larger joints. Maximum of 3 injections per location per year.
+
+",
+      "id": "STEROID_INJECTIONS",
+      "title": "Steroid injections",
+    },
+    "matchData": {
+      "body": [
+        [
+          26,
+          32,
+        ],
+        [
+          93,
+          101,
+        ],
+      ],
+      "title": [],
+    },
+    "score": 0.126572113832392,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "AAchille's tendon ruptureACL injuryAcromio-clavicular (AC) joint injuryAnkle and foot dislocationsAnkle distal fibula/lateral malleolar fractureAnkle medial, posterior, bi- &amp; tri-malleolar fractureAnkle peroneal retinaculum tearAnkle sprainAnkle syndesmotic ligament injuryAnkle talus avulsion or osteochondral dome fractureAnkle talus body &amp; neck fractureAnkle talus head fractureAnkle talus lateral process fractureAnkle talus posterior process fractureAnterior cruciate ligament (ACL) injuryGo to the Table of Contents or the Index top.Bbiceps (long head) tendon injurybiceps tendon ruptureGo to the Table of Contents or the Index top.Ccalcaneal apophysitiscalcaneus fractureCalf medial gastrocnemius muscle tearcapitate fracturecentral slip injuriesCervical spine facet dislocationCERVICAL SPINE INJURIESCervical spine C1 injuriesCervical spine C2 injuriesCervical spine C2-C7 injuriesCervical spine Posterior element fractureCervical spine Spinous process fractureCervical spine Teardrop fractureCervical spine vertebral body fracturechondromalacia patellaChopart joint injury/Ankle and foot dislocationsGo to the Table of Contents or the Index top.C1 injuriesC2 injuriesC2-C7 injuriesClavicle fractureCoccyx fractureColle's wrist radius/ulna fracture with dorsal angulationcoronoid fracturecuboid fracturecuneiform fractureGo to the Table of Contents or the Index top.DDIP joint fractures (see Finger or Toe)DISLOCATIONS/SUBLUXATIONSGo to the Table of Contents or the Index top.EElbow biceps tendon ruptureElbow epicondylitisElbow humerus epicondylar fractureElbow humerus supracondylar/trans-condylar/condylar fractureElbow osteochondritis dissecansElbow radial head dislocationElbow radial head or neck fractureElbow radial head subluxationElbow radial/ulnar dislocationElbow ulnar coronoid fractureElbow ulnar olecranon fractureepicondylitisextensor digitorum tendon avulsion injuryGo to the Table of Contents or the Index top.Ffacet dislocationFemoral head/Hip dislocationfemoral, proximal fracturesfemur greater or lesser trochanteric avulsion fractureFemur shaft fracturefemur slipped capital epiphysisfemur supra-, inter-, &amp; intracondylar fracturefibula fracture, proximalFibula shaft fractureFifth metatarsal base/proximal shaft fractureFifth metatarsal tuberosity fractureGo to the Table of Contents or the Index top.Finger DIP joint extensor digitorum tendon avulsion injuryFinger DIP joint flexor digitorum profundus avulsion injuryFinger DIP joint fractureFinger distal phalanx fractureFinger metacarpophalangeal joint dislocationFinger PIP and DIP joint collateral ligament injuryFinger PIP and DIP joint dislocationFinger PIP joint central slip injuriesFinger PIP joint fractureFinger PIP joint volar plate injuriesFinger proximal and middle phalanx shaft fractureFinger proximal phalanx base fractureFinger sprainsflexor digitorum profundus avulsion injuryGo to the Table of Contents or the Index top.Foot cuboid fractureFoot cuneiform fracturefoot dislocationsFoot fifth metatarsal base/proximal shaft fractureFoot fifth metatarsal tuberosity fractureFoot metatarsal fractureFoot navicular fractureForearm Radius/ulna shaft fractureFRACTURE HEALING TIMESGo to the Table of Contents or the Index top.GGaleazzi fracture (see Radius/ulna shaft fracture)gastrocnemius muscle tearglenohumeral joint dislocationGrowth plate fractures (PHYSIS/GROWTH PLATE FRACTURES)Go to the Table of Contents or the Index top.Hhamate and other carpal bone fracturesHand metacarpal base fractureHand metacarpal head fractureHand metacarpal neck fractureHand metacarpal shaft fractureHeel calcaneal apophysitisHeel calcaneus fractureHip dislocationHip femoral, proximal fracturesGo to the Table of Contents or the Index top.Hip femur greater or lesser trochanteric avulsion fractureHip femur slipped capital epiphysisHip osteochondritis dissecanshumerus epicondylar fracturehumerus epiphysis fracture, proximalhumerus fracture, proximalhumerus shaft fracturehumerus supracondylar/trans-condylar/condylar fractureGo to the Table of Contents or the Index top.Iiliac crest avulsion fractureiliac spine avulsion fractureiliotibial band syndromeInflammatory conditions treated with STEROID INJECTIONSINJURY GUIDELINESIschial tuberosity avulsion fractureGo to the Table of Contents or the Index top.JJersey finger flexor digitorum profundus avulsion injuryJones metatarsal base/proximal shaft fractureGo to the Table of Contents or the Index top.KKnee dislocationKnee femur supra-, inter-, &amp; intracondylar fractureKnee fibula fracture, proximalKnee iliotibial band syndromeKnee ligament injuryKnee meniscus injuryGo to the Table of Contents or the Index top.Knee Osgood-Schlatter diseaseKnee osteochondritis dissecansKnee Patella fractureKnee patellofemoral syndromeKnee tibial tubercle avulsion fractureKnee tibia plateau or eminence fractureGo to the Table of Contents or the Index top.LLateral collateral ligament (LCL) injuryLateral epicondylitisLCL injuryLisfranc joint injury/Ankle and foot dislocationsLOWER-EXTREMITY FRACTURESLower leg Fibula shaft fractureLower leg Tibia shaft fractureLumbar wedge compression fracturelunate and capitate fractureGo to the Table of Contents or the Index top.MMaisonneuve (see Fibula shaft fracture)Mallet finger extensor digitorum tendon avulsion injuryMCL injuryMCP/metacarpophalangeal joint dislocationMedial collateral ligament (MCL) injuryMedial epicondylitismeniscus injurymetacarpal base fracturemetacarpal head fracturemetacarpal neck fracturemetacarpal shaft fracturemetacarpophalangeal joint dislocationmetatarsal base/proximal shaft fracture, fifthmetatarsal fracturemetatarsal tuberosity fracture, fifthmetatarsophalangeal joint dislocationMonteggia fracture (see Radius/ulna shaft fracture)Go to the Table of Contents or the Index top.Nnavicular fracture, footnavicular/scaphoid fracture, wristNeck and back sprainNeck injuries (CERVICAL SPINE INJURIES)Neck C1 injuriesNeck C2 injuriesNeck C2-C7 injuriesNursemaide's elbow (radial head subluxation)Go to the Table of Contents or the Index top.OOccipital condyle fractureolecranon fractureOrthopedic Trauma For Primary CareOsgood-Schlatter diseaseOsteochondritis dissecans (see Elbow, Hip, Knee, &amp; Ankle)Go to the Table of Contents or the Index top.PPatella dislocationPELVIS FRACTURESPatella fracturePatellar/quadriceps tendon tearpatellofemoral syndromePCL injurypectoralis majorPelvis fractureperilunate injuriesPeroneal retinaculum tearGo to the Table of Contents or the Index top.Peterson classes (PHYSIS/GROWTH PLATE FRACTURES)Phalanx fractures (see Finger or Toe)PHYSIS/GROWTH PLATE FRACTURESPIP and DIP joint dislocationPIP joint fractures (see Finger or Toe)plantaris tendon rupturePosterior cruciate ligament (PCL) injuryPosterior element fracturePseudo-Jonesmetatarsal tuberosity fracture, fifthGo to the Table of Contents or the Index top.Qquadriceps tendon tearGo to the Table of Contents or the Index top.Rradial head dislocationradial head or neck fractureradial head subluxationradial/ulnar dislocationradiocarpal dislocationradius/ulna fracture, distal intra-articularradius/ulna fracture with dorsal angulationradius/ulna fracture with volar angulationRadius/ulna shaft fractureRib fractureGo to the Table of Contents or the Index top.SSacrum fractureSalter-Harris classes (PHYSIS/GROWTH PLATE FRACTURES)scaphoid fractureScapula fracturesesamoid fractureShoulder injuriesShoulder biceps (long head) tendon injuryShoulder glenohumeral joint dislocationShoulder pectoralis major injuryShoulder proximal humerus epiphysis fractureShoulder proximal humerus fractureGo to the Table of Contents or the Index top.Sinding-Larsen-Johansson diseaseslipped capital epiphysis, femoralSmith's wrist radius/ulna fracture with volar angulationSOFT-TISSUE INJURIESSpine fractures (CERVICAL SPINE INJURIES and THORAX AND SPINE FRACTURES)Spinous process fractureSterno-clavicular joint injurySternum fractureSTEROID INJECTIONSsyndesmotic ligament injury, ankleGo to the Table of Contents or the Index top.Ttalus avulsion or osteochondral dome fracturetalus body &amp; neck fracturetalus head fracturetalus lateral process fracturetalus posterior process fractureTeardrop fractureThoracic and Lumbar wedge compression fractureTHORAX AND SPINE FRACTURESThumb and Finger sprainsThumb MCP joint injuriestibial tubercle avulsion fracturetibia plateau or eminence fractureTibia shaft fractureGo to the Table of Contents or the Index top.Toe injuries (see below)Toe distal phalanx fractureToe metatarsophalangeal joint dislocationToe PIP and DIP joint collateral ligament injuryToe PIP and DIP joint dislocationToe PIP and DIP joint fractureToe proximal and middle phalanx shaft fracture Toe proximal phalanx base fracture Toe sesamoid fracturetriquetral dorsal avulsion fractureGo to the Table of Contents or the Index top.Uulnar coronoid fractureulnar olecranon fractureulnar translocation of carpalsulna shaft fractureUpper arm humerus shaft fractureUPPER-EXTREMITY FRACTURESGo to the Table of Contents or the Index top.Vvertebral body fractureVertebral fractures (see CERVICAL SPINE INJURIES and THORAX AND SPINE FRACTURES)volar plate injuriesGo to the Table of Contents or the Index top.WWrist injuries (see below)Wrist extra-articular distal radius/ulna fracture with dorsal angulationWrist extra-articular distal radius/ulna fracture with volar angulationWrist hamate and other carpal bone fracturesWrist intra-articular distal radius/ulna fractureWrist lunate and capitate fractureWrist navicular/scaphoid fractureWrist perilunate injuriesWrist radiocarpal dislocationWrist sprainWrist triquetral dorsal avulsion fractureWrist ulnar translocation of carpalsGo to the Table of Contents or the Index top.XNo ‘X’ items are indexed in this version.YNo ‘Y’ items are indexed in this version.ZNo ‘Z’ items are indexed in this version.Go to the Table of Contents or the Index.",
+      "id": "INDEX",
+      "title": "Index",
+    },
+    "matchData": {
+      "body": [
+        [
+          5882,
+          5890,
+        ],
+        [
+          7814,
+          7822,
+        ],
+        [
+          7963,
+          7970,
+        ],
+        [
+          8451,
+          8459,
+        ],
+        [
+          9096,
+          9104,
+        ],
+        [
+          9208,
+          9216,
+        ],
+      ],
+      "title": [],
+    },
+    "score": 0.12020815280171308,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Pelvis fractures
+
+(see THORAX AND SPINE FRACTURES also)
+Pelvis fracture - pain with posterior pressure on iliac crests, compressing iliac wings, and posterior pressure on pubic symphysis (consider symphyseal separation).
+
+
+stable (non-displaced with pelvic ring intact, and no internal hemorrhage) - consider initial IV and hospitalization, CT, analgesia, bed-rest, non-weight bearing on affected side, (low energy fx from falls in elderly frequently Rx with analgesia and protected weight bearing with walker for 6+ wks) &amp; consult, esp. if unstable, involving acetabular or sacroiliac joints, or non-union, or pain &gt;12 wks.
+unstable (displaced, pelvic ring disrupted or fx in 2 or more sites or internal hemorrhage/shock), usually with hx of high energy mechanism of injury - IV, MAST prn, hospitalize and consult.
+R/O associated GU, GI, neurovascular, and lower-extremity injury; Rx shock and avoid foley if high-riding prostate, blood at urethral meatus, scrotal hematoma, or fx of ischial or pubic rami.
+
+
+Anterior superior (or inferior) iliac spine avulsion fracture vs apophysitis - origin of  Sartorius muscle ( or rectus femoris) - rest with hip flexion (+/- abduction for inferior avulsion fx) +/- crutches +/- immobilization x 2-4 wks, then rehab x 4-6 wks; consult if displaced (&gt;1 cm) or professional athlete.
+Iliac crest avulsion fracture vs apophysitis (origin of external oblique and transversus abdominus muscles) - rest x 2-4 wks, then rehab x 4-6 wks; consult if displaced &gt;1 cm, or professional athlete.
+Ischial tuberosity avulsion fracture vs apophysitis (origin of adductor magnus, semitendinosus and semimembranosus muscles) - rest with hip extension and external rotation +/- crutches x 2-4 wks, then rehab x 4-6 wks; consult if displaced &gt;1 cm, or professional athlete.
+",
+      "id": "PELVIS_FRACTURES",
+      "title": "Pelvis fractures",
+    },
+    "matchData": {
+      "body": [
+        [
+          776,
+          782,
+        ],
+        [
+          882,
+          889,
+        ],
+      ],
+      "title": [],
+    },
+    "score": 0.11879393923933998,
   },
 ]
 `;

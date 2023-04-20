@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LunrArticleSearch Behavior should get articles matching search term without html tags 1`] = `
+[
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Soft-tissue injuries
+
+Neck and back sprain/strain - RICE etc. +/- soft collar or back support, with early ROM; consult if acute or progressive neuro deficit, or serious musculoskeletal injury (see CERVICAL SPINE INJURIES and THORAX AND SPINE FRACTURES).
+Sterno-clavicular joint injury - reduce dislocations with lateral arm traction +/- anterior vs posterior clavicle pressure/traction; RICE etc. &amp; sling vs figure-eight harness x 1-6 wks, then ROM x 4-8 wks (longer times if dislocation with reduction); consult if posterior, unstable or neurovascular or tracheal injury.
+Go to the Table of Contents or the Index.
+Acromio-clavicular (AC) joint injury - weighted x-ray views unnecessary, and may exacerbate injury!
+Grade I - AC ligament strain with &lt;3 mm increased injured AC joint width (and no clavicle displacement superiorly) over uninjured AC joint, and with normal coracoclavicular (CC) distance.
+Grade II - AC ligament tear with CC ligament strain, with &gt;3 mm increased injured AC joint width (and no clavicle displacement superiorly), and with normal coracoclavicular (CC) distance.
+Grade III - AC and CC ligament tears, with &gt;5 mm increased injured AC joint width (or displaced superiorly &lt;50% clavicle diameter), and with increased coracoclavicular (CC) distance.
+Grade IV-VI - inferior, posterior, or gross superior clavicular displacement, including trapezius or deltoid injury/penetration.
+
+
+Grade I-III Rx with RICE, &amp; sling x 1-2 wks with early ROM +/- PT; for Grade III consider consult for heavy laborers or elite athletes. Avoid heavy lifting and contact sports for 4-12 wks, depending on grade of injury, and age and health of patient. Consult for all grade IV-VII injuries.
+
+Go to the Table of Contents or the Index.
+
+Shoulder injuries (musculotendinous strains and tears) - RICE etc. +/- sling; early ROM +/- PT in older adults and diabetics to avoid adhesive capsulitis; MRI &amp; consult if neurovascular injury, ongoing or marked weakness, or protracted healing &amp; pain (consider avulsion fractures, SLAP/superior labral AP tear, rotator cuff and other tendinous injuries).
+Shoulder pectoralis major or biceps (long head) tendon injury - RICE etc. +/- sling; early ROM in older adults to avoid adhesive capsulitis; consult if complete rupture in young, laborer, or athlete.
+Go to the Table of Contents or the Index.
+Elbow biceps tendon rupture - if partial, RICE, sling, early ROM; consult if complete, or strength loss.
+Elbow humeral lateral or medial epicondylitis - gradual onset of localized pain &amp; tenderness with overuse; x-ray (with peds comparison views) prn acute/trauma onset or protracted; rest, NSAID, +/- steroid injection (avoid in peds), +/- PT for stretching &amp; strengthening, &amp; refer prn protracted symptoms.
+Wrist sprain/strain - RICE etc. +/- splint vs ace; consider scaphoid fx, lunate dislocation, perilunate injuries (see below), hamate hook fx, posterior triquetrum avulsion/chip fx, triangular fibrocartilage or ligament tear, distal radial-ulnar junction tear +/- ulna subluxation, and see Wrist fractures.
+Go to the Table of Contents or the Index.
+Wrist perilunate injuries/dislocations - consult; include potential disruptions of ligaments between lunate and scaphoid, capitate, and triquetrum; look for increased spacing between carpals (&gt;2-4 mm) along with change in normal 30-60 degrees scapholunate angle or 0-15 degrees capitolunate angle; most common is scapholunate dissociation, with &gt;3 mm spacing.
+Thumb and Finger sprains - RICE etc. +/- splint; R/O tendon and ligament injuries, see below.
+Go to the Table of Contents or the Index.
+Thumb MCP joint ulnar/radial collateral ligament injuries (+/- avulsion fx) - thumb spica hand vs short arm cast x 4-6 wks; consult if complete tear (gross instability) or displaced fx.  See Finger proximal phalanx base fracture.
+Finger PIP joint volar plate injuries (tenderness +/- avulsion fx off volar base of middle phalanx) - splint PIP joint flexed at 20-45 degrees x 4-6 wks, with dynamic or extension-block splinting after 2 wks; untreated may cause swan-neck deformity. See Finger PIP joint fracture.
+Go to the Table of Contents or the Index.
+Finger PIP joint central slip injuries (tenderness +/- avulsion fx off dorsal base of middle phalanx) - dorsal splint of PIP joint in extension x 6-8 wks; untreated: boutonniere deformity. See Finger PIP joint fracture.
+Finger PIP and DIP joint collateral ligament injury (tenderness +/- avulsion fx over lateral joint) - buddy taping vs splinting in 30 degrees flexion for 2-6 wks; consult if unstable. See Finger PIP joint fracture and Finger DIP joint fracture.
+Go to the Table of Contents or the Index.
+Finger flexor digitorum profundus avulsion injury (Jersey finger - inability to flex DIP joint +/- avulsion fx) - consult for all finger flexor tendon injuries. See Finger DIP joint fracture.
+Finger extensor digitorum tendon avulsion injury (Mallet finger - inability to extend DIP joint +/- avulsion fx) - splint DIP joint in mild hyperextension x 6-8 wks, then at night x 2-3 wks; consult if fx and &gt;30 degrees articular surface, displaced &gt;2mm, or DIP joint unstable. See Finger DIP joint fracture.
+Go to the Table of Contents or the Index.
+
+Knee Osgood-Schlatter disease (tenderness over tibial tubercle in adolescent) or Sinding-Larsen-Johansson disease (tenderness at patellar tendon-patella attachment) - RICE (resistant cases may require knee immobilizer with quadriceps exercise program x 2-6 wks). See tibial tubercle avulsion fracture.
+Knee patellofemoral syndrome (including chondromalacia patella) - RICE etc., activity modification  and avoid flexion load, correct foot pronation with arch support, then quadriceps exercises in extension, with hamstring stretching; consult if protracted course.
+Go to the Table of Contents or the Index.
+Knee iliotibial band syndrome (lateral femoral epicondyle pain) - RICE etc., activity modification, avoid irritating activity esp. with knee hyperflexion, IT band stretching exercises with knee extended may be helpul; consult if protracted course.
+Knee ligament injury (ACL, PCL, MCL, &amp; LCL) - consider knee immobilizer and crutches with weekly follow-up +/- PT; MRI +/- consult if instability or complete ligament rupture suspected.
+Go to the Table of Contents or the Index.
+Knee meniscus injury - knee immobilizer and crutches with weekly follow-up +/- PT; MRI +/- consult if regression or not progression (esp. if effusion &amp; &lt;35 yrs), or if locking or unstable knee.
+Patellar/quadriceps tendon tear - if partial tear, immobilization in extension with knee immobilizer or cast x 4-6 wks, then gradual ROM; consult for complete tears (inability to actively extend knee).
+Go to the Table of Contents or the Index.
+Calf medial gastrocnemius muscle tear (vs plantaris tendon rupture) - ¬ìtake off¬î injury with sudden sharp pain and tenderness over medial calf; RICE and crutches +/- heel lift x 1-2 wks.
+Achille's tendon rupture - if laceration, R/O other tendons and neurovascular injury; partial tears splinted in hyperplantarflexion x 3-6 wks, with no sports x 6-12 months; consult if healing concerns, and for complete tears (casting vs functional bracing vs surgery).
+Ankle peroneal retinaculum tear - lateral tear confirmed by the palpable anterior popping or subluxing of the peroneal tendon that normally lies posterior to the lateral malleolus; extended splinting may produce resolution; consult if persistent or not wanting to try prolonged splinting.
+Go to the Table of Contents or the Index.
+Ankle sprain - grade I with ligament stretching, grade II with partial ligament tear, grade III with complete tear (ATF &amp; CF ligaments first) with positive anterior drawer test or talar tilt test &gt;10 degrees difference between ankles (latter test may require anesthesia).  Grade I, II, &amp; III Rx with RICE etc. +/- gel/air cast x 4 wks, with early ROM +/- PT.  R/O peroneal &amp; tibial nerve injury. Consult if gross instability, or not improved in 6 wks. See syndesmotic ligament injury.
+Ankle distal tibia/fibula syndesmotic ligament injury - squeeze and external rotation tests positive after external rotation injury, and consider if &gt;6mm tib-fib interdistance at 10mm above joint - Rx same as lateral ankle sprain, with recovery time up to double. Consult if associated fx or instability/diastasis with &gt;2 mm horizontal malleolar displacement.
+Go to the Table of Contents or the Index.
+Heel calcaneal apophysitis - RICE etc. +/- crutches +/- heel pad.
+Foot - see Ankle &amp; , which may include fractures of the metatarsals in particular.
+Toe PIP and DIP joint collateral ligament injury - buddy taping  for 3-6 wks; consult if unstable. See Toe injuries.
+",
+      "id": "SOFT-TISSUE_INJURIES",
+      "title": "Soft-tissue injuries",
+    },
+    "matchData": {
+      "body": [
+        [
+          6,
+          20,
+        ],
+        [
+          23,
+          24,
+        ],
+        [
+          27,
+          29,
+        ],
+        [
+          36,
+          37,
+        ],
+        [
+          39,
+          42,
+        ],
+        [
+          44,
+          50,
+        ],
+        [
+          52,
+          54,
+        ],
+        [
+          56,
+          59,
+        ],
+        [
+          66,
+          67,
+        ],
+        [
+          70,
+          71,
+        ],
+        [
+          74,
+          78,
+        ],
+        [
+          80,
+          81,
+        ],
+      ],
+      "title": [
+        [
+          5,
+          19,
+        ],
+      ],
+    },
+    "score": 0.380090550692776,
+  },
+  ArticleSearchResult {
+    "article": {
+      "body": "
+Cervical spine injuries
+
+(beyond the common sprain/strain)
+
+
+if at risk for unstable fx, obtain and read cross-table lateral x-ray, before full c-spine series.
+R/O cord injury by hx and exam, and R/O neurogenic shock - Rx with vasopressors.
+all cervical spine fractures/dislocations/subluxations need CT and consult.
+all c-spine injuries require immobilization without traction prior to consult; stable injuries (beyond minor strains) Rx'ed with hard collar x 2 months, &amp; unstable injuries with skull traction +/- ORIF.
+
+
+Occipital condyle fracture or instability - &gt;2 mm from occiput to atlas, or &gt;12 mm from basion to odontoid.
+C1 isolated anterior or posterior arch fx - stable if non-displaced.
+C1 lateral mass fx - unstable; possible lateral mass displacement as in Jefferson fx below. 
+C1 Jefferson fx - unstable; blow-out/burst fx of ring with transverse ligament rupture, usually seen in lamina on lateral view and as lateral displacement (&gt;3 mm of either side) of C1 lateral masses on AP odontoid view; 1/3 also with C2 fx.
+C1 rotary subluxation - unstable; disparity in C1 lateral mass distance from odontoid +/- lateral mass overlap on C2; seen mostly in children with torticollis presentation post-injury - avoid attempts to derotate the injured neck!
+C2 odontoid dislocation - unstable; rupture of C1 transverse ligament with consequent posterior dislocation of dens, with predens space &gt;3mm (&gt;5mm peds); may occur without neuro findings as at this level spinal canal with cord in 1/3, dens in 1/3, and ligament/space in 1/3.
+C2 odontoid fx - unstable or stable.
+C2 Hangman's fx - unstable; C2 pedicle/posterior element fx +/- C2 body displaced anterior on C3.
+C2-C7 Injuries
+
+
+consider prevertebral hematoma (on lateral c-spine x-ray) if: 1. At C2-C3 anterior-inferior border, prevertebral soft-tissue thickness &gt;6mm in adults or &gt;2/3 thickness of C2 body in children (who are not crying or forcing expiration!). 2. Prevertebral soft tissue thickness below larynx is &gt;vertebral body thickness, or &gt;20-22 mm at C6.
+consider fx or dislocation if vertebral malalignment &gt;3 mm (&gt;4-5 mm peds).
+consider fx or dislocation if intervertebral angle &gt; 11 degrees.
+consider compression fx if anterior body height &gt;3 mm shorter than posterior.
+consider spinal cord compression if &gt;6 yrs old and AP spinal canal space &lt;10-13 mm.
+
+
+Teardrop fracture (flexion or extension) - unstable, with inclusion of posterior element injury; chip fx off anterior-inferior (flexion injury-very unstable) or anterior-superior aspect of vertebral body +/- body comminution.
+Bilateral facet dislocation - unstable; usually with &gt;50% body displacement.
+Unilateral facet dislocation/subluxation - unstable or stable; usually &lt;25% body displacement noted with overlapping facets on lateral view, anterior decreased disc space, posterior decreased disc space, and increased interspinous distance.
+Simple wedge and bursting vertebral body fracture - usually stable, unless fragments of burst enter canal.
+Posterior element fracture - usually stable if isolated.
+Spinous process fracture - stable; most commonly involving C6, C7, or T1 (Clay-Shoveler's fx)
+",
+      "id": "CERVICAL_SPINE_INJURIES",
+      "title": "Cervical spine injuries",
+    },
+    "matchData": {
+      "body": [
+        [
+          2,
+          5,
+        ],
+        [
+          7,
+          10,
+        ],
+        [
+          12,
+          23,
+        ],
+        [
+          33,
+          34,
+        ],
+        [
+          36,
+          37,
+        ],
+        [
+          43,
+          45,
+        ],
+        [
+          47,
+          50,
+        ],
+        [
+          52,
+          57,
+        ],
+        [
+          64,
+          70,
+        ],
+        [
+          75,
+          81,
+        ],
+      ],
+      "title": [
+        [
+          1,
+          4,
+        ],
+        [
+          6,
+          9,
+        ],
+        [
+          11,
+          22,
+        ],
+      ],
+    },
+    "score": 0.3703227978437543,
+  },
+]
+`;
