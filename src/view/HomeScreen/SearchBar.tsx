@@ -26,14 +26,7 @@ function SearchBar({ style = {}, onPress }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    ...theme.elevations[2],
     backgroundColor: theme.colors.surface,
     borderRadius: 999,
   },

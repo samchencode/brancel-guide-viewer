@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     display: 'none',
     borderRadius: 4,
     backgroundColor: theme.colors.surface,
-    overflow: 'hidden',
   },
   menuVisible: { display: 'flex' },
   content: {

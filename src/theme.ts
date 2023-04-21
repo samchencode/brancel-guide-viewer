@@ -69,6 +69,48 @@ export const theme = {
       onSurface: `rgba(9, 5, 46, ${percent})`,
     }),
   },
+  elevations: {
+    1: {
+      shadowColor: '#000000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.15,
+      shadowRadius: 1.0,
+      elevation: 1,
+    },
+    2: {
+      shadowColor: '#000000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.16,
+      shadowRadius: 1.51,
+      elevation: 2,
+    },
+    3: {
+      shadowColor: '#000000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.17,
+      shadowRadius: 2.54,
+      elevation: 3,
+    },
+    24: {
+      shadowColor: '#000000',
+      shadowOffset: {
+        width: 0,
+        height: 18,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 20.0,
+      elevation: 24,
+    },
+  },
   modal: {
     borderRadius: 28,
     minWidth: 280,

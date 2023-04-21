@@ -129,8 +129,8 @@ function factory(clearCacheAction: ClearCacheAction) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    elevation: 2,
-    shadowRadius: 0.15,
+    backgroundColor: theme.colors.surface,
+    ...theme.elevations[2],
   },
   statusBar: {
     backgroundColor: theme.colors.opacity(0.08).primary,
@@ -177,8 +177,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '100%',
     right: 0,
-    elevation: 2,
-    shadowRadius: 0.15,
+    ...theme.elevations[2],
   },
 });
 
