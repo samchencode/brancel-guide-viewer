@@ -21,7 +21,7 @@ function makeHashAddScript(sectionId: string) {
 }
 
 function makeMarkMatchesScript(matchIndicies: MatchIndex[]) {
-  return `TextMarker.markTextRanges(${JSON.stringify(matchIndicies)});`;
+  return `TextMarker.markAndScrollTo(${JSON.stringify(matchIndicies)});`;
 }
 
 function ArticleView({
