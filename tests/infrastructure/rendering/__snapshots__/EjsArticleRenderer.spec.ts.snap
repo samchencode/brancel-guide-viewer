@@ -391,8 +391,19 @@ exports[`EjsArticleRenderer Behavior should render html in the body 1`] = `
         }
       }
 
+      function scrollToFirstMark() {
+        const mark = document.querySelector('mark')
+        mark.scrollIntoView({
+          block: 'center',
+          behavior: 'smooth',
+        })
+      }
+
       return {
-        markTextRanges
+        markAndScrollTo(ranges) {
+          markTextRanges(ranges)
+          scrollToFirstMark()
+        }
       }
     })()
   </script>
