@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import type { ListRenderItem } from 'react-native';
@@ -6,6 +6,7 @@ import { ArticleRow } from '@/view/HomeScreen/ArticleRow';
 import { theme } from '@/theme';
 import type { TableOfContentsItem } from '@/domain/models/TableOfContents';
 import { EmptyArticleList } from '@/view/HomeScreen/EmptyArticleList';
+import { useFocusEffect } from '@react-navigation/native';
 
 type Props = {
   articles: TableOfContentsItem[];
@@ -26,8 +27,19 @@ function ArticleList({
   const LIST_ITEM_HEIGHT = 56;
   const initialNumToRender = Math.ceil(height / LIST_ITEM_HEIGHT);
 
+  const flatListRef = useRef<FlatList>(null);
+
+  useFocusEffect(() => {
+    if (!flatListRef.current) return;
+    flatListRef.current.scrollToOffset({
+      offset: 0,
+      animated: false,
+    });
+  });
+
   return (
     <FlatList
+      ref={flatListRef}
       data={articles}
       renderItem={useCallback<ListRenderItem<TableOfContentsItem>>(
         ({ item: article }) => (
