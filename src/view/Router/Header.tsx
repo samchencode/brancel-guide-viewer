@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
     shadowRadius: 0.15,
   },
   statusBar: {
-    backgroundColor: theme.colors.surfaceTint.elevationTwo,
+    backgroundColor: theme.colors.opacity(0.08).primary,
     height: Constants.statusBarHeight,
   },
   header: {
-    backgroundColor: theme.colors.surfaceTint.elevationTwo,
+    backgroundColor: theme.colors.opacity(0.08).primary,
     height: 64,
     paddingRight: theme.spaces.md,
   },
