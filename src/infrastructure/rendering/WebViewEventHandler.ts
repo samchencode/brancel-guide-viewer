@@ -3,6 +3,7 @@ import type {
   ErrorEvent,
   IndexPressedEvent,
   LinkPressedEvent,
+  LogEvent,
   TableOfContentsPressedEvent,
   WebViewEvent,
 } from '@/infrastructure/rendering/WebViewEvent';
@@ -35,6 +36,11 @@ class WebViewEventHandler {
     this.handlers.handleTableOfContentsPressed?.(e);
   }
 
+  private handleLog(e: LogEvent) {
+    // eslint-disable-next-line no-console
+    console.log(e.data.message);
+  }
+
   private handleEvent(e: WebViewEvent) {
     switch (e.type) {
       case 'linkpressed':
@@ -48,6 +54,9 @@ class WebViewEventHandler {
         break;
       case 'tableofcontentspressed':
         this.handleTableOfContentsPressed(e);
+        break;
+      case 'log':
+        this.handleLog(e);
         break;
       default:
         break;

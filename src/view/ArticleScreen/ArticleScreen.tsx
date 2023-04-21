@@ -20,7 +20,7 @@ function factory(
   renderArticleAction: RenderArticleAction
 ) {
   return function ArticleScreen({ route, navigation }: Props) {
-    const { idOrSectionId, type } = route.params;
+    const { idOrSectionId, type, searchMatchData } = route.params;
 
     const query = useQuery({
       queryKey: ['article', idOrSectionId, type],
@@ -44,9 +44,10 @@ function factory(
                 sectionId={res.sectionId}
                 navigation={navigation}
                 renderArticle={renderArticleAction}
+                searchMatchIndicies={searchMatchData?.body}
               />
             ),
-            [navigation]
+            [navigation, searchMatchData?.body]
           )}
           renderLoading={useCallback(
             () => (

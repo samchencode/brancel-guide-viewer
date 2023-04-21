@@ -9,7 +9,7 @@ import type { Type as SearchScreen } from '@/view/SearchScreen';
 import { IndexModal } from '@/view/IndexModal';
 import { DisclaimerModal } from '@/view/DisclaimerModal';
 import type { Type as Header } from '@/view/Router/Header';
-import type { ARTICLE_TYPES } from '@/domain/models/Article';
+import type { ARTICLE_TYPES, ArticleMatchData } from '@/domain/models/Article';
 import type { Type as UsageInstructionsScreen } from '@/view/UsageInstructionsScreen';
 
 type ValueOf<T> = T[keyof T];
@@ -19,6 +19,7 @@ type AppNavigationParams = {
   ArticleScreen: {
     type: ValueOf<typeof ARTICLE_TYPES>;
     idOrSectionId: string;
+    searchMatchData?: ArticleMatchData;
   };
   UsageInstructionsScreen: undefined;
   LicenseScreen: undefined;

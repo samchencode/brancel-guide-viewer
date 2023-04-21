@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { WebViewMessageEvent } from 'react-native-webview';
 import WebView from 'react-native-webview';
-import type { Article } from '@/domain/models/Article';
+import type { Article, MatchIndex } from '@/domain/models/Article';
 import { useWebViewEventHandlers } from '@/view/ArticleScreen/useWebViewEventHandlers';
 import type { AppNavigationProps } from '@/view/Router';
 import type { RenderArticleAction } from '@/application/RenderArticleAction';
@@ -11,6 +11,7 @@ type Navigation = AppNavigationProps<'ArticleScreen'>['navigation'];
 type Props = {
   article: Article;
   sectionId?: string;
+  searchMatchIndicies?: MatchIndex[];
   renderArticle: RenderArticleAction;
   navigation: Navigation;
 };
@@ -19,11 +20,16 @@ function makeHashAddScript(sectionId: string) {
   return `window.location = '#${sectionId}';`;
 }
 
+function makeMarkMatchesScript(matchIndicies: MatchIndex[]) {
+  return `TextMarker.markTextRanges(${JSON.stringify(matchIndicies)});`;
+}
+
 function ArticleView({
   article,
   renderArticle,
   navigation,
   sectionId = undefined,
+  searchMatchIndicies = undefined,
 }: Props) {
   const [html, setHtml] = useState('');
   useEffect(() => {
@@ -41,7 +47,10 @@ function ArticleView({
     <WebView
       source={{ html }}
       onMessage={handleMessage}
-      injectedJavaScript={sectionId && makeHashAddScript(sectionId)}
+      injectedJavaScript={[
+        sectionId && makeHashAddScript(sectionId),
+        searchMatchIndicies && makeMarkMatchesScript(searchMatchIndicies),
+      ].join(';')}
     />
   );
 }

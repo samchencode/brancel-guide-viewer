@@ -100,7 +100,7 @@ exports[`EjsArticleRenderer Behavior should render html in the body 1`] = `
 </head>
 
 <body>
-  <main><h1>Hello World</h1></main>
+  <main id="body"><h1>Hello World</h1></main>
   <script>
     function notify(event) {
       var message = JSON.stringify(event);
@@ -130,6 +130,15 @@ exports[`EjsArticleRenderer Behavior should render html in the body 1`] = `
       notify({
         type: 'indexpressed',
         data: {}
+      })
+    }
+
+    function notifyLog(msg) {
+      notify({
+        type: 'log',
+        data: {
+          message: msg
+        }
       })
     }
 
@@ -183,6 +192,207 @@ exports[`EjsArticleRenderer Behavior should render html in the body 1`] = `
         wrapper.className = "img__wrapper";
         wrapper.appendChild(images[i].cloneNode());
         images[i].replaceWith(wrapper);
+      }
+    })()
+
+    ; // get all text nodes to highlight if they match a search term
+    TextMarker = (function() {
+      function htmlEncode(input) {
+        const textArea = document.createElement("textarea");
+        textArea.innerText = input;
+        return textArea.innerHTML.split("<br>").join("\\n");
+      }
+
+      function htmlDecode(input) {
+        var textarea = document.createElement("textarea");
+        textarea.innerHTML = input;
+        return textarea.value;
+      }
+
+      /** 
+       * @typedef Range
+       * @type {[number, number]}
+       */
+
+      /** 
+       * @typedef OverlapRange
+       * @type {object}
+       * @property {Range} range
+       * @property {Range} overlap
+       */
+
+      /** 
+       * @typedef Overlap
+       * @type {object}
+       * @property {('Overlap' | 'Coverage')} type
+       * @property {OverlapRange[]} ranges
+       */
+
+      /**
+       * @param {Range} range1
+       * @param {Range} range2
+       * @returns {(Overlap | null)}
+       */
+      function testOverlap(range1, range2) {
+        if (range1[1] <= range2[0] || range1[0] >= range2[1]) {
+          // No overlap
+          return null;
+        } else if (range1[0] <= range2[0] && range1[1] >= range2[1]) {
+          // Complete coverage of range2 by range1
+          const overlapIndices = [range2[0], range2[1]];
+          const overlapInR1 = [
+            overlapIndices[0] - range1[0],
+            overlapIndices[1] - range1[0]
+          ];
+          const overlapInR2 = [0, overlapIndices[1] - range2[0]];
+          return {
+            type: "Coverage",
+            ranges: [{
+                range: range1,
+                overlap: overlapInR1
+              },
+              {
+                range: range2,
+                overlap: overlapInR2
+              }
+            ]
+          };
+        } else if (range1[0] >= range2[0] && range1[1] <= range2[1]) {
+          // Complete coverage of range1 by range2
+          const overlapIndices = [range1[0], range1[1]];
+          const overlapInR1 = [0, overlapIndices[1] - range1[0]];
+          const overlapInR2 = [
+            overlapIndices[0] - range2[0],
+            overlapIndices[1] - range2[0]
+          ];
+          return {
+            type: "Coverage",
+            ranges: [{
+                range: range2,
+                overlap: overlapInR2
+              },
+              {
+                range: range1,
+                overlap: overlapInR1
+              }
+            ]
+          };
+        } else if (range1[1] >= range2[0] && range1[0] < range2[0]) {
+          // Overlap on the left of range2
+          const overlapIndices = [range2[0], range1[1]];
+          const overlapInR1 = [
+            overlapIndices[0] - range1[0],
+            overlapIndices[1] - range1[0]
+          ];
+          const overlapInR2 = [0, overlapIndices[1] - range2[0]];
+          return {
+            type: "Overlap",
+            ranges: [{
+                range: range1,
+                overlap: overlapInR1
+              },
+              {
+                range: range2,
+                overlap: overlapInR2
+              }
+            ]
+          };
+        } else if (range1[0] <= range2[1] && range1[1] > range2[1]) {
+          // Overlap on the right of range2
+          const overlapIndices = [range1[0], range2[1]];
+          const overlapInR1 = [
+            overlapIndices[0] - range1[0],
+            overlapIndices[1] - range1[0]
+          ];
+          const overlapInR2 = [overlapIndices[0] - range2[0], range2[1] - range2[0]];
+          return {
+            type: "Overlap",
+            ranges: [{
+                range: range1,
+                overlap: overlapInR1
+              },
+              {
+                range: range2,
+                overlap: overlapInR2
+              }
+            ]
+          };
+        }
+      }
+
+      // build array of text nodes and body string indicies
+      var n;
+      var walk = document.createTreeWalker(
+        document.querySelector('#body'),
+        NodeFilter.SHOW_TEXT
+      );
+
+      /**
+       * @typedef NodeInfo
+       * @type {object}
+       * @property {Text} node TextNode from DOM. Note that html escape codes are decoded (&amp; -> &)
+       * @property {string} text
+       * @property {Range} range
+       */
+
+      /** @type {NodeInfo[]} */
+      var textNodes = [];
+      var traversedLength = 0;
+      while (n = walk.nextNode()) {
+        var encodedText = htmlEncode(n.wholeText);
+        textNodes.push({
+          node: n,
+          text: encodedText,
+          range: [traversedLength, traversedLength + encodedText.length]
+        })
+        traversedLength = traversedLength + encodedText.length
+      }
+
+      function markNode(node, text, start, stop) {
+
+        var container = document.createElement('span')
+        var beforeMark = htmlDecode(text.slice(0, start));
+        var textToMark = htmlDecode(text.slice(start, stop));
+        var afterMark = htmlDecode(text.slice(stop));
+
+        var mark = document.createElement('mark');
+        var textNodeToMark = document.createTextNode(textToMark);
+        mark.appendChild(textNodeToMark);
+
+        textNodeBeforeMark = document.createTextNode(beforeMark);
+        textNodeAfterMark = document.createTextNode(afterMark);
+
+        container.appendChild(textNodeBeforeMark);
+        container.appendChild(mark);
+        container.appendChild(textNodeAfterMark);
+
+        node.replaceWith(container);
+      }
+
+      /**
+       * @param {Range[]} ranges Ranges of text on the document to mark
+       */
+      function markTextRanges(ranges) {
+        for (var i = 0; i < ranges.length; i++) {
+          var range = ranges[i]
+
+          for (var j = 0; j < textNodes.length; j++) {
+            var textInfo = textNodes[j]
+            var overlap = testOverlap(range, textInfo.range)
+            if (overlap === null) continue
+            if (overlap.ranges[0].range === textInfo.range) {
+              var overlapRange = overlap.ranges[0].overlap
+              markNode(textInfo.node, textInfo.text, overlapRange[0], overlapRange[1])
+            } else {
+              var overlapRange = overlap.ranges[1].overlap
+              markNode(textInfo.node, textInfo.text, overlapRange[0], overlapRange[1])
+            }
+          }
+        }
+      }
+
+      return {
+        markTextRanges
       }
     })()
   </script>

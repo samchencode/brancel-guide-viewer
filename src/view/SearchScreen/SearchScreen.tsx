@@ -28,10 +28,11 @@ function factory(searchArticlesAction: SearchArticlesAction) {
     const handlePressClear = useCallback(() => setSearchQuery(''), []);
 
     const handleSelectResult = useCallback(
-      ({ article }: ArticleSearchResult) => {
+      ({ article, matchData }: ArticleSearchResult) => {
         navigation.navigate('ArticleScreen', {
           idOrSectionId: article.id,
           type: 'base',
+          searchMatchData: matchData,
         });
       },
       [navigation]

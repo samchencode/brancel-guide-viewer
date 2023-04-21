@@ -23,8 +23,16 @@ export type ErrorEvent = {
   };
 };
 
+export type LogEvent = {
+  type: 'log';
+  data: {
+    message: string;
+  };
+};
+
 export type WebViewEvent =
   | LinkPressedEvent
   | ErrorEvent
   | IndexPressedEvent
-  | TableOfContentsPressedEvent;
+  | TableOfContentsPressedEvent
+  | LogEvent;
