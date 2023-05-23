@@ -9,9 +9,9 @@ import type {
 import type { RenderArticleAction } from '@/application/RenderArticleAction';
 import { ProgressIndicatorView } from '@/view/ArticleScreen/ProgressIndicatorView';
 import { ArticleView } from '@/view/ArticleScreen/ArticleView';
-import { EmptyArticleView } from '@/view/ArticleScreen/EmptyArticleView';
 import { UseQueryResultView } from '@/view/lib/UseQueryResultView';
 import { useQuery } from '@tanstack/react-query';
+import { ErrorView } from '@/view/ErrorView';
 
 type Props = AppNavigationProps<'ArticleScreen'>;
 
@@ -32,8 +32,8 @@ function factory(
         <UseQueryResultView
           query={query}
           renderError={useCallback(
-            () => (
-              <EmptyArticleView />
+            (e) => (
+              <ErrorView error={e} />
             ),
             []
           )}

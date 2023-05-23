@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import type { AppNavigationProps } from '@/view/Router';
 import { theme } from '@/theme';
@@ -11,6 +11,7 @@ import type { ArticleSearchResult } from '@/domain/models/Article';
 import { SearchLoading } from '@/view/SearchScreen/ProgressIndicatorView';
 import { useQuery } from '@tanstack/react-query';
 import { UseQueryResultView } from '@/view/lib/UseQueryResultView';
+import { ErrorView } from '@/view/ErrorView';
 
 type Props = AppNavigationProps<'SearchScreen'>;
 
@@ -57,7 +58,7 @@ function factory(searchArticlesAction: SearchArticlesAction) {
           query={reactQuery}
           renderError={useCallback(
             (e: unknown) => (
-              <Text>Error: {String(e)}</Text>
+              <ErrorView error={e} />
             ),
             []
           )}

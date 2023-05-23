@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ArticleList } from '@/view/HomeScreen/ArticleList';
 import { theme } from '@/theme';
 import type { AppNavigationProps } from '@/view/Router';
@@ -14,6 +14,7 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { UseQueryResultView } from '@/view/lib/UseQueryResultView';
 import type { TableOfContents } from '@/domain/models/TableOfContents';
+import { ErrorView } from '@/view/ErrorView';
 
 type Props = AppNavigationProps<'HomeScreen'>;
 
@@ -53,8 +54,8 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
         <UseQueryResultView
           query={query}
           renderError={useCallback(
-            () => (
-              <Text>Uh oh, somehting went wrong</Text>
+            (e) => (
+              <ErrorView error={e} />
             ),
             []
           )}
