@@ -1,4 +1,4 @@
-import { ErrorScreen } from '@/view/ErrorBoundary/ErrorScreen';
+import { ErrorView } from '@/view/ErrorView/ErrorView';
 import React, { Component } from 'react';
 
 type Props = {
@@ -24,7 +24,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   renderErrorScreen(error: unknown) {
-    return <ErrorScreen error={error} />;
+    return <ErrorView error={error} />;
   }
 
   render() {

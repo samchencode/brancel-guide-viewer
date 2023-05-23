@@ -9,7 +9,7 @@ type Props = {
 const errorToString = (error: Error) => `${error.message} - (${error.name})`;
 const unknownToString = (error: unknown) => String(error);
 
-function ErrorScreen({ error }: Props) {
+function ErrorView({ error }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.dialog}>
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { ErrorScreen };
+export { ErrorView };
