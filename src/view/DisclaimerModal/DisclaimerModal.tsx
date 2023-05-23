@@ -17,8 +17,6 @@ function A({ children, linkTo }: AProps) {
       onPress={async () => {
         if (await Linking.canOpenURL(linkTo)) {
           Linking.openURL(linkTo);
-        } else {
-          console.error({ message: "Oops, we couldn't open that link" });
         }
       }}
     >
