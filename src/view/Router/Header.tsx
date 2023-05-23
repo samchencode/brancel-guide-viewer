@@ -10,6 +10,7 @@ import { theme } from '@/theme';
 import { Menu } from '@/view/Router/Menu';
 import { ARTICLE_TYPES } from '@/domain/models/Article';
 import type { ClearCacheAction } from '@/application/ClearCacheAction';
+import { NoInternetBanner, useNoInternetBanner } from '@/view/NoInternetBanner';
 
 type IconButtonProps = {
   iconName: string;
@@ -79,6 +80,9 @@ function factory(clearCacheAction: ClearCacheAction) {
       clearCacheAction.execute();
     }, []);
 
+    const { shouldShowNoInternetBanner, handleDismissNoInternetBanner } =
+      useNoInternetBanner();
+
     return (
       <View style={styles.container}>
         <StatusBar translucent />
@@ -121,6 +125,10 @@ function factory(clearCacheAction: ClearCacheAction) {
             onPressClearCache={handleClearCachePress}
           />
         </View>
+        <NoInternetBanner
+          visible={shouldShowNoInternetBanner}
+          onPressDismiss={handleDismissNoInternetBanner}
+        />
       </View>
     );
   };

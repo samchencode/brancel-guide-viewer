@@ -3,6 +3,7 @@ import { StyleSheet, TextInput, View, TouchableOpacity } from 'react-native';
 import type { StyleProp, ViewStyle, TextStyle } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { theme } from '@/theme';
+import { NoInternetBanner, useNoInternetBanner } from '@/view/NoInternetBanner';
 
 type IconButtonProps = {
   iconName: string;
@@ -39,23 +40,36 @@ function Header({ value, onPressBack, onPressClear, onChangeValue }: Props) {
     inputRef.current.focus();
   }, []);
 
+  const { shouldShowNoInternetBanner, handleDismissNoInternetBanner } =
+    useNoInternetBanner();
+
   return (
     <View style={styles.container}>
-      <IconButton iconName="arrow-left" onPress={onPressBack} />
-      <TextInput
-        value={value}
-        onChangeText={onChangeValue}
-        placeholder="Search All Articles"
-        style={styles.input}
-        ref={inputRef}
+      <View style={styles.header}>
+        <IconButton iconName="arrow-left" onPress={onPressBack} />
+        <TextInput
+          value={value}
+          onChangeText={onChangeValue}
+          placeholder="Search All Articles"
+          style={styles.input}
+          ref={inputRef}
+        />
+        <IconButton iconName="times" onPress={onPressClear} />
+      </View>
+      <NoInternetBanner
+        visible={shouldShowNoInternetBanner}
+        onPressDismiss={handleDismissNoInternetBanner}
       />
-      <IconButton iconName="times" onPress={onPressClear} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
+    backgroundColor: theme.colors.surface,
+  },
+  header: {
     height: 72,
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.outline,
