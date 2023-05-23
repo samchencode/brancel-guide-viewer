@@ -8,7 +8,14 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      networkMode: 'always',
+      refetchOnReconnect: true,
+    },
+  },
+});
 
 // Notify react-query on net state changes.
 // Enables refetch on network status change.
