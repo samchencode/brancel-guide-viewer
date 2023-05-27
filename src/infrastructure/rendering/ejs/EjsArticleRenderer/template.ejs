@@ -345,46 +345,103 @@
         traversedLength = traversedLength + encodedText.length
       }
 
-      function markNode(node, text, start, stop) {
+      /**
+       * @typedef RegionOfTextContainingMark
+       * @type {object}
+       * @property {'unmarked' | 'marked'} type
+       * @property {string} text
+       */
 
+      /**
+       * Split text into marked and unmarked regions
+       * @param {string} text
+       * @param {Range[]} rangesToMark
+       * @returns {RegionOfTextContainingMark[]}
+       */
+      function splitTextByMark(text, rangesToMark) {
+        if (rangesToMark.length === 0) return [{
+          type: 'unmarked',
+          text: text
+        }]
+        var firstRegionStart = rangesToMark[0][0]
+        var lastRegion = rangesToMark[rangesToMark.length - 1]
+        var firstRegionHasMark = firstRegionStart === 0
+        var lastRegionHasMark = lastRegion[1] === text.length
+        var markedAndUnmarkedRegions = []
+        if (!firstRegionHasMark) {
+          markedAndUnmarkedRegions.push({
+            type: 'unmarked',
+            text: text.slice(0, firstRegionStart)
+          })
+        }
+        for (var i = 0; i < rangesToMark.length; i++) {
+          var thisRange = rangesToMark[i]
+          markedAndUnmarkedRegions.push({
+            type: 'marked',
+            text: text.slice(thisRange[0], thisRange[1]),
+          })
+          var isLastIteration = i === rangesToMark.length - 1
+          if (isLastIteration) continue
+          var nextRange = rangesToMark[i + 1]
+          markedAndUnmarkedRegions.push({
+            type: 'unmarked',
+            text: text.slice(thisRange[1], nextRange[0]),
+          })
+        }
+        if (!lastRegionHasMark) {
+          markedAndUnmarkedRegions.push({
+            type: 'unmarked',
+            text: text.slice(lastRegion[1], text.length)
+          })
+        }
+        return markedAndUnmarkedRegions;
+      }
+
+      /** 
+       * @param {RegionOfTextContainingMark[]} regions
+       * @returns {HTMLSpanElement} 
+       */
+      function makeSpanWithMarksFromTextRegions(regions) {
         var container = document.createElement('span')
-        var beforeMark = htmlDecode(text.slice(0, start));
-        var textToMark = htmlDecode(text.slice(start, stop));
-        var afterMark = htmlDecode(text.slice(stop));
-
-        var mark = document.createElement('mark');
-        var textNodeToMark = document.createTextNode(textToMark);
-        mark.appendChild(textNodeToMark);
-
-        var textNodeBeforeMark = document.createTextNode(beforeMark);
-        var textNodeAfterMark = document.createTextNode(afterMark);
-
-        container.appendChild(textNodeBeforeMark);
-        container.appendChild(mark);
-        container.appendChild(textNodeAfterMark);
-
-        node.replaceWith(container);
+        for (var i = 0; i < regions.length; i++) {
+          var region = regions[i]
+          var text = htmlDecode(region.text)
+          var textNode = document.createTextNode(text)
+          if (region.type === "marked") {
+            var mark = document.createElement('mark')
+            mark.appendChild(textNode)
+            container.appendChild(mark)
+          } else {
+            container.appendChild(textNode)
+          }
+        }
+        return container
       }
 
       /**
        * @param {Range[]} ranges Ranges of text on the document to mark
        */
       function markTextRanges(ranges) {
-        for (var i = 0; i < ranges.length; i++) {
-          var range = ranges[i]
+        for (var i = 0; i < textNodes.length; i++) { // for each text node go thru all ranges-to-highlight
+          var textInfo = textNodes[i]
+          var rangesToMark = []
 
-          for (var j = 0; j < textNodes.length; j++) {
-            var textInfo = textNodes[j]
+          for (var j = 0; j < ranges.length; j++) { // for each range... check overlaps & 
+            var range = ranges[j]
             var overlap = testOverlap(range, textInfo.range)
             if (overlap === null) continue
-            if (overlap.ranges[0].range === textInfo.range) {
-              var overlapRange = overlap.ranges[0].overlap
-              markNode(textInfo.node, textInfo.text, overlapRange[0], overlapRange[1])
-            } else {
-              var overlapRange = overlap.ranges[1].overlap
-              markNode(textInfo.node, textInfo.text, overlapRange[0], overlapRange[1])
-            }
+
+            // Find which of overlap.ranges refers to the range of the text node and get the overlap idxs relative to it
+            var overlappingRange = overlap.ranges[0].range === textInfo.range ?
+              overlap.ranges[0].overlap :
+              overlap.ranges[1].overlap
+
+            rangesToMark.push(overlappingRange)
           }
+
+          var regions = splitTextByMark(textInfo.text, rangesToMark)
+          var newNode = makeSpanWithMarksFromTextRegions(regions)
+          textInfo.node.replaceWith(newNode)
         }
       }
 
