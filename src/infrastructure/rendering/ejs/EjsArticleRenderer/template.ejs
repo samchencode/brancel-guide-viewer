@@ -438,7 +438,7 @@
 
             rangesToMark.push(overlappingRange)
           }
-
+          if (rangesToMark.length === 0) continue
           var regions = splitTextByMark(textInfo.text, rangesToMark)
           var newNode = makeSpanWithMarksFromTextRegions(regions)
           textInfo.node.replaceWith(newNode)
