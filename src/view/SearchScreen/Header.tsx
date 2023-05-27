@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import type { StyleProp, ViewStyle, TextStyle } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { theme } from '@/theme';
@@ -87,7 +93,8 @@ const styles = StyleSheet.create({
     flex: 1,
     ...theme.fonts.bodyLarge,
     color: theme.colors.onBackground,
-    lineHeight: 0,
+    lineHeight: Platform.OS === 'ios' ? 0 : theme.fonts.bodyLarge.lineHeight,
+    textAlignVertical: 'center',
   },
 });
 
