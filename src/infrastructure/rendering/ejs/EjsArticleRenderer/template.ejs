@@ -356,8 +356,8 @@
         var textNodeToMark = document.createTextNode(textToMark);
         mark.appendChild(textNodeToMark);
 
-        textNodeBeforeMark = document.createTextNode(beforeMark);
-        textNodeAfterMark = document.createTextNode(afterMark);
+        var textNodeBeforeMark = document.createTextNode(beforeMark);
+        var textNodeAfterMark = document.createTextNode(afterMark);
 
         container.appendChild(textNodeBeforeMark);
         container.appendChild(mark);
