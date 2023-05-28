@@ -11,21 +11,19 @@ import { cheerio } from '@/vendor/cheerio';
 import type { TableOfContents } from '@/domain/models/TableOfContents';
 
 class CheerioGuideParser implements GuideParser {
-  base: BaseCheerioGuideParser;
+  private base: BaseCheerioGuideParser;
 
-  $?: cheerio.CheerioAPI;
+  private $?: cheerio.CheerioAPI;
 
-  html?: string;
+  private html?: string;
 
   constructor() {
     this.base = new BaseCheerioGuideParser();
   }
 
   getTableOfContents(html: string): TableOfContents {
-    if (!this.$ || this.shouldReload(html)) {
-      this.$ = this.makeCheerioApi(html);
-    }
-    return this.base.getTableOfContents(this.$);
+    const $ = this.getCheerioApi(html);
+    return this.base.getTableOfContents($);
   }
 
   private makeCheerioApi(html: string) {
@@ -34,36 +32,33 @@ class CheerioGuideParser implements GuideParser {
     return $;
   }
 
-  private shouldReload(html: string) {
-    return this.html !== html;
+  private getCheerioApi(html: string): cheerio.CheerioAPI {
+    const htmlHasChanged = this.html !== html;
+    if (!this.$ || htmlHasChanged) {
+      this.html = html;
+      this.$ = this.makeCheerioApi(html);
+    }
+    return this.$;
   }
 
   getAbout(html: string): About {
-    if (!this.$ || this.shouldReload(html)) {
-      this.$ = this.makeCheerioApi(html);
-    }
-    return this.base.getAbout(this.$);
+    const $ = this.getCheerioApi(html);
+    return this.base.getAbout($);
   }
 
   getIndex(html: string): Index {
-    if (!this.$ || this.shouldReload(html)) {
-      this.$ = this.makeCheerioApi(html);
-    }
-    return this.base.getIndex(this.$);
+    const $ = this.getCheerioApi(html);
+    return this.base.getIndex($);
   }
 
   getUsageInstructions(html: string): UsageInstructions {
-    if (!this.$ || this.shouldReload(html)) {
-      this.$ = this.makeCheerioApi(html);
-    }
-    return this.base.getUsageInstructions(this.$);
+    const $ = this.getCheerioApi(html);
+    return this.base.getUsageInstructions($);
   }
 
   getArticles(html: string): Article[] {
-    if (!this.$ || this.shouldReload(html)) {
-      this.$ = this.makeCheerioApi(html);
-    }
-    return this.base.getArticles(this.$);
+    const $ = this.getCheerioApi(html);
+    return this.base.getArticles($);
   }
 }
 
