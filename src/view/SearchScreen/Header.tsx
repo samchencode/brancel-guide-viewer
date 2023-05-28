@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -39,13 +39,6 @@ type Props = {
 };
 
 function Header({ value, onPressBack, onPressClear, onChangeValue }: Props) {
-  const inputRef = useRef<TextInput>(null);
-
-  useEffect(() => {
-    if (!inputRef.current) return;
-    inputRef.current.focus();
-  }, []);
-
   const { shouldShowNoInternetBanner, handleDismissNoInternetBanner } =
     useNoInternetBanner();
 
@@ -58,7 +51,7 @@ function Header({ value, onPressBack, onPressClear, onChangeValue }: Props) {
           onChangeText={onChangeValue}
           placeholder="Search All Articles"
           style={styles.input}
-          ref={inputRef}
+          autoFocus
         />
         <IconButton iconName="times" onPress={onPressClear} />
       </View>
