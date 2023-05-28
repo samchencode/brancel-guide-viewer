@@ -96,6 +96,19 @@ exports[`EjsArticleRenderer Behavior should render html in the body 1`] = `
       margin: 0;
       padding: 0;
     }
+
+    /* Tablet styles */
+    @media screen and (min-width: 900px) {
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      main {
+        width: 900px;
+      }
+    }
   </style>
 </head>
 
