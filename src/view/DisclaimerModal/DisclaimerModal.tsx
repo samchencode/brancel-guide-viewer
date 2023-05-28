@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.25)',
     justifyContent: 'center',
+    alignItems: 'center',
     position: 'relative',
   },
   underlay: {
