@@ -4,6 +4,8 @@ import { useWindowDimensions, StyleSheet, FlatList } from 'react-native';
 import type { ArticleSearchResult } from '@/domain/models/Article';
 import { ResultListItem } from '@/view/SearchScreen/ResultListItem';
 import { EmptyResultList } from '@/view/SearchScreen/EmptyResultList';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { theme } from '@/theme';
 
 type Props = {
   results: ArticleSearchResult[];
@@ -23,6 +25,8 @@ function ResultList({ results, onSelectResult }: Props) {
     [onSelectResult]
   );
 
+  const insets = useSafeAreaInsets();
+
   return (
     <FlatList
       data={results}
@@ -30,9 +34,10 @@ function ResultList({ results, onSelectResult }: Props) {
       keyExtractor={(item) => item.article.id}
       ListEmptyComponent={<EmptyResultList />}
       initialNumToRender={initialNumToRender}
-      contentContainerStyle={
-        results.length === 0 && styles.emptyContentContainer
-      }
+      contentContainerStyle={[
+        results.length === 0 && styles.emptyContentContainer,
+        { paddingBottom: Math.max(theme.spaces.sm, insets.bottom) },
+      ]}
     />
   );
 }

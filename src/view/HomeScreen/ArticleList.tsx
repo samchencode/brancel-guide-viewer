@@ -7,6 +7,7 @@ import { theme } from '@/theme';
 import type { TableOfContentsItem } from '@/domain/models/TableOfContents';
 import { EmptyArticleList } from '@/view/HomeScreen/EmptyArticleList';
 import { useFocusEffect } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
   articles: TableOfContentsItem[];
@@ -37,6 +38,8 @@ function ArticleList({
     });
   });
 
+  const insets = useSafeAreaInsets();
+
   return (
     <FlatList
       ref={flatListRef}
@@ -48,7 +51,10 @@ function ArticleList({
         [onSelectArticle]
       )}
       keyExtractor={getKey}
-      contentContainerStyle={styles.contentContainerStyle}
+      contentContainerStyle={[
+        styles.contentContainerStyle,
+        { paddingBottom: Math.max(theme.spaces.sm, insets.bottom) },
+      ]}
       ListEmptyComponent={<EmptyArticleList />}
       ListHeaderComponent={ListHeaderComponent}
       initialNumToRender={initialNumToRender}
@@ -59,7 +65,6 @@ function ArticleList({
 const styles = StyleSheet.create({
   contentContainerStyle: {
     marginTop: theme.spaces.sm,
-    marginBottom: theme.spaces.sm,
   },
 });
 

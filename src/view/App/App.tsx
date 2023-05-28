@@ -8,21 +8,24 @@ import {
   useReactQueryAppStateListener,
 } from '@/view/App/prepareReactQuery';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 function factory(Router: Router) {
   return function App() {
     useReactQueryAppStateListener();
 
     return (
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <ErrorBoundary>
-          <NavigationContainer>
-            <QueryClientProvider client={queryClient}>
-              <Router />
-            </QueryClientProvider>
-          </NavigationContainer>
-        </ErrorBoundary>
-      </GestureHandlerRootView>
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <ErrorBoundary>
+            <NavigationContainer>
+              <QueryClientProvider client={queryClient}>
+                <Router />
+              </QueryClientProvider>
+            </NavigationContainer>
+          </ErrorBoundary>
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
     );
   };
 }

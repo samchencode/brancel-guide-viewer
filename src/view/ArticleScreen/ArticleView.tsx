@@ -5,6 +5,7 @@ import type { Article, MatchIndex } from '@/domain/models/Article';
 import { useWebViewEventHandlers } from '@/view/ArticleScreen/useWebViewEventHandlers';
 import type { AppNavigationProps } from '@/view/Router';
 import type { RenderArticleAction } from '@/application/RenderArticleAction';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Navigation = AppNavigationProps<'ArticleScreen'>['navigation'];
 
@@ -43,6 +44,8 @@ function ArticleView({
     [handler]
   );
 
+  const insets = useSafeAreaInsets();
+
   return (
     <WebView
       source={{ html }}
@@ -51,6 +54,7 @@ function ArticleView({
         sectionId && makeHashAddScript(sectionId),
         searchMatchIndicies && makeMarkMatchesScript(searchMatchIndicies),
       ].join(';')}
+      contentInset={{ bottom: insets.bottom }}
     />
   );
 }
