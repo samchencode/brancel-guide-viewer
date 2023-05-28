@@ -3,6 +3,7 @@ import type { ListRenderItem } from 'react-native';
 import { useWindowDimensions, StyleSheet, FlatList } from 'react-native';
 import type { ArticleSearchResult } from '@/domain/models/Article';
 import { ResultListItem } from '@/view/SearchScreen/ResultListItem';
+import { EmptyResultList } from '@/view/SearchScreen/EmptyResultList';
 
 type Props = {
   results: ArticleSearchResult[];
@@ -27,16 +28,18 @@ function ResultList({ results, onSelectResult }: Props) {
       data={results}
       renderItem={renderItem}
       keyExtractor={(item) => item.article.id}
-      contentContainerStyle={styles.container}
-      // ListEmptyComponent={<EmptyArticleList />}
+      ListEmptyComponent={<EmptyResultList />}
       initialNumToRender={initialNumToRender}
+      contentContainerStyle={
+        results.length === 0 && styles.emptyContentContainer
+      }
     />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    //
+  emptyContentContainer: {
+    flex: 1,
   },
 });
 
