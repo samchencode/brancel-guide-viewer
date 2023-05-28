@@ -11,6 +11,8 @@ import type { WpApiPageResponse } from '@/infrastructure/persistence/wp-api/WpAp
 class WpApiGuideRepository implements GuideRepository {
   private apiResponse?: WpApiPageResponse;
 
+  private html?: string;
+
   constructor(
     private fetch: (url: string) => Promise<Response>,
     private wpApiHostUrl: string,
@@ -41,13 +43,16 @@ class WpApiGuideRepository implements GuideRepository {
     if (!response.ok) {
       throw new WpApiError(response.status, data as WpApiErrorResponse);
     }
+    this.apiResponse = data;
     return data as WpApiPageResponse;
   }
 
   private async getHtml() {
+    if (this.html) return this.html;
     const apiResponse = await this.getApiResponse();
     const html = apiResponse.content.rendered;
     const htmlWithImgUrls = this.addHostUrlToImages(html);
+    this.html = htmlWithImgUrls;
     return htmlWithImgUrls;
   }
 
