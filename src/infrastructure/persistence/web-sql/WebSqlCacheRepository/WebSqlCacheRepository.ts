@@ -81,7 +81,7 @@ class WebSqlCacheRepository implements CacheRepository {
   private async prepareDatabase() {
     const articlesTable = sqlStr`
     CREATE TABLE IF NOT EXISTS articles (
-      id                 TEXT,
+      id                 TEXT PRIMARY KEY,
       title              TEXT,
       body               TEXT,
       sectionIdsJson     TEXT,
@@ -91,7 +91,7 @@ class WebSqlCacheRepository implements CacheRepository {
     const tableOfContentsTable = sqlStr`
     CREATE TABLE IF NOT EXISTS tableOfContents (
       label       TEXT,
-      destination TEXT
+      destination TEXT PRIMARY KEY
     )`;
     const metadataTable = sqlStr`
     CREATE TABLE IF NOT EXISTS metadata (
