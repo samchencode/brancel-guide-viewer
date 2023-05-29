@@ -53,7 +53,7 @@ class FakeArticleRepository implements ArticleRepository {
     return articles.map((a) => ({
       id: a.id.toString(),
       title: a.title,
-      body: sanitizeHtml(a.body.html),
+      body: sanitizeHtml(a.body.html).trim(),
     }));
   }
 }

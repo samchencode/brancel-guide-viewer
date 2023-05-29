@@ -172,7 +172,7 @@ class CacheArticleRepository implements ArticleRepository {
       if (cachedSearchableArticles.length === 0) return await getFromRepo();
       return cachedSearchableArticles.map((article) => ({
         ...article,
-        body: this.sanitizeHtml(article.body),
+        body: this.sanitizeHtml(article.body).trim(),
       }));
     } catch (e) {
       return getFromRepo();
