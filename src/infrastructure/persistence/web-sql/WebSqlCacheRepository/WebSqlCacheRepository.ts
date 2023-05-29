@@ -247,9 +247,9 @@ class WebSqlCacheRepository implements CacheRepository {
   async delete(): Promise<void> {
     await this.ready;
 
-    const deleteArticles = sqlStr`DELETE FROM articles`;
-    const deleteToc = sqlStr`DELETE FROM tableOfContents`;
-    const deleteMetadata = sqlStr`DELETE FROM metadata`;
+    const deleteArticles = sqlStr`DROP TABLE articles`;
+    const deleteToc = sqlStr`DROP TABLE tableOfContents`;
+    const deleteMetadata = sqlStr`DROP TABLE metadata`;
     await this.executeSql([deleteArticles, deleteToc, deleteMetadata]);
     this.ready = this.prepareDatabase();
   }
