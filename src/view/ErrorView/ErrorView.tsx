@@ -3,6 +3,7 @@ import { DangerButton } from '@/view/ErrorView/DangerButton';
 import React, { useCallback } from 'react';
 import { View, Text, StyleSheet, Platform, ScrollView } from 'react-native';
 import * as Updates from 'expo-updates';
+import { Email } from '@/view/ErrorView/Email';
 
 type Props = {
   error: unknown;
@@ -19,7 +20,6 @@ function ErrorView({ error }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.dialog}>
-        <Text style={styles.heading}>Uh oh!</Text>
         <Text style={styles.subheading}>Something went wrong...</Text>
         <ScrollView style={styles.errorTextContainer}>
           <Text style={styles.errorText}>
@@ -29,8 +29,8 @@ function ErrorView({ error }: Props) {
           </Text>
         </ScrollView>
         <Text style={styles.message}>
-          Please restart the app and try again. Let us know if the problem
-          persists.
+          Please restart the app, clear the cache, and try again. Contact us at{' '}
+          <Email>markbrancelmd@gmail.com</Email>
         </Text>
         <DangerButton onPress={handleRestart} style={styles.button} />
       </View>
@@ -53,11 +53,6 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     minWidth: 280,
     maxWidth: 560,
-  },
-  heading: {
-    ...theme.fonts.headlineLarge,
-    marginBottom: theme.spaces.md,
-    color: theme.colors.onErrorContainer,
   },
   subheading: {
     ...theme.fonts.titleLarge,
