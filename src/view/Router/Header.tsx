@@ -11,6 +11,7 @@ import { Menu } from '@/view/Router/Menu';
 import { ARTICLE_TYPES } from '@/domain/models/Article';
 import type { ClearCacheAction } from '@/application/ClearCacheAction';
 import { NoInternetBanner, useNoInternetBanner } from '@/view/NoInternetBanner';
+import * as Updates from 'expo-updates';
 
 type IconButtonProps = {
   iconName: string;
@@ -77,7 +78,7 @@ function factory(clearCacheAction: ClearCacheAction) {
     }, [navigation]);
     const handleClearCachePress = useCallback(() => {
       setMenuOpen(false);
-      clearCacheAction.execute();
+      clearCacheAction.execute().then(() => Updates.reloadAsync());
     }, []);
 
     const { shouldShowNoInternetBanner, handleDismissNoInternetBanner } =
