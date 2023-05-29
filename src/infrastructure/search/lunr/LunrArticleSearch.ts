@@ -43,11 +43,16 @@ function metadataToMatchRanges(meta: LunrMatchMetadata): ArticleMatchData {
 class LunrArticleSearch implements ArticleSearch {
   searchableArticles: Promise<SearchableArticle[]>;
 
-  idx: Promise<lunr.Index>;
+  idx?: Promise<lunr.Index>;
 
   constructor(private articleRepository: ArticleRepository) {
     this.searchableArticles = this.articleRepository.getAllSearchable();
+  }
+
+  private async getIdx() {
+    if (this.idx) return this.idx;
     this.idx = this.buildIndex();
+    return this.idx;
   }
 
   private async buildIndex() {
@@ -67,7 +72,7 @@ class LunrArticleSearch implements ArticleSearch {
 
   async search(searchText: string): Promise<ArticleSearchResult[]> {
     const articles = await this.searchableArticles;
-    const idx = await this.idx;
+    const idx = await this.getIdx();
     const lunrResults = idx.search(searchText);
     return lunrResults.map((v) => {
       const article = articles.find((a) => a.id === v.ref);
