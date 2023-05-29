@@ -6,10 +6,13 @@ import type {
 } from '@/domain/models/RichText';
 import { WpApiError } from '@/infrastructure/persistence/wp-api/WpApiError';
 import type { WpApiErrorResponse } from '@/infrastructure/persistence/wp-api/WpApiErrorResponse';
+import type { WpApiModifiedGmtResponse } from '@/infrastructure/persistence/wp-api/WpApiModifiedGmtResponse';
 import type { WpApiPageResponse } from '@/infrastructure/persistence/wp-api/WpApiPageResponse';
 
 class WpApiGuideRepository implements GuideRepository {
   private apiResponse?: WpApiPageResponse;
+
+  private lastUpdatedTimestamp?: Date;
 
   private html?: string;
 
@@ -29,10 +32,18 @@ class WpApiGuideRepository implements GuideRepository {
   }
 
   async getLastUpdatedTimestamp(): Promise<Date> {
-    const apiResponse = await this.getApiResponse();
-    let isoString = apiResponse.modified_gmt;
+    if (this.lastUpdatedTimestamp) return this.lastUpdatedTimestamp;
+    const url = `${this.wpApiHostUrl}/wp-json/wp/v2/pages/${this.wpApiPageId}?_fields=modified_gmt`;
+    const response = await this.fetch(url);
+    const data = await response.json();
+    if (!response.ok) {
+      throw new WpApiError(response.status, data as WpApiErrorResponse);
+    }
+    const apiLastUpdatedResponse = data as WpApiModifiedGmtResponse;
+    let isoString = apiLastUpdatedResponse.modified_gmt;
     if (isoString.slice(-1) !== 'Z') isoString += 'Z';
-    return new Date(isoString);
+    this.lastUpdatedTimestamp = new Date(isoString);
+    return this.lastUpdatedTimestamp;
   }
 
   private async getApiResponse() {
