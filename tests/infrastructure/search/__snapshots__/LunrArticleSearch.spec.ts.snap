@@ -4,8 +4,7 @@ exports[`LunrArticleSearch Behavior should get articles matching search term wit
 [
   ArticleSearchResult {
     "article": {
-      "body": "
-Injury guidelines
+      "body": "Injury guidelines
 
 If any question about management, consult!
 
@@ -24,53 +23,51 @@ If slow recovery, consider frequent follow-up visits, +/- orthopedic or physical
 
 If history and physical findings do not concur, consider underlying pathology/disease and/or physical abuse!
 
-Suspect physical abuse with the following fractures, especially in infants: fractures of ribs, long bone metaphysis, scapula, spinous process, and sternum; or if multiple fractures, fractures of different ages and/or stages of healing, or complex skull fractures.
-
-",
+Suspect physical abuse with the following fractures, especially in infants: fractures of ribs, long bone metaphysis, scapula, spinous process, and sternum; or if multiple fractures, fractures of different ages and/or stages of healing, or complex skull fractures.",
       "id": "INJURY_GUIDELINES",
       "title": "Injury guidelines",
     },
     "matchData": {
       "body": [
         [
-          68,
-          78,
+          67,
+          77,
         ],
         [
-          1231,
-          1241,
+          1230,
+          1240,
         ],
         [
-          1,
-          7,
+          0,
+          6,
         ],
         [
-          83,
-          92,
+          82,
+          91,
         ],
         [
-          136,
-          143,
+          135,
+          142,
         ],
         [
-          211,
-          217,
+          210,
+          216,
         ],
         [
-          1724,
-          1732,
+          1723,
+          1731,
         ],
         [
-          1881,
-          1890,
+          1880,
+          1889,
         ],
         [
-          1907,
-          1913,
+          1906,
+          1912,
         ],
         [
-          2092,
-          2098,
+          2091,
+          2097,
         ],
       ],
       "title": [
@@ -84,8 +81,7 @@ Suspect physical abuse with the following fractures, especially in infants: frac
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Soft-tissue injuries
+      "body": "Soft-tissue injuries
 
 Neck and back sprain/strain - RICE etc. +/- soft collar or back support, with early ROM; consult if acute or progressive neuro deficit, or serious musculoskeletal injury (see CERVICAL SPINE INJURIES and THORAX AND SPINE FRACTURES).
 Sterno-clavicular joint injury - reduce dislocations with lateral arm traction +/- anterior vs posterior clavicle pressure/traction; RICE etc. &amp; sling vs figure-eight harness x 1-6 wks, then ROM x 4-8 wks (longer times if dislocation with reduction); consult if posterior, unstable or neurovascular or tracheal injury.
@@ -139,140 +135,139 @@ Ankle distal tibia/fibula syndesmotic ligament injury - squeeze and external rot
 Go to the Table of Contents or the Index.
 Heel calcaneal apophysitis - RICE etc. +/- crutches +/- heel pad.
 Foot - see Ankle &amp; , which may include fractures of the metatarsals in particular.
-Toe PIP and DIP joint collateral ligament injury - buddy taping  for 3-6 wks; consult if unstable. See Toe injuries.
-",
+Toe PIP and DIP joint collateral ligament injury - buddy taping  for 3-6 wks; consult if unstable. See Toe injuries.",
       "id": "SOFT-TISSUE_INJURIES",
       "title": "Soft-tissue injuries",
     },
     "matchData": {
       "body": [
         [
-          13,
-          21,
+          12,
+          20,
         ],
         [
-          186,
-          192,
+          185,
+          191,
         ],
         [
-          213,
-          221,
+          212,
+          220,
         ],
         [
-          279,
-          285,
+          278,
+          284,
         ],
         [
-          570,
-          577,
+          569,
+          576,
         ],
         [
-          650,
-          656,
+          649,
+          655,
         ],
         [
-          712,
-          719,
+          711,
+          718,
         ],
         [
-          1637,
-          1644,
+          1636,
+          1643,
         ],
         [
-          1705,
-          1714,
+          1704,
+          1713,
         ],
         [
-          1768,
-          1776,
+          1767,
+          1775,
         ],
         [
-          1949,
-          1956,
+          1948,
+          1955,
         ],
         [
-          2111,
-          2121,
+          2110,
+          2120,
         ],
         [
-          2177,
-          2183,
+          2176,
+          2182,
         ],
         [
-          2889,
-          2897,
+          2888,
+          2896,
         ],
         [
-          3572,
-          3581,
+          3571,
+          3580,
         ],
         [
-          3684,
-          3692,
+          3683,
+          3691,
         ],
         [
-          3894,
-          3902,
+          3893,
+          3901,
         ],
         [
-          4218,
-          4226,
+          4217,
+          4225,
         ],
         [
-          4453,
-          4459,
+          4452,
+          4458,
         ],
         [
-          4738,
-          4744,
+          4737,
+          4743,
         ],
         [
-          4846,
-          4855,
+          4845,
+          4854,
         ],
         [
-          4929,
-          4935,
+          4928,
+          4934,
         ],
         [
-          6115,
-          6121,
+          6114,
+          6120,
         ],
         [
-          6347,
-          6353,
+          6346,
+          6352,
         ],
         [
-          6861,
-          6867,
+          6860,
+          6866,
         ],
         [
-          7045,
-          7052,
+          7044,
+          7051,
         ],
         [
-          7970,
-          7977,
+          7969,
+          7976,
         ],
         [
-          8059,
-          8066,
+          8058,
+          8065,
         ],
         [
-          8114,
-          8120,
+          8113,
+          8119,
         ],
         [
-          8192,
-          8199,
+          8191,
+          8198,
         ],
         [
-          8670,
-          8676,
+          8669,
+          8675,
         ],
         [
-          8735,
-          8744,
+          8734,
+          8743,
         ],
       ],
       "title": [
@@ -286,8 +281,7 @@ Toe PIP and DIP joint collateral ligament injury - buddy taping  for 3-6 wks; co
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Cervical spine injuries
+      "body": "Cervical spine injuries
 
 (beyond the common sprain/strain)
 
@@ -321,48 +315,47 @@ Bilateral facet dislocation - unstable; usually with &gt;50% body displacement.
 Unilateral facet dislocation/subluxation - unstable or stable; usually &lt;25% body displacement noted with overlapping facets on lateral view, anterior decreased disc space, posterior decreased disc space, and increased interspinous distance.
 Simple wedge and bursting vertebral body fracture - usually stable, unless fragments of burst enter canal.
 Posterior element fracture - usually stable if isolated.
-Spinous process fracture - stable; most commonly involving C6, C7, or T1 (Clay-Shoveler's fx)
-",
+Spinous process fracture - stable; most commonly involving C6, C7, or T1 (Clay-Shoveler's fx)",
       "id": "CERVICAL_SPINE_INJURIES",
       "title": "Cervical spine injuries",
     },
     "matchData": {
       "body": [
         [
-          16,
-          24,
+          15,
+          23,
         ],
         [
-          170,
-          176,
+          169,
+          175,
         ],
         [
-          330,
-          338,
+          329,
+          337,
         ],
         [
-          404,
-          412,
+          403,
+          411,
         ],
         [
-          486,
-          494,
+          485,
+          493,
         ],
         [
-          1224,
-          1230,
+          1223,
+          1229,
         ],
         [
-          1700,
-          1708,
+          1699,
+          1707,
         ],
         [
-          2471,
-          2478,
+          2470,
+          2477,
         ],
         [
-          2518,
-          2524,
+          2517,
+          2523,
         ],
       ],
       "title": [
@@ -376,8 +369,7 @@ Spinous process fracture - stable; most commonly involving C6, C7, or T1 (Clay-S
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Thorax and spine fractures
+      "body": "Thorax and spine fractures
 
 (below the cervical spine)
 Thoracic &amp; lumbar vertebral wedge compression fracture - bed rest x 1-2 wks, analgesia, +/- corset/orthosis; consult if burst appearance (interpedicular widening on AP view +/- kyphotic angulation on lateral), posterior element involvement, neuro deficit, or ant. body collapse &gt;50% of post. body or &gt;20 degrees angulation.  Consider pathologic fx. Consult for all other thoracolumbar fx.
@@ -389,36 +381,35 @@ Clavicle fracture - sling +/- figure of eight splint for 2-8 weeks (less in chil
 Scapula fracture - body or spine fx, sling for 1-4 weeks, with early ROM; R/O underlying injury; consult if neck angulation &gt;30 degrees,or if displaced, esp. if glenoid, acromion, or coracoid process involvement.
 Go to the Table of Contents or the Index.
 Sternum fracture - consult if displaced, and as usually with high-energy trauma, rule out underlying injury and polytrauma, and transfer if underlying injury, polytrauma, or isolated sternal fracture but anticipated poor outpatient pain control.
-Rib fracture - analgesia; only transient or intermittent prn use of rib belt, to avoid atlectasis/pneumonia; R/O underlying injury (esp. if multiple rib fxs); consult for displaced fx or flail chest injury.
-",
+Rib fracture - analgesia; only transient or intermittent prn use of rib belt, to avoid atlectasis/pneumonia; R/O underlying injury (esp. if multiple rib fxs); consult for displaced fx or flail chest injury.",
       "id": "THORAX_AND_SPINE_FRACTURES",
       "title": "Thorax and spine fractures",
     },
     "matchData": {
       "body": [
         [
-          1021,
-          1028,
+          1020,
+          1027,
         ],
         [
-          1384,
-          1391,
+          1383,
+          1390,
         ],
         [
-          1654,
-          1660,
+          1653,
+          1659,
         ],
         [
-          1704,
-          1711,
+          1703,
+          1710,
         ],
         [
-          1923,
-          1929,
+          1922,
+          1928,
         ],
         [
-          1998,
-          2005,
+          1997,
+          2004,
         ],
       ],
       "title": [],
@@ -427,8 +418,7 @@ Rib fracture - analgesia; only transient or intermittent prn use of rib belt, to
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Dislocations / subluxations
+      "body": "Dislocations / subluxations
 
 Sterno-clavicular &amp; Acromio-clavicular (AC) joint dislocations - see Sterno-clavicular joint injury and Acromio-clavicular (AC) joint injury.
 Shoulder (glenohumeral) joint dislocation - reduce anterior dislocation by downward traction (+/- weights) with patient prone, or seated with inferior traction and external rotation while maintaining  adduction, or seated with arm straight and supported and shoulder extended at 90 degrees anteriorly while medially rotating the inferior tip of the scapula, or supine with arm by side with elbow flexed and gently slowly externally rotate the arm, or prone with arm from side to gently 90 degrees abduction with outward traction followed by elevation over the head while externally rotating the arm, and reduce anterior and posterior dislocations by inferior traction in line of deformity while applying counter/lateral traction with sheet in axilla; sling +/- swathe x 1-2 wks, with early ROM +/- PT at 2-4 wks; consult if not anterior dislocation, fx, failed reduction, unstable joint, recurrent (esp. in young), or neuro Sx (10-25% nerve injury, most transient neuropathy of axillary &amp; musculocutaneous nerves).
@@ -452,52 +442,51 @@ Knee dislocation - consult &amp; consider angiogram as approx 30% with popliteal
 Ankle &amp; foot dislocations, including tibiotalar, Chopart's joint (talocalcaneus - naviculocuboid), and Lisfranc's joint (tarsal-metatarsal, esp. 2nd metatarsal – suspect on x-ray if distance between bases of 1st and 2nd metarsals &gt;2 mm or if avulsion fx off medial base of 2nd metatarsal or adjacent cuneiform) dislocations; if negative x-ray and suspect based on degree of swelling about the affected joints, consider CT to confirm diagnosis - consult; R/O neurovascular injury.
 Go to the Table of Contents or the Index.
 Toe metatarsophalangeal joint dislocation - reduce in extension if dorsal dislocation and in flexion if volar dislocation; buddy tape vs splint  x 1-2 wks; consult if unable to reduce due to soft-tissue interposition, joint instability, or 1st MTP joint. See Toe injuries.
-Toe PIP and DIP joint dislocation - reduce in extension if dorsal dislocation and in flexion if volar dislocation; buddy tape vs splint  x 1-2 wks; if collateral ligament instability, splint at 30 degrees flexion x 4-6 wks;  consult if unstable with ligament or tendon rupture. See Toe injuries.
-",
+Toe PIP and DIP joint dislocation - reduce in extension if dorsal dislocation and in flexion if volar dislocation; buddy tape vs splint  x 1-2 wks; if collateral ligament instability, splint at 30 degrees flexion x 4-6 wks;  consult if unstable with ligament or tendon rupture. See Toe injuries.",
       "id": "DISLOCATIONS/SUBLUXATIONS",
       "title": "Dislocations / subluxations",
     },
     "matchData": {
       "body": [
         [
-          127,
-          133,
+          126,
+          132,
         ],
         [
-          168,
-          175,
+          167,
+          174,
         ],
         [
-          1117,
-          1124,
+          1116,
+          1123,
         ],
         [
-          1733,
-          1740,
+          1732,
+          1739,
         ],
         [
-          2514,
-          2523,
+          2513,
+          2522,
         ],
         [
-          3256,
-          3263,
+          3255,
+          3262,
         ],
         [
-          4032,
-          4039,
+          4031,
+          4038,
         ],
         [
-          4519,
-          4526,
+          4518,
+          4525,
         ],
         [
-          4832,
-          4841,
+          4831,
+          4840,
         ],
         [
-          5128,
-          5137,
+          5127,
+          5136,
         ],
       ],
       "title": [],
@@ -506,8 +495,7 @@ Toe PIP and DIP joint dislocation - reduce in extension if dorsal dislocation an
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Upper-extremity fractures
+      "body": "Upper-extremity fractures
 
 Shoulder proximal humerus epiphysis fracture (children) - sling &amp; swathe for 3-4 wks; consult if displaced.
 Shoulder proximal humerus fracture (including surgical neck impaction and greater tuberosity fx) - sling or sling &amp; swathe for 1-6 weeks, with early ROM &amp; PT after confirming fx stability +/- radiologic union; consult if &gt;0.5-1 cm displacement, &gt;45 degrees angulation of any bone fragment, any rotation, intra-articular fx, any disruption of bicipital groove, comminuted or unstable fx, physis involved in children, neurovascular injury, or anatomic neck fx, or marked shoulder dysfunction at 2-3 wks.
@@ -545,64 +533,63 @@ Finger proximal and middle phalanx shaft fracture ¬ñ buddy taping vs splint vs
 Go to the Table of Contents or the Index.
 Finger PIP joint fracture - see volar plate injuries, central slip injuries, and Finger PIP and DIP joint collateral ligament injury in SOFT-TISSUE INJURIES; splint x 3-6 wks; consult if &gt;30% articular surface, displaced &gt;2 mm, or unstable.
 Finger DIP joint fracture - see Mallet finger extensor digitorum tendon avulsion injury, flexor digitorum profundus avulsion injury, and Finger PIP and DIP joint collateral ligament injury in SOFT-TISSUE INJURIES; splint DIP joint x 3-6 wks; consult if &gt;30% articular surface, displaced &gt;2 mm, or unstable.
-Finger distal phalanx fracture (including tuft fracture) - splint distal phalanx x 3-6 wks; consult if displaced, angulated, or unstable.
-",
+Finger distal phalanx fracture (including tuft fracture) - splint distal phalanx x 3-6 wks; consult if displaced, angulated, or unstable.",
       "id": "UPPER-EXTREMITY_FRACTURES",
       "title": "Upper-extremity fractures",
     },
     "matchData": {
       "body": [
         [
-          584,
-          591,
+          583,
+          590,
         ],
         [
-          989,
-          996,
+          988,
+          995,
         ],
         [
-          1652,
-          1658,
+          1651,
+          1657,
         ],
         [
-          2820,
-          2826,
+          2819,
+          2825,
         ],
         [
-          6340,
-          6349,
+          6339,
+          6348,
         ],
         [
-          6843,
-          6852,
+          6842,
+          6851,
         ],
         [
-          6866,
-          6875,
+          6865,
+          6874,
         ],
         [
-          6925,
-          6931,
+          6924,
+          6930,
         ],
         [
-          6947,
-          6956,
+          6946,
+          6955,
         ],
         [
-          7127,
-          7134,
+          7126,
+          7133,
         ],
         [
-          7171,
-          7178,
+          7170,
+          7177,
         ],
         [
-          7228,
-          7234,
+          7227,
+          7233,
         ],
         [
-          7250,
-          7259,
+          7249,
+          7258,
         ],
       ],
       "title": [],
@@ -611,8 +598,7 @@ Finger distal phalanx fracture (including tuft fracture) - splint distal phalanx
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Lower-extremity fractures
+      "body": "Lower-extremity fractures
 
 
 
@@ -661,56 +647,55 @@ Toe proximal and middle phalanx shaft fracture - buddy tape or if unstable, shor
 Toe PIP and DIP joint fracture - buddy tape or if unstable, short leg cast (with toe extension) x 4-6 wks; consult if &gt;30% articular surface, displaced, or unstable (esp. if 1st toe IP joint).
 Go to the Table of Contents or the Index.
 Toe distal phalanx fracture - splint x 3-6 wks; consult if displaced, angulated, or unstable (esp. if 1st toe).
-Toe, 1st, sesamoid fracture - softly padded short leg walking cast (with toe extension) x 3-8 wks; consult if nonunion and if symptomatic after 6 months.
-",
+Toe, 1st, sesamoid fracture - softly padded short leg walking cast (with toe extension) x 3-8 wks; consult if nonunion and if symptomatic after 6 months.",
       "id": "LOWER-EXTREMITY_FRACTURES",
       "title": "Lower-extremity fractures",
     },
     "matchData": {
       "body": [
         [
-          72,
-          78,
+          71,
+          77,
         ],
         [
-          168,
-          174,
+          167,
+          173,
         ],
         [
-          1028,
-          1035,
+          1027,
+          1034,
         ],
         [
-          1180,
-          1187,
+          1179,
+          1186,
         ],
         [
-          1273,
-          1280,
+          1272,
+          1279,
         ],
         [
-          1576,
-          1582,
+          1575,
+          1581,
         ],
         [
-          2231,
-          2238,
+          2230,
+          2237,
         ],
         [
-          2462,
-          2469,
+          2461,
+          2468,
         ],
         [
-          2738,
-          2744,
+          2737,
+          2743,
         ],
         [
-          4355,
-          4361,
+          4354,
+          4360,
         ],
         [
-          5009,
-          5017,
+          5008,
+          5016,
         ],
       ],
       "title": [],
@@ -719,28 +704,25 @@ Toe, 1st, sesamoid fracture - softly padded short leg walking cast (with toe ext
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Steroid injections
+      "body": "Steroid injections
 
 
 for injury-related inflammation
 steroids should always be reserved for injuries that have not responded to the usual healing times and conservative measures, and there is no infection component.  Avoid use in children/teens!
 conditions that may respond to steroid use: rotator cuff tendinitis, impingement syndrome, subacromial bursitis, adhesive capsulitis, bicipital tendinitis, triceps tendinitis, humeral (medial and lateral) epicondylitis, olecranon bursitis, extensor carpi radialis tendinitis, de Quervain's tendinitis (extensor pollicis brevis and abductor pollicis longus tendons), carpal tunnel syndrome, trigger finger (flexor tenosynovitis), trochanteric bursitis, patellar tendinitis, prepatellar bursitis, popliteus tendinitis and iliotibial band inflammation (over lateral femoral condyle), anserine bursitis (over posteromedial tibial condyle), Achilles tendinitis, tarsal tunnel syndrome, plantar fasciitis, and any non-infectious arthritis. Avoid injecting into tendons!
-Use: 0.5-1.5 inch, 22-25 gauge  needle (18-20 gauge if aspirating); &lt;0.5-10 ml of local anesthetic; &amp; &lt;0.5-2 ml of steroid (betamethasone and dexamethasone 1-10 mg, triamcinolone and methylprednisolone 2-80 mg) - larger needles &amp; doses for larger joints. Maximum of 3 injections per location per year.
-
-",
+Use: 0.5-1.5 inch, 22-25 gauge  needle (18-20 gauge if aspirating); &lt;0.5-10 ml of local anesthetic; &amp; &lt;0.5-2 ml of steroid (betamethasone and dexamethasone 1-10 mg, triamcinolone and methylprednisolone 2-80 mg) - larger needles &amp; doses for larger joints. Maximum of 3 injections per location per year.",
       "id": "STEROID_INJECTIONS",
       "title": "Steroid injections",
     },
     "matchData": {
       "body": [
         [
-          26,
-          32,
+          25,
+          31,
         ],
         [
-          93,
-          101,
+          92,
+          100,
         ],
       ],
       "title": [],
@@ -786,8 +768,7 @@ Use: 0.5-1.5 inch, 22-25 gauge  needle (18-20 gauge if aspirating); &lt;0.5-10 m
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Pelvis fractures
+      "body": "Pelvis fractures
 
 (see THORAX AND SPINE FRACTURES also)
 Pelvis fracture - pain with posterior pressure on iliac crests, compressing iliac wings, and posterior pressure on pubic symphysis (consider symphyseal separation).
@@ -800,20 +781,19 @@ R/O associated GU, GI, neurovascular, and lower-extremity injury; Rx shock and a
 
 Anterior superior (or inferior) iliac spine avulsion fracture vs apophysitis - origin of  Sartorius muscle ( or rectus femoris) - rest with hip flexion (+/- abduction for inferior avulsion fx) +/- crutches +/- immobilization x 2-4 wks, then rehab x 4-6 wks; consult if displaced (&gt;1 cm) or professional athlete.
 Iliac crest avulsion fracture vs apophysitis (origin of external oblique and transversus abdominus muscles) - rest x 2-4 wks, then rehab x 4-6 wks; consult if displaced &gt;1 cm, or professional athlete.
-Ischial tuberosity avulsion fracture vs apophysitis (origin of adductor magnus, semitendinosus and semimembranosus muscles) - rest with hip extension and external rotation +/- crutches x 2-4 wks, then rehab x 4-6 wks; consult if displaced &gt;1 cm, or professional athlete.
-",
+Ischial tuberosity avulsion fracture vs apophysitis (origin of adductor magnus, semitendinosus and semimembranosus muscles) - rest with hip extension and external rotation +/- crutches x 2-4 wks, then rehab x 4-6 wks; consult if displaced &gt;1 cm, or professional athlete.",
       "id": "PELVIS_FRACTURES",
       "title": "Pelvis fractures",
     },
     "matchData": {
       "body": [
         [
-          776,
-          782,
+          775,
+          781,
         ],
         [
-          882,
-          889,
+          881,
+          888,
         ],
       ],
       "title": [],

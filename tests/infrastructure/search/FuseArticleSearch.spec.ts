@@ -7,7 +7,7 @@ import { GuideArticleRepository } from '@/infrastructure/persistence/guide/Guide
 import { FuseArticleSearch } from '@/infrastructure/search/fuze/FuseArticleSearch';
 import { sanitizeHtml } from '@/vendor/sanitizeHtml';
 
-describe('LunrArticleSearch', () => {
+describe('FuseArticleSearch', () => {
   describe('Instantiation', () => {
     it('should be created with article repo', () => {
       const repo = new FakeArticleRepository();
@@ -57,7 +57,7 @@ describe('LunrArticleSearch', () => {
       const originalArticle = await repo.getById(originalArticleId);
       const originalArticleBodySanitized = sanitizeHtml(
         originalArticle.body.html
-      );
+      ).trim();
 
       const matchingTextFromOriginal = result.matchData.body.map((r) =>
         originalArticleBodySanitized.slice(r[0], r[1])

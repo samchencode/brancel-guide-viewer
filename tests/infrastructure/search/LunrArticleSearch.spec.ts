@@ -57,7 +57,7 @@ describe('LunrArticleSearch', () => {
       const originalArticle = await repo.getById(originalArticleId);
       const originalArticleBodySanitized = sanitizeHtml(
         originalArticle.body.html
-      );
+      ).trim();
 
       const matchingTextFromOriginal = result.matchData.body.map((r) =>
         originalArticleBodySanitized.slice(r[0], r[1])

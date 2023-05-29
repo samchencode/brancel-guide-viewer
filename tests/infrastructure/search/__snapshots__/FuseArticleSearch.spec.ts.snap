@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LunrArticleSearch Behavior should get articles matching search term without html tags 1`] = `
+exports[`FuseArticleSearch Behavior should get articles matching search term without html tags 1`] = `
 [
   ArticleSearchResult {
     "article": {
-      "body": "
-Soft-tissue injuries
+      "body": "Soft-tissue injuries
 
 Neck and back sprain/strain - RICE etc. +/- soft collar or back support, with early ROM; consult if acute or progressive neuro deficit, or serious musculoskeletal injury (see CERVICAL SPINE INJURIES and THORAX AND SPINE FRACTURES).
 Sterno-clavicular joint injury - reduce dislocations with lateral arm traction +/- anterior vs posterior clavicle pressure/traction; RICE etc. &amp; sling vs figure-eight harness x 1-6 wks, then ROM x 4-8 wks (longer times if dislocation with reduction); consult if posterior, unstable or neurovascular or tracheal injury.
@@ -59,60 +58,59 @@ Ankle distal tibia/fibula syndesmotic ligament injury - squeeze and external rot
 Go to the Table of Contents or the Index.
 Heel calcaneal apophysitis - RICE etc. +/- crutches +/- heel pad.
 Foot - see Ankle &amp; , which may include fractures of the metatarsals in particular.
-Toe PIP and DIP joint collateral ligament injury - buddy taping  for 3-6 wks; consult if unstable. See Toe injuries.
-",
+Toe PIP and DIP joint collateral ligament injury - buddy taping  for 3-6 wks; consult if unstable. See Toe injuries.",
       "id": "SOFT-TISSUE_INJURIES",
       "title": "Soft-tissue injuries",
     },
     "matchData": {
       "body": [
         [
-          6,
-          20,
+          5,
+          19,
         ],
         [
+          22,
           23,
-          24,
         ],
         [
-          27,
-          29,
+          26,
+          28,
         ],
         [
+          35,
           36,
-          37,
         ],
         [
-          39,
-          42,
+          38,
+          41,
         ],
         [
-          44,
-          50,
+          43,
+          49,
         ],
         [
-          52,
-          54,
+          51,
+          53,
         ],
         [
-          56,
-          59,
+          55,
+          58,
         ],
         [
+          65,
           66,
-          67,
         ],
         [
+          69,
           70,
-          71,
         ],
         [
-          74,
-          78,
+          73,
+          77,
         ],
         [
+          79,
           80,
-          81,
         ],
       ],
       "title": [
@@ -126,8 +124,7 @@ Toe PIP and DIP joint collateral ligament injury - buddy taping  for 3-6 wks; co
   },
   ArticleSearchResult {
     "article": {
-      "body": "
-Cervical spine injuries
+      "body": "Cervical spine injuries
 
 (beyond the common sprain/strain)
 
@@ -161,52 +158,51 @@ Bilateral facet dislocation - unstable; usually with &gt;50% body displacement.
 Unilateral facet dislocation/subluxation - unstable or stable; usually &lt;25% body displacement noted with overlapping facets on lateral view, anterior decreased disc space, posterior decreased disc space, and increased interspinous distance.
 Simple wedge and bursting vertebral body fracture - usually stable, unless fragments of burst enter canal.
 Posterior element fracture - usually stable if isolated.
-Spinous process fracture - stable; most commonly involving C6, C7, or T1 (Clay-Shoveler's fx)
-",
+Spinous process fracture - stable; most commonly involving C6, C7, or T1 (Clay-Shoveler's fx)",
       "id": "CERVICAL_SPINE_INJURIES",
       "title": "Cervical spine injuries",
     },
     "matchData": {
       "body": [
         [
-          2,
-          5,
+          1,
+          4,
         ],
         [
-          7,
-          10,
+          6,
+          9,
         ],
         [
-          12,
-          23,
+          11,
+          22,
         ],
         [
+          32,
           33,
-          34,
         ],
         [
+          35,
           36,
-          37,
         ],
         [
-          43,
-          45,
+          42,
+          44,
         ],
         [
-          47,
-          50,
+          46,
+          49,
         ],
         [
-          52,
-          57,
+          51,
+          56,
         ],
         [
-          64,
-          70,
+          63,
+          69,
         ],
         [
-          75,
-          81,
+          74,
+          80,
         ],
       ],
       "title": [
@@ -224,7 +220,7 @@ Spinous process fracture - stable; most commonly involving C6, C7, or T1 (Clay-S
         ],
       ],
     },
-    "score": 0.3703227978437543,
+    "score": 0.37174962474848505,
   },
 ]
 `;

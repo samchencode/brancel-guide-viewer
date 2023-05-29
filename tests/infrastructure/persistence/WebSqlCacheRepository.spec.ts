@@ -328,9 +328,9 @@ describe('WebSqlCacheRepository', () => {
       const toc = new TableOfContents([
         new TableOfContentsItem('Label1', 'id-string-1'),
         new TableOfContentsItem('Label2', 'id-string-2'),
-        new TableOfContentsItem('Label3', 'id-string-1'),
-        new TableOfContentsItem('Label4', 'id-string-2'),
-        new TableOfContentsItem('Label5', 'id-string-3'),
+        new TableOfContentsItem('Label3', 'id-string-3'),
+        new TableOfContentsItem('Label4', 'id-string-4'),
+        new TableOfContentsItem('Label5', 'id-string-5'),
       ]);
 
       await repo.saveTableOfContents(toc);
