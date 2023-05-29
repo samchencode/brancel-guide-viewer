@@ -13,32 +13,36 @@ import { GuideArticleNotFoundError } from '@/infrastructure/persistence/guide/Gu
 import { GuideArticleSectionNotFoundError } from '@/infrastructure/persistence/guide/GuideArticleSectionNotFoundError';
 
 class GuideArticleRepository implements ArticleRepository {
-  guide: Promise<Guide>;
+  guidePromise?: Promise<Guide>;
 
   constructor(
     private guideRepository: GuideRepository,
     private sanitizeHtml: SanitizeHtml
-  ) {
-    this.guide = this.guideRepository.get();
+  ) {}
+
+  private async getGuide() {
+    if (this.guidePromise) return this.guidePromise;
+    this.guidePromise = this.guideRepository.get();
+    return this.guidePromise;
   }
 
   async getAbout(): Promise<About> {
-    const guide = await this.guide;
+    const guide = await this.getGuide();
     return guide.getAbout();
   }
 
   async getIndex(): Promise<Index> {
-    const guide = await this.guide;
+    const guide = await this.getGuide();
     return guide.getIndex();
   }
 
   async getUsageInstructions(): Promise<UsageInstructions> {
-    const guide = await this.guide;
+    const guide = await this.getGuide();
     return guide.getUsageInstructions();
   }
 
   async getAll(): Promise<Article[]> {
-    const guide = await this.guide;
+    const guide = await this.getGuide();
     const normalArticles = guide.getArticles();
     const index = guide.getIndex();
     const instructions = guide.getUsageInstructions();
