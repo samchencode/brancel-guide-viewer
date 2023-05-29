@@ -26,7 +26,12 @@ class CacheTableOfContentsRepository implements TableOfContentsRepository {
     try {
       if (await this.cacheRepository.isEmpty()) return await getFromRepo();
       const cachedToc = await this.cacheRepository.getTableOfContents();
-      if (cachedToc.items.length === 0) return await getFromRepo();
+      if (cachedToc.items.length === 0) {
+        // if cache TOC is empty, then put in the info from source repo asynchronously
+        const newToc = await getFromRepo();
+        this.cacheRepository.saveTableOfContents(newToc);
+        return newToc;
+      }
       return cachedToc;
     } catch (e) {
       return getFromRepo();
