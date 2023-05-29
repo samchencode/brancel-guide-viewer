@@ -21,16 +21,16 @@ class CacheTableOfContentsRepository implements TableOfContentsRepository {
     await this.cacheRepository.saveTableOfContents(toc);
   }
 
-  get(): Promise<TableOfContents> {
-    const repoPromise = this.cacheSourceTableOfContentsRepository.get();
-    const getFromCache = async () => {
-      if (await this.cacheRepository.isEmpty()) return repoPromise;
+  async get(): Promise<TableOfContents> {
+    const getFromRepo = () => this.cacheSourceTableOfContentsRepository.get();
+    try {
+      if (await this.cacheRepository.isEmpty()) return await getFromRepo();
       const cachedToc = await this.cacheRepository.getTableOfContents();
-      // Avoid race condition between caching toc within constructor and calling get()
-      if (cachedToc.items.length === 0) return repoPromise;
+      if (cachedToc.items.length === 0) return await getFromRepo();
       return cachedToc;
-    };
-    return Promise.any([repoPromise, getFromCache()]);
+    } catch (e) {
+      return getFromRepo();
+    }
   }
 }
 

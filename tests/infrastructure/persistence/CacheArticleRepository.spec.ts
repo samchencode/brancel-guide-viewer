@@ -8,7 +8,6 @@ import { replaceImageUrisInHtmlBody } from '@/infrastructure/html-manipulation/c
 import {
   ArticleToBeCached,
   CacheArticleRepository,
-  CachedArticle,
 } from '@/infrastructure/persistence/cache/CacheArticleRepository';
 import { FakeArticleRepository } from '@/infrastructure/persistence/fake/FakeArticleRepository';
 import { WebSqlCacheRepository } from '@/infrastructure/persistence/web-sql/WebSqlCacheRepository/WebSqlCacheRepository';
@@ -223,49 +222,6 @@ describe('CacheArticleRepository', () => {
       jest.runAllTimers();
 
       expect(result.title).toBe('ArticleOneFromCache');
-    });
-
-    it('should get from source repo if it returns first', async () => {
-      jest.useFakeTimers({ advanceTimers: true });
-
-      const repoArticle1 = new Article(
-        new ArticleId('first'),
-        'ArticleOneFromRepo',
-        new RichText('BodyOne'),
-        ['foo', 'bar']
-      );
-
-      jest.mocked(articleRepository.getById).mockResolvedValue(repoArticle1);
-
-      const cacheArticle1 = new CachedArticle(
-        'first',
-        'ArticleOneFromCache',
-        'BodyOne',
-        'base',
-        '["foo","bar"]',
-        '[]'
-      );
-
-      jest
-        .mocked(cacheRepository.getArticleById)
-        .mockResolvedValue(wait(300).then(() => cacheArticle1));
-
-      const cacheArticleRepository = new CacheArticleRepository(
-        articleRepository,
-        cacheRepository,
-        fs,
-        sanitizeHtml,
-        getImageUrisFromHtml,
-        replaceImageUrisInHtmlBody
-      );
-
-      const result = await cacheArticleRepository.getById(
-        new ArticleId('first')
-      );
-
-      jest.runAllTimers();
-
-      expect(result.title).toBe('ArticleOneFromRepo');
     });
 
     it('should save results from source repo if cache stale', async () => {

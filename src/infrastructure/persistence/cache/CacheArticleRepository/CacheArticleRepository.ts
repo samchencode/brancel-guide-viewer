@@ -7,7 +7,11 @@ import type {
   SearchableArticle,
   UsageInstructions,
 } from '@/domain/models/Article';
-import { ARTICLE_TYPES } from '@/domain/models/Article';
+import {
+  ARTICLE_TYPES,
+  ArticleNotFoundError,
+  ArticleSectionNotFoundError,
+} from '@/domain/models/Article';
 import type {
   GetImageUrisFromHtml,
   ReplaceImageUrisInHtmlBody,
@@ -86,6 +90,21 @@ class CacheArticleRepository implements ArticleRepository {
     await this.saveAllArticles(articles, timestamp);
   }
 
+  private async getFromCacheIfNotEmpty(
+    getFromRepo: () => Promise<Article>,
+    getFromCache: () => Promise<CachedArticle>
+  ): Promise<Article> {
+    try {
+      if (await this.cacheRepository.isEmpty()) return await getFromRepo();
+      const cachedArticle = await getFromCache();
+      return await this.populateArticle(cachedArticle);
+    } catch (e) {
+      if (e instanceof ArticleNotFoundError) throw e;
+      if (e instanceof ArticleSectionNotFoundError) throw e;
+      return getFromRepo();
+    }
+  }
+
   async getAll(): Promise<Article[]> {
     // Caching is not implemented for this method!
     // Loading all images as Base64 into memory may be slow
@@ -93,67 +112,65 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   getById(id: ArticleId): Promise<Article> {
-    const repoPromise = this.cacheSourceArticleRepository.getById(id);
-
-    const getFromCache = async () => {
-      if (await this.cacheRepository.isEmpty()) return repoPromise;
-      const cachedArticle = await this.cacheRepository.getArticleById(id);
-      return this.populateArticle(cachedArticle);
-    };
-    return Promise.any([repoPromise, getFromCache()]);
+    const getFromRepo = () => this.cacheSourceArticleRepository.getById(id);
+    const getFromCache = () => this.cacheRepository.getArticleById(id);
+    return this.getFromCacheIfNotEmpty(getFromRepo, getFromCache);
   }
 
   getBySectionId(sectionId: string): Promise<Article> {
-    const repoPromise =
+    const getFromRepo = () =>
       this.cacheSourceArticleRepository.getBySectionId(sectionId);
-    const getFromCache = async () => {
-      if (await this.cacheRepository.isEmpty()) return repoPromise;
-      const cachedArticle = await this.cacheRepository.getArticleBySectionId(
-        sectionId
-      );
-      return this.populateArticle(cachedArticle);
-    };
-    return Promise.any([repoPromise, getFromCache()]);
+    const getFromCache = () =>
+      this.cacheRepository.getArticleBySectionId(sectionId);
+    return this.getFromCacheIfNotEmpty(getFromRepo, getFromCache);
   }
 
   getAbout(): Promise<About> {
-    const repoPromise = this.cacheSourceArticleRepository.getAbout();
-    const getFromCache = async () => {
-      if (await this.cacheRepository.isEmpty()) return repoPromise;
-      const cachedArticle = await this.cacheRepository.getArticleByType(
-        ARTICLE_TYPES.ABOUT
-      );
-      const article = await this.populateArticle(cachedArticle);
-      return article as About;
-    };
-    return Promise.any([repoPromise, getFromCache()]);
+    const getFromRepo = () => this.cacheSourceArticleRepository.getAbout();
+    const getFromCache = () =>
+      this.cacheRepository.getArticleByType(ARTICLE_TYPES.ABOUT);
+    return this.getFromCacheIfNotEmpty(
+      getFromRepo,
+      getFromCache
+    ) as Promise<About>;
   }
 
   getIndex(): Promise<Index> {
-    const repoPromise = this.cacheSourceArticleRepository.getIndex();
-    const getFromCache = async () => {
-      if (await this.cacheRepository.isEmpty()) return repoPromise;
-      const cachedArticle = await this.cacheRepository.getArticleByType(
-        ARTICLE_TYPES.INDEX
-      );
-      const article = await this.populateArticle(cachedArticle);
-      return article as Index;
-    };
-    return Promise.any([repoPromise, getFromCache()]);
+    const getFromRepo = () => this.cacheSourceArticleRepository.getIndex();
+    const getFromCache = () =>
+      this.cacheRepository.getArticleByType(ARTICLE_TYPES.INDEX);
+    return this.getFromCacheIfNotEmpty(
+      getFromRepo,
+      getFromCache
+    ) as Promise<Index>;
   }
 
   getUsageInstructions(): Promise<UsageInstructions> {
-    const repoPromise =
+    const getFromRepo = () =>
       this.cacheSourceArticleRepository.getUsageInstructions();
-    const getFromCache = async () => {
-      if (await this.cacheRepository.isEmpty()) return repoPromise;
-      const cachedArticle = await this.cacheRepository.getArticleByType(
-        ARTICLE_TYPES.USAGE_INSTRUCTIONS
-      );
-      const article = await this.populateArticle(cachedArticle);
-      return article as UsageInstructions;
-    };
-    return Promise.any([repoPromise, getFromCache()]);
+    const getFromCache = () =>
+      this.cacheRepository.getArticleByType(ARTICLE_TYPES.USAGE_INSTRUCTIONS);
+    return this.getFromCacheIfNotEmpty(
+      getFromRepo,
+      getFromCache
+    ) as Promise<UsageInstructions>;
+  }
+
+  async getAllSearchable(): Promise<SearchableArticle[]> {
+    const getFromRepo = () =>
+      this.cacheSourceArticleRepository.getAllSearchable();
+    try {
+      if (await this.cacheRepository.isEmpty()) return await getFromRepo();
+      const cachedSearchableArticles =
+        await this.cacheRepository.getAllSearchable();
+      if (cachedSearchableArticles.length === 0) return await getFromRepo();
+      return cachedSearchableArticles.map((article) => ({
+        ...article,
+        body: this.sanitizeHtml(article.body),
+      }));
+    } catch (e) {
+      return getFromRepo();
+    }
   }
 
   getLastUpdatedTimestamp(): Promise<Date> {
@@ -167,19 +184,6 @@ class CacheArticleRepository implements ArticleRepository {
       .map((uri) => this.fileSystem.deleteFile(uri));
     const removeFromRepo = await this.cacheRepository.delete();
     await Promise.all([removeFromRepo, ...deletions]);
-  }
-
-  async getAllSearchable(): Promise<SearchableArticle[]> {
-    const repoPromise = this.cacheSourceArticleRepository.getAllSearchable();
-    const getFromCache = async () => {
-      const articles = await this.cacheRepository.getAllSearchable();
-      if (articles.length === 0) return repoPromise;
-      return articles.map((article) => ({
-        ...article,
-        body: this.sanitizeHtml(article.body),
-      }));
-    };
-    return Promise.any([repoPromise, getFromCache()]);
   }
 }
 
