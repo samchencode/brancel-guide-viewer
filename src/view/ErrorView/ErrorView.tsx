@@ -29,8 +29,8 @@ function ErrorView({ error }: Props) {
           </Text>
         </ScrollView>
         <Text style={styles.message}>
-          Please restart the app, clear the cache, and try again. Contact us at{' '}
-          <Email>markbrancelmd@gmail.com</Email>
+          Please restart the app and try again. Clearing the cache may help.
+          Contact us at <Email>markbrancelmd@gmail.com</Email>
         </Text>
         <DangerButton onPress={handleRestart} style={styles.button} />
       </View>
