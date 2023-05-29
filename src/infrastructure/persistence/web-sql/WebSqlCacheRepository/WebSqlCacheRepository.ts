@@ -103,6 +103,8 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async saveTableOfContents(tableOfContents: TableOfContents): Promise<void> {
+    await this.ready;
+
     const dropToc = sqlStr`DELETE FROM tableOfContents`;
     await this.executeSql([dropToc]);
 
@@ -114,6 +116,8 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async getTableOfContents(): Promise<TableOfContents> {
+    await this.ready;
+
     const query = sqlStr`SELECT * FROM tableOfContents`;
     const [result] = await this.executeSql([query]);
     const rows = resultSetToArray<TableOfContentsRow>(result);
@@ -124,6 +128,8 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async getArticleById(id: ArticleId): Promise<CachedArticle> {
+    await this.ready;
+
     const query = sqlStr`SELECT * FROM articles WHERE id = ${id.toString()}`;
     const [result] = await this.executeSql([query]);
     const [row] = resultSetToArray<ArticleRow>(result);
@@ -138,6 +144,8 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async getArticleBySectionId(sectionId: string): Promise<CachedArticle> {
+    await this.ready;
+
     const query = sqlStr`SELECT * FROM articles WHERE sectionIdsJson LIKE ${`%${sectionId}%`}`;
     const [result] = await this.executeSql([query]);
     const [row] = resultSetToArray<ArticleRow>(result);
@@ -152,6 +160,8 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async getArticleByType(type: ArticleType): Promise<CachedArticle> {
+    await this.ready;
+
     const query = sqlStr`SELECT * FROM articles WHERE type = ${type}`;
     const [result] = await this.executeSql([query]);
     const [row] = resultSetToArray<ArticleRow>(result);
@@ -169,6 +179,8 @@ class WebSqlCacheRepository implements CacheRepository {
     articles: ArticleToBeCached[],
     lastUpdatedTimestamp: Date
   ): Promise<void> {
+    await this.ready;
+
     const dropArticles = sqlStr`DELETE FROM articles`;
     const dropMetadata = sqlStr`DELETE FROM metadata`;
     await this.executeSql([dropArticles, dropMetadata]);
@@ -193,17 +205,23 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async isStale(receivedLastUpdatedTimestamp: Date): Promise<boolean> {
+    await this.ready;
+
     const savedLastUpdatedTimestamp = await this.getLastUpdatedTimestamp();
     return receivedLastUpdatedTimestamp > savedLastUpdatedTimestamp;
   }
 
   async isEmpty(): Promise<boolean> {
+    await this.ready;
+
     const query = sqlStr`SELECT * FROM metadata`;
     const [result] = await this.executeSql([query]);
     return result.rows.length === 0;
   }
 
   async updateCachedImagesJson(id: ArticleId, json: string): Promise<void> {
+    await this.ready;
+
     const query = sqlStr`
     UPDATE articles 
     SET cachedImagesJson = ${json} 
@@ -212,6 +230,8 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async getLastUpdatedTimestamp(): Promise<Date> {
+    await this.ready;
+
     const query = sqlStr`SELECT * FROM metadata`;
     const [result] = await this.executeSql([query]);
     const [row] = resultSetToArray<MetadataRow>(result);
@@ -219,13 +239,18 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async delete(): Promise<void> {
+    await this.ready;
+
     const deleteArticles = sqlStr`DELETE FROM articles`;
     const deleteToc = sqlStr`DELETE FROM tableOfContents`;
     const deleteMetadata = sqlStr`DELETE FROM metadata`;
     await this.executeSql([deleteArticles, deleteToc, deleteMetadata]);
+    this.ready = this.prepareDatabase();
   }
 
   async getAllCachedImages(): Promise<CachedArticleImage[]> {
+    await this.ready;
+
     const query = sqlStr`SELECT cachedImagesJson FROM articles`;
     const [result] = await this.executeSql([query]);
     const rows = resultSetToArray<Pick<ArticleRow, 'cachedImagesJson'>>(result);
@@ -241,6 +266,8 @@ class WebSqlCacheRepository implements CacheRepository {
   }
 
   async getAllSearchable(): Promise<SearchableArticle[]> {
+    await this.ready;
+
     const query = sqlStr`SELECT
       id,
       title,
