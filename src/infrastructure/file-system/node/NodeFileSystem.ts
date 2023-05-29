@@ -49,6 +49,10 @@ class NodeFileSystem implements FileSystem<'jest'> {
   deleteFile(): Promise<void> {
     throw new Error('Method not implemented.');
   }
+
+  clearCache(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 }
 
 export { NodeFileSystem };

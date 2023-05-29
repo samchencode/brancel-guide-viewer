@@ -24,6 +24,7 @@ interface FileSystem<T = unknown> {
   readFileAsString(path: string, encodingType?: EncodingType): Promise<string>;
   checkFileExists(path: string): Promise<boolean>;
   deleteFile(uri: string): Promise<void>;
+  clearCache(): Promise<void>;
 }
 
 export type { FileSystem, EncodingType };

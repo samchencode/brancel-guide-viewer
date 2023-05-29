@@ -1,12 +1,15 @@
+import type { FileSystem } from '@/infrastructure/file-system/FileSystem';
 import type { CacheArticleRepository } from '@/infrastructure/persistence/cache/CacheArticleRepository';
 
 class ClearCacheAction {
   constructor(
-    private readonly cacheArticleRepository: CacheArticleRepository
+    private readonly cacheArticleRepository: CacheArticleRepository,
+    private readonly fileSystem: FileSystem
   ) {}
 
   async execute() {
-    return this.cacheArticleRepository.clearCache();
+    await this.cacheArticleRepository.clearCache();
+    await this.fileSystem.clearCache();
   }
 }
 

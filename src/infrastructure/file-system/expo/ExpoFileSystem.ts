@@ -60,6 +60,12 @@ class ExpoAssetFileSystem implements FileSystem<'expo'> {
       idempotent: true,
     });
   }
+
+  async clearCache(): Promise<void> {
+    await ExpoFileSystem.deleteAsync(this.imageCacheDirectory);
+    this.cacheDirectoryReady = this.makeCacheDirectoryIfNotExists();
+    await this.cacheDirectoryReady;
+  }
 }
 
 export { ExpoAssetFileSystem };
