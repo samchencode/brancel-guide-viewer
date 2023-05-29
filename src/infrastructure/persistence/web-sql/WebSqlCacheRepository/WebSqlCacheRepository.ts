@@ -90,8 +90,8 @@ class WebSqlCacheRepository implements CacheRepository {
     )`;
     const tableOfContentsTable = sqlStr`
     CREATE TABLE IF NOT EXISTS tableOfContents (
-      label       TEXT,
-      destination TEXT PRIMARY KEY
+      label       TEXT PRIMARY KEY,
+      destination TEXT
     )`;
     const metadataTable = sqlStr`
     CREATE TABLE IF NOT EXISTS metadata (
