@@ -12,6 +12,8 @@ import {
   CachedArticleImage,
   CachedArticle,
 } from '@/infrastructure/persistence/cache/CacheArticleRepository';
+import { CachedArticleNotFoundError } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticleNotFoundError';
+import { CachedArticleSectionNotFoundError } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticleSectionNotFoundError';
 import type { CacheRepository } from '@/infrastructure/persistence/cache/CacheRepository';
 import type {
   ArticleRow,
@@ -132,6 +134,7 @@ class WebSqlCacheRepository implements CacheRepository {
 
     const query = sqlStr`SELECT * FROM articles WHERE id = ${id.toString()}`;
     const [result] = await this.executeSql([query]);
+    if (result.rows.length === 0) throw new CachedArticleNotFoundError(id);
     const [row] = resultSetToArray<ArticleRow>(result);
     return new CachedArticle(
       row.id,
@@ -148,6 +151,8 @@ class WebSqlCacheRepository implements CacheRepository {
 
     const query = sqlStr`SELECT * FROM articles WHERE sectionIdsJson LIKE ${`%${sectionId}%`}`;
     const [result] = await this.executeSql([query]);
+    if (result.rows.length === 0)
+      throw new CachedArticleSectionNotFoundError(sectionId);
     const [row] = resultSetToArray<ArticleRow>(result);
     return new CachedArticle(
       row.id,
@@ -164,6 +169,7 @@ class WebSqlCacheRepository implements CacheRepository {
 
     const query = sqlStr`SELECT * FROM articles WHERE type = ${type}`;
     const [result] = await this.executeSql([query]);
+    if (result.rows.length === 0) throw new CachedArticleNotFoundError(type);
     const [row] = resultSetToArray<ArticleRow>(result);
     return new CachedArticle(
       row.id,

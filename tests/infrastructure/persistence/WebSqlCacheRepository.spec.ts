@@ -13,6 +13,8 @@ import {
 } from '@/domain/models/Article';
 import { RichText } from '@/domain/models/RichText';
 import { ArticleToBeCached } from '@/infrastructure/persistence/cache/CacheArticleRepository';
+import { CachedArticleNotFoundError } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticleNotFoundError';
+import { CachedArticleSectionNotFoundError } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticleSectionNotFoundError';
 
 type Query = {
   sql: string;
@@ -340,6 +342,18 @@ describe('WebSqlCacheRepository', () => {
       expect(result.items[2].label).toBe('Label3');
       expect(result.items[3].label).toBe('Label4');
       expect(result.items[4].label).toBe('Label5');
+    });
+
+    it('should throw error if cached article not found', async () => {
+      const promise = repo.getArticleById(new ArticleId('nonExistentId'));
+      await expect(promise).rejects.toBeInstanceOf(CachedArticleNotFoundError);
+    });
+
+    it('should throw error if cached article not found', async () => {
+      const promise = repo.getArticleBySectionId('nonExistentId');
+      await expect(promise).rejects.toBeInstanceOf(
+        CachedArticleSectionNotFoundError
+      );
     });
   });
 });
