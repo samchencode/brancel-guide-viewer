@@ -10,11 +10,9 @@ import type { WpApiModifiedGmtResponse } from '@/infrastructure/persistence/wp-a
 import type { WpApiPageResponse } from '@/infrastructure/persistence/wp-api/WpApiPageResponse';
 
 class WpApiGuideRepository implements GuideRepository {
-  private apiResponse?: WpApiPageResponse;
+  private lastUpdatedTimestamp?: Promise<Date>;
 
-  private lastUpdatedTimestamp?: Date;
-
-  private html?: string;
+  private html?: Promise<string>;
 
   constructor(
     private fetch: (url: string) => Promise<Response>,
@@ -31,8 +29,7 @@ class WpApiGuideRepository implements GuideRepository {
     return new Guide(html, this.guideParser);
   }
 
-  async getLastUpdatedTimestamp(): Promise<Date> {
-    if (this.lastUpdatedTimestamp) return this.lastUpdatedTimestamp;
+  async getLastUpdatedTimestampFromApi(): Promise<Date> {
     const url = `${this.wpApiHostUrl}/wp-json/wp/v2/pages/${this.wpApiPageId}?_fields=modified_gmt`;
     const response = await this.fetch(url);
     const data = await response.json();
@@ -42,29 +39,35 @@ class WpApiGuideRepository implements GuideRepository {
     const apiLastUpdatedResponse = data as WpApiModifiedGmtResponse;
     let isoString = apiLastUpdatedResponse.modified_gmt;
     if (isoString.slice(-1) !== 'Z') isoString += 'Z';
-    this.lastUpdatedTimestamp = new Date(isoString);
+    return new Date(isoString);
+  }
+
+  async getLastUpdatedTimestamp(): Promise<Date> {
+    if (this.lastUpdatedTimestamp) return this.lastUpdatedTimestamp;
+    this.lastUpdatedTimestamp = this.getLastUpdatedTimestampFromApi();
     return this.lastUpdatedTimestamp;
   }
 
-  private async getApiResponse() {
-    if (this.apiResponse) return this.apiResponse;
+  private async getHtml() {
+    if (this.html) return this.html;
+    this.html = this.getHtmlFromApi();
+    return this.html;
+  }
+
+  private async getFromApi() {
     const url = `${this.wpApiHostUrl}/wp-json/wp/v2/pages/${this.wpApiPageId}?password=${this.wpApiKey}`;
     const response = await this.fetch(url);
     const data = await response.json();
     if (!response.ok) {
       throw new WpApiError(response.status, data as WpApiErrorResponse);
     }
-    this.apiResponse = data;
     return data as WpApiPageResponse;
   }
 
-  private async getHtml() {
-    if (this.html) return this.html;
-    const apiResponse = await this.getApiResponse();
+  private async getHtmlFromApi() {
+    const apiResponse = await this.getFromApi();
     const html = apiResponse.content.rendered;
-    const htmlWithImgUrls = this.addHostUrlToImages(html);
-    this.html = htmlWithImgUrls;
-    return htmlWithImgUrls;
+    return this.addHostUrlToImages(html);
   }
 
   private isFullUrl(uri: string) {
