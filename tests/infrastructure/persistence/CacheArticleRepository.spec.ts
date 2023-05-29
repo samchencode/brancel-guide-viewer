@@ -8,6 +8,7 @@ import {
   ArticleToBeCached,
   CacheArticleRepository,
 } from '@/infrastructure/persistence/cache/CacheArticleRepository';
+import { CachedArticleNotFoundError } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticleNotFoundError';
 import { FakeArticleRepository } from '@/infrastructure/persistence/fake/FakeArticleRepository';
 import { WebSqlCacheRepository } from '@/infrastructure/persistence/web-sql/WebSqlCacheRepository/WebSqlCacheRepository';
 import { sanitizeHtml } from '@/vendor/sanitizeHtml';
@@ -72,7 +73,7 @@ describe('CacheArticleRepository', () => {
       jest.spyOn(cacheRepository, 'saveAllArticles');
     });
 
-    it('should get from source repo if cache empty', async () => {
+    it('should throw if cache empty', async () => {
       const article = new Article(
         new ArticleId('MyId'),
         'MyTitle',
@@ -81,6 +82,32 @@ describe('CacheArticleRepository', () => {
       );
 
       jest.mocked(articleRepository.getById).mockResolvedValue(article);
+
+      const cacheArticleRepository = new CacheArticleRepository(
+        articleRepository,
+        cacheRepository,
+        fs,
+        sanitizeHtml,
+        getImageUrisFromHtml,
+        replaceImageUrisInHtmlBody
+      );
+
+      const result = cacheArticleRepository.getById(new ArticleId('MyId'));
+      expect(result).rejects.toBeInstanceOf(CachedArticleNotFoundError);
+    });
+
+    it('should use source repo if cache errors', async () => {
+      const article = new Article(
+        new ArticleId('MyId'),
+        'MyTitle',
+        new RichText('MyBody'),
+        []
+      );
+
+      jest.mocked(articleRepository.getById).mockResolvedValue(article);
+      jest
+        .spyOn(cacheRepository, 'getArticleById')
+        .mockRejectedValue(new Error('boom!'));
 
       const cacheArticleRepository = new CacheArticleRepository(
         articleRepository,

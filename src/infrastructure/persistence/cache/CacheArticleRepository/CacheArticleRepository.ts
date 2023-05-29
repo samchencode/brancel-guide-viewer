@@ -23,6 +23,8 @@ import { updateCachedImage } from '@/infrastructure/persistence/cache/CacheArtic
 import { saveAllArticles } from '@/infrastructure/persistence/cache/CacheArticleRepository/saveAllArticles';
 import type { CachedArticle } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticle';
 import type { FileSystem } from '@/infrastructure/file-system/FileSystem';
+import { CachedArticleNotFoundError } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticleNotFoundError';
+import { CachedArticleSectionNotFoundError } from '@/infrastructure/persistence/cache/CacheArticleRepository/CachedArticleSectionNotFoundError';
 
 type PopulateArticle = (article: CachedArticle) => Promise<Article>;
 
@@ -96,7 +98,7 @@ class CacheArticleRepository implements ArticleRepository {
     await this.saveAllArticles(articles, timestamp);
   }
 
-  private async getFromCacheIfNotEmpty(
+  private async getFromCacheOrRepo(
     getFromRepo: () => Promise<Article>,
     getFromCache: () => Promise<CachedArticle>
   ): Promise<Article> {
@@ -108,6 +110,8 @@ class CacheArticleRepository implements ArticleRepository {
     } catch (e) {
       if (e instanceof ArticleNotFoundError) throw e;
       if (e instanceof ArticleSectionNotFoundError) throw e;
+      if (e instanceof CachedArticleNotFoundError) throw e;
+      if (e instanceof CachedArticleSectionNotFoundError) throw e;
       return getFromRepo();
     }
   }
@@ -121,7 +125,7 @@ class CacheArticleRepository implements ArticleRepository {
   getById(id: ArticleId): Promise<Article> {
     const getFromRepo = () => this.cacheSourceArticleRepository.getById(id);
     const getFromCache = () => this.cacheRepository.getArticleById(id);
-    return this.getFromCacheIfNotEmpty(getFromRepo, getFromCache);
+    return this.getFromCacheOrRepo(getFromRepo, getFromCache);
   }
 
   getBySectionId(sectionId: string): Promise<Article> {
@@ -129,27 +133,21 @@ class CacheArticleRepository implements ArticleRepository {
       this.cacheSourceArticleRepository.getBySectionId(sectionId);
     const getFromCache = () =>
       this.cacheRepository.getArticleBySectionId(sectionId);
-    return this.getFromCacheIfNotEmpty(getFromRepo, getFromCache);
+    return this.getFromCacheOrRepo(getFromRepo, getFromCache);
   }
 
   getAbout(): Promise<About> {
     const getFromRepo = () => this.cacheSourceArticleRepository.getAbout();
     const getFromCache = () =>
       this.cacheRepository.getArticleByType(ARTICLE_TYPES.ABOUT);
-    return this.getFromCacheIfNotEmpty(
-      getFromRepo,
-      getFromCache
-    ) as Promise<About>;
+    return this.getFromCacheOrRepo(getFromRepo, getFromCache) as Promise<About>;
   }
 
   getIndex(): Promise<Index> {
     const getFromRepo = () => this.cacheSourceArticleRepository.getIndex();
     const getFromCache = () =>
       this.cacheRepository.getArticleByType(ARTICLE_TYPES.INDEX);
-    return this.getFromCacheIfNotEmpty(
-      getFromRepo,
-      getFromCache
-    ) as Promise<Index>;
+    return this.getFromCacheOrRepo(getFromRepo, getFromCache) as Promise<Index>;
   }
 
   getUsageInstructions(): Promise<UsageInstructions> {
@@ -157,7 +155,7 @@ class CacheArticleRepository implements ArticleRepository {
       this.cacheSourceArticleRepository.getUsageInstructions();
     const getFromCache = () =>
       this.cacheRepository.getArticleByType(ARTICLE_TYPES.USAGE_INSTRUCTIONS);
-    return this.getFromCacheIfNotEmpty(
+    return this.getFromCacheOrRepo(
       getFromRepo,
       getFromCache
     ) as Promise<UsageInstructions>;
