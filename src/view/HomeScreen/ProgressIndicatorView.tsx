@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     marginTop: theme.spaces.lg,
+    marginLeft: theme.spaces.md,
+    marginRight: theme.spaces.md,
   },
 });
 
