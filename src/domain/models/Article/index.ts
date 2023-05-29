@@ -21,3 +21,5 @@ export {
   StringSegment,
 } from '@/domain/models/Article/ArticleSearchResult';
 export { ArticleSearch } from '@/domain/models/Article/ArticleSearch';
+export { ArticleNotFoundError } from '@/domain/models/Article/ArticleNotFoundError';
+export { ArticleSectionNotFoundError } from '@/domain/models/Article/ArticleSectionNotFoundError';

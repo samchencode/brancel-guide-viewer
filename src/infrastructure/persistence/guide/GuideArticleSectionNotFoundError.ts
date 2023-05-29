@@ -1,8 +1,7 @@
-class GuideArticleSectionNotFoundError extends Error {
-  name = 'WpApiArticleNotFoundError';
+import { ArticleSectionNotFoundError } from '@/domain/models/Article';
 
-  constructor(id: string) {
-    super(`No article with section id of ${id} was found!`);
-  }
+class GuideArticleSectionNotFoundError extends ArticleSectionNotFoundError {
+  name = 'WpApiArticleNotFoundError';
 }
+
 export { GuideArticleSectionNotFoundError };
