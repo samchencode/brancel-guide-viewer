@@ -2,7 +2,6 @@ import type { ArticleRepository } from '@/domain/models/Article';
 import { Article, ArticleId } from '@/domain/models/Article';
 import { RichText } from '@/domain/models/RichText';
 import type { FileSystem } from '@/infrastructure/file-system/FileSystem';
-import { NodeFileSystem } from '@/infrastructure/file-system/node/NodeFileSystem';
 import { getImageUrisFromHtml } from '@/infrastructure/html-manipulation/cheerio/getImageUrisFromHtml';
 import { replaceImageUrisInHtmlBody } from '@/infrastructure/html-manipulation/cheerio/replaceImageUrisInHtml';
 import {
@@ -27,7 +26,13 @@ describe('CacheArticleRepository', () => {
   describe('Instantiation', () => {
     beforeEach(() => {
       db = openDatabase(':memory:', '0.0', '', 1);
-      fs = new NodeFileSystem();
+      fs = {
+        cacheFile: jest.fn(),
+        getAssetAsString: jest.fn(),
+        readFileAsString: jest.fn(),
+        checkFileExists: jest.fn(),
+        deleteFile: jest.fn(),
+      };
       articleRepository = new FakeArticleRepository();
     });
 
@@ -53,7 +58,13 @@ describe('CacheArticleRepository', () => {
 
     beforeEach(() => {
       db = openDatabase(':memory:', '0.0', '', 1);
-      fs = new NodeFileSystem();
+      fs = {
+        cacheFile: jest.fn(),
+        getAssetAsString: jest.fn(),
+        readFileAsString: jest.fn(),
+        checkFileExists: jest.fn(),
+        deleteFile: jest.fn(),
+      };
       cacheRepository = new WebSqlCacheRepository(db);
       articleRepository = new FakeArticleRepository();
       jest.spyOn(articleRepository, 'getAll');
@@ -121,7 +132,13 @@ describe('CacheArticleRepository', () => {
 
     beforeEach(async () => {
       db = openDatabase(':memory:', '0.0', '', 1);
-      fs = new NodeFileSystem();
+      fs = {
+        cacheFile: jest.fn(),
+        getAssetAsString: jest.fn(),
+        readFileAsString: jest.fn(),
+        checkFileExists: jest.fn(),
+        deleteFile: jest.fn(),
+      };
       cacheRepository = new WebSqlCacheRepository(db);
       articleRepository = new FakeArticleRepository();
       jest.spyOn(articleRepository, 'getAll');

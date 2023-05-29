@@ -73,13 +73,19 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   private async cacheArticlesIfEmptyOrStale(): Promise<void> {
+    // If there is an error and the cache is empty, the throw
     if (await this.cacheRepository.isEmpty()) return this.cacheArticles();
-    const [cacheUpdated, repoUpdated] = await Promise.all([
-      this.cacheRepository.getLastUpdatedTimestamp(),
-      this.cacheSourceArticleRepository.getLastUpdatedTimestamp(),
-    ]);
-    if (cacheUpdated < repoUpdated) return this.cacheArticles();
-    return Promise.resolve();
+    // else, cache must exist. If error, resolve (skip check) and use cache.
+    try {
+      const [cacheUpdated, repoUpdated] = await Promise.all([
+        this.cacheRepository.getLastUpdatedTimestamp(),
+        this.cacheSourceArticleRepository.getLastUpdatedTimestamp(),
+      ]);
+      if (cacheUpdated < repoUpdated) return await this.cacheArticles();
+      return await Promise.resolve();
+    } catch {
+      return Promise.resolve();
+    }
   }
 
   private async cacheArticles(): Promise<void> {
@@ -94,6 +100,7 @@ class CacheArticleRepository implements ArticleRepository {
     getFromRepo: () => Promise<Article>,
     getFromCache: () => Promise<CachedArticle>
   ): Promise<Article> {
+    await this.cachingArticles;
     try {
       if (await this.cacheRepository.isEmpty()) return await getFromRepo();
       const cachedArticle = await getFromCache();
@@ -157,6 +164,7 @@ class CacheArticleRepository implements ArticleRepository {
   }
 
   async getAllSearchable(): Promise<SearchableArticle[]> {
+    await this.cacheArticles;
     const getFromRepo = () =>
       this.cacheSourceArticleRepository.getAllSearchable();
     try {
@@ -173,7 +181,8 @@ class CacheArticleRepository implements ArticleRepository {
     }
   }
 
-  getLastUpdatedTimestamp(): Promise<Date> {
+  async getLastUpdatedTimestamp(): Promise<Date> {
+    await this.cachingArticles;
     return this.cacheRepository.getLastUpdatedTimestamp();
   }
 
