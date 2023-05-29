@@ -22,6 +22,8 @@ class CacheTableOfContentsRepository implements TableOfContentsRepository {
   }
 
   async get(): Promise<TableOfContents> {
+    await this.cachingTableOfContents;
+
     const getFromRepo = () => this.cacheSourceTableOfContentsRepository.get();
     try {
       if (await this.cacheRepository.isEmpty()) return await getFromRepo();
