@@ -29,6 +29,10 @@ module.exports = {
       permissions: [],
       package: 'com.samuel88835.brancel_guide_viewer',
       versionCode: 6,
+      adaptiveIcon: {
+        foregroundImage: './assets/adaptive-icon.png',
+        backgroundColor: '#ffffff',
+      },
     },
     web: {
       favicon: './assets/favicon.png',
