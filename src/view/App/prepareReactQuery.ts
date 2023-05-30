@@ -12,7 +12,6 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       networkMode: 'always',
-      refetchOnReconnect: true,
     },
   },
 });
