@@ -4,7 +4,7 @@ module.exports = {
   expo: {
     name: 'brancel-guide-viewer',
     slug: 'brancel-guide-viewer',
-    version: '1.0.0',
+    version: '2.0.0',
     orientation: 'default',
     icon: './assets/icon.png',
     userInterfaceStyle: 'light',
@@ -28,7 +28,7 @@ module.exports = {
     android: {
       permissions: [],
       package: 'com.samuel88835.brancel_guide_viewer',
-      versionCode: 5,
+      versionCode: 6,
     },
     web: {
       favicon: './assets/favicon.png',
