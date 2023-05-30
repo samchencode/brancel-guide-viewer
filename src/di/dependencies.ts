@@ -30,7 +30,7 @@ import { WpApiGuideRepository } from '@/infrastructure/persistence/wp-api/WpApiG
 import { ClearCacheAction } from '@/application/ClearCacheAction';
 import { CompositeArticleSearch } from '@/infrastructure/search/CompositeArticleSearch';
 import { SearchArticlesAction } from '@/application/SearchArticlesAction';
-
+import { CheckCacheEmptyAction } from '@/application/CheckCacheEmptyAction';
 import Constants from 'expo-constants';
 
 type Module = {
@@ -64,6 +64,7 @@ export const module: Module = {
   renderArticleAction: ['type', RenderArticleAction],
   clearCacheAction: ['type', ClearCacheAction],
   searchArticlesAction: ['type', SearchArticlesAction],
+  checkCacheEmptyAction: ['type', CheckCacheEmptyAction],
 
   // INFRASTRUCTURE
   articleRepository: [

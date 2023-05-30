@@ -9,10 +9,15 @@ import {
 } from '@/view/App/prepareReactQuery';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import type { CheckCacheEmptyAction } from '@/application/CheckCacheEmptyAction';
+import { useReloadIfEmptyAndGainInternet } from '@/view/App/useReloadIfEmptyAndGainInternet';
 
-function factory(Router: Router) {
+function factory(Router: Router, checkCacheEmptyAction: CheckCacheEmptyAction) {
+  const checkCacheEmpty = () => checkCacheEmptyAction.execute();
+
   return function App() {
     useReactQueryAppStateListener();
+    useReloadIfEmptyAndGainInternet(checkCacheEmpty);
 
     return (
       <SafeAreaProvider>
