@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import Constants from 'expo-constants';
 import type { AppNavigationProps } from '@/view/Router';
 import { theme } from '@/theme';
@@ -47,7 +47,12 @@ function factory(searchArticlesAction: SearchArticlesAction) {
     });
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        // behavior of a View avoids keyboard better in Android
+        enabled={Platform.OS === 'ios'}
+      >
         <Header
           value={searchQuery}
           onChangeValue={setSearchQuery}
@@ -78,7 +83,7 @@ function factory(searchArticlesAction: SearchArticlesAction) {
             [searchQuery]
           )}
         />
-      </View>
+      </KeyboardAvoidingView>
     );
   };
 }
