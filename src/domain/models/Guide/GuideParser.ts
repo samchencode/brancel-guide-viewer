@@ -7,11 +7,11 @@ import type {
 import type { TableOfContents } from '@/domain/models/TableOfContents';
 
 interface GuideParser {
-  getAbout(html: string): About;
-  getIndex(html: string): Index;
-  getUsageInstructions(html: string): UsageInstructions;
-  getArticles(html: string): Article[];
-  getTableOfContents(html: string): TableOfContents;
+  getAbout(html: string): Promise<About>;
+  getIndex(html: string): Promise<Index>;
+  getUsageInstructions(html: string): Promise<UsageInstructions>;
+  getArticles(html: string): Promise<Article[]>;
+  getTableOfContents(html: string): Promise<TableOfContents>;
 }
 
 export type { GuideParser };

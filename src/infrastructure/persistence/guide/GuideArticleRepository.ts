@@ -41,12 +41,13 @@ class GuideArticleRepository implements ArticleRepository {
     return guide.getUsageInstructions();
   }
 
+  // IDEA: could actually just setImmediate here...
   async getAll(): Promise<Article[]> {
     const guide = await this.getGuide();
-    const normalArticles = guide.getArticles();
-    const index = guide.getIndex();
-    const instructions = guide.getUsageInstructions();
-    const about = guide.getAbout();
+    const normalArticles = await guide.getArticles();
+    const index = await guide.getIndex();
+    const instructions = await guide.getUsageInstructions();
+    const about = await guide.getAbout();
     return [...normalArticles, index, instructions, about];
   }
 

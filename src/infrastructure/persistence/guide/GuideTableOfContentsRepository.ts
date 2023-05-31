@@ -12,7 +12,7 @@ class GuideTableOfContentsRepository implements TableOfContentsRepository {
   async get(): Promise<TableOfContents> {
     if (!this.toc) {
       const guide = await this.guideRepository.get();
-      this.toc = guide.getTableOfContents();
+      this.toc = await guide.getTableOfContents();
     }
     return this.toc;
   }
