@@ -33,6 +33,7 @@ describe('CacheArticleRepository', () => {
         readFileAsString: jest.fn(),
         checkFileExists: jest.fn(),
         deleteFile: jest.fn(),
+        clearCache: jest.fn(),
       };
       articleRepository = new FakeArticleRepository();
     });
@@ -65,6 +66,7 @@ describe('CacheArticleRepository', () => {
         readFileAsString: jest.fn(),
         checkFileExists: jest.fn(),
         deleteFile: jest.fn(),
+        clearCache: jest.fn(),
       };
       cacheRepository = new WebSqlCacheRepository(db);
       articleRepository = new FakeArticleRepository();
@@ -165,6 +167,7 @@ describe('CacheArticleRepository', () => {
         readFileAsString: jest.fn(),
         checkFileExists: jest.fn(),
         deleteFile: jest.fn(),
+        clearCache: jest.fn(),
       };
       cacheRepository = new WebSqlCacheRepository(db);
       articleRepository = new FakeArticleRepository();
@@ -308,6 +311,7 @@ describe('CacheArticleRepository', () => {
         readFileAsString: jest.fn(),
         checkFileExists: jest.fn(),
         deleteFile: jest.fn(),
+        clearCache: jest.fn(),
       };
       cacheRepository = new WebSqlCacheRepository(db);
       articleRepository = new FakeArticleRepository();
@@ -388,6 +392,7 @@ describe('CacheArticleRepository', () => {
         readFileAsString: jest.fn(),
         checkFileExists: jest.fn(),
         deleteFile: jest.fn(),
+        clearCache: jest.fn(),
       };
       cacheRepository = new WebSqlCacheRepository(db);
       articleRepository = new FakeArticleRepository();
