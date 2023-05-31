@@ -40,9 +40,6 @@ class CheerioGuideParser implements GuideParser {
   async getTableOfContents(html: string): Promise<TableOfContents> {
     const cachedValue = this.getTableOfContentsFromCacheOrNull(html);
     if (cachedValue) return cachedValue;
-    console.log(
-      'async getTableOfContents(html: string): Promise<TableOfContents> {'
-    );
     const $ = this.getCheerioApi(html);
     const result = this.base.getTableOfContents($);
     this.cache.tableOfContents = result;
@@ -68,7 +65,6 @@ class CheerioGuideParser implements GuideParser {
   async getAbout(html: string): Promise<About> {
     const cachedValue = this.getAboutFromCacheOrNull(html);
     if (cachedValue) return cachedValue;
-    console.log('async getAbout(html: string): Promise<About> {');
     const $ = this.getCheerioApi(html);
     const result = this.base.getAbout($);
     this.cache.about = result;
@@ -79,7 +75,6 @@ class CheerioGuideParser implements GuideParser {
   async getIndex(html: string): Promise<Index> {
     const cachedValue = this.getIndexFromCacheOrNull(html);
     if (cachedValue) return cachedValue;
-    console.log('async getIndex(html: string): Promise<Index> {');
     const $ = this.getCheerioApi(html);
     const result = this.base.getIndex($);
     this.cache.index = result;
@@ -90,9 +85,6 @@ class CheerioGuideParser implements GuideParser {
   async getUsageInstructions(html: string): Promise<UsageInstructions> {
     const cachedValue = this.getUsageInstructionsFromCacheOrNull(html);
     if (cachedValue) return cachedValue;
-    console.log(
-      'async getUsageInstructions(html: string): Promise<UsageInstructions> {'
-    );
     const $ = this.getCheerioApi(html);
     const result = this.base.getUsageInstructions($);
     this.cache.usageInstructions = result;
@@ -103,7 +95,6 @@ class CheerioGuideParser implements GuideParser {
   async getArticles(html: string): Promise<Article[]> {
     const cachedValue = this.getArticlesFromCacheOrNull(html);
     if (cachedValue) return cachedValue;
-    console.log('async getArticles(html: string): Promise<Article[]> {');
     const $ = this.getCheerioApi(html);
     const result = this.base.getArticles($);
     this.cache.articles = result;
