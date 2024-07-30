@@ -45,5 +45,6 @@ module.exports = {
         projectId: 'b578f79f-380a-492a-9a29-75b1c6c79457',
       },
     },
+    plugins: ['expo-asset'],
   },
 };
