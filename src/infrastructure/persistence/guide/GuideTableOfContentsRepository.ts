@@ -16,6 +16,8 @@ class GuideTableOfContentsRepository implements TableOfContentsRepository {
     }
     return this.toc;
   }
+
+  static $inject = ['guideRepository'];
 }
 
 export { GuideTableOfContentsRepository };

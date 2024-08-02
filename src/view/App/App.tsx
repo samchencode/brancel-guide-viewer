@@ -35,5 +35,7 @@ function factory(Router: Router, checkCacheEmptyAction: CheckCacheEmptyAction) {
   };
 }
 
+factory.$inject = ['Router', 'checkCacheEmptyAction'];
+
 export { factory };
 export type Type = ReturnType<typeof factory>;

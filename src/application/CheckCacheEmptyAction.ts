@@ -6,6 +6,8 @@ class CheckCacheEmptyAction {
   async execute() {
     return this.cacheRepository.isEmpty();
   }
+
+  static $inject = ['cacheRepository'];
 }
 
 export { CheckCacheEmptyAction };

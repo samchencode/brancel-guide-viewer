@@ -91,6 +91,16 @@ class WpApiGuideRepository implements GuideRepository {
     );
     return this.replaceImageUrisInHtml(html, uriMap);
   }
+
+  static $inject = [
+    'fetch',
+    'wpApiHostUrl',
+    'wpApiPageId',
+    'wpApiKey',
+    'guideParser',
+    'getImageUrisFromHtml',
+    'replaceImageUrisInHtml',
+  ];
 }
 
 export { WpApiGuideRepository };

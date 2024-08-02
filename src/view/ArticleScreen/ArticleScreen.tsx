@@ -68,5 +68,7 @@ const styles = StyleSheet.create({
   },
 });
 
+factory.$inject = ['findArticleAction', 'renderArticleAction'];
+
 export { factory };
 export type Type = ReturnType<typeof factory>;

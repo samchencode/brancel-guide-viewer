@@ -83,6 +83,8 @@ function factory(getTableOfContentsAction: GetTableOfContentsAction) {
   };
 }
 
+factory.$inject = ['getTableOfContentsAction'];
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

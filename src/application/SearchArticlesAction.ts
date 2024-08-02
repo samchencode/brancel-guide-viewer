@@ -9,6 +9,8 @@ class SearchArticlesAction {
   async execute(searchText: string): Promise<ArticleSearchResult[]> {
     return this.articleSearch.search(searchText);
   }
+
+  static $inject = ['articleSearch'];
 }
 
 export { SearchArticlesAction };

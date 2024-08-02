@@ -96,5 +96,7 @@ const styles = StyleSheet.create({
   },
 });
 
+factory.$inject = ['searchArticlesAction'];
+
 export { factory };
 export type Type = ReturnType<typeof factory>;

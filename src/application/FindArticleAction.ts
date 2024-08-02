@@ -58,6 +58,8 @@ class FindArticleAction {
     const article = await this.getArticleByTypeAction.execute(type);
     return { article, sectionId };
   }
+
+  static $inject = ['articleRepository', 'getArticleByTypeAction'];
 }
 
 export { FindArticleAction };

@@ -8,6 +8,8 @@ class GetTableOfContentsAction {
   async execute() {
     return this.tableOfContentsRepository.get();
   }
+
+  static $inject = ['tableOfContentsRepository'];
 }
 
 export { GetTableOfContentsAction };

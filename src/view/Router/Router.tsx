@@ -90,6 +90,15 @@ function factory(
   };
 }
 
+factory.$inject = [
+  'HomeScreen',
+  'ArticleScreen',
+  'UsageInstructionsScreen',
+  'LicenseScreen',
+  'SearchScreen',
+  'Header',
+];
+
 export { factory };
 export type Type = ReturnType<typeof factory>;
 export type AppNavigationProps<T extends keyof AppNavigationParams> =

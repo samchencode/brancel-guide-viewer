@@ -21,6 +21,8 @@ class GetArticleByTypeAction {
         throw Error(`Unknown article type: ${type}`);
     }
   }
+
+  static $inject = ['articleRepository'];
 }
 
 export { GetArticleByTypeAction };

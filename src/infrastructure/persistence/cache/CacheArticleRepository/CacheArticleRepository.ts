@@ -192,6 +192,15 @@ class CacheArticleRepository implements ArticleRepository {
     const removeFromRepo = await this.cacheRepository.delete();
     await Promise.all([removeFromRepo, ...deletions]);
   }
+
+  static $inject = [
+    'cacheSourceArticleRepository',
+    'cacheRepository',
+    'fileSystem',
+    'sanitizeHtml',
+    'getImageUrisFromHtml',
+    'replaceImageUrisInHtmlBody',
+  ];
 }
 
 export { CacheArticleRepository };

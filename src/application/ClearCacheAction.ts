@@ -11,6 +11,8 @@ class ClearCacheAction {
     await this.cacheArticleRepository.clearCache();
     await this.fileSystem.clearCache();
   }
+
+  static $inject = ['cacheArticleRepository', 'fileSystem'];
 }
 
 export { ClearCacheAction };

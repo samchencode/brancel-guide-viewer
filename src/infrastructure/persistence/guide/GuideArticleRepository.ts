@@ -77,6 +77,8 @@ class GuideArticleRepository implements ArticleRepository {
       body: this.sanitizeHtml(a.body.html).trim(),
     }));
   }
+
+  static $inject = ['guideRepository', 'sanitizeHtml'];
 }
 
 export { GuideArticleRepository };

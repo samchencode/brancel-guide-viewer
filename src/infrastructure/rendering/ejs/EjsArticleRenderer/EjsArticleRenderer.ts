@@ -20,6 +20,8 @@ class EjsArticleRenderer implements ArticleRenderer {
     const template = await this.prepareTemplate;
     return template({ title: a.title, body: a.body.html });
   }
+
+  static $inject = ['fileSystem'];
 }
 
 export { EjsArticleRenderer };

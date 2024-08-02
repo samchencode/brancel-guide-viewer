@@ -22,6 +22,8 @@ class CompositeArticleSearch implements ArticleSearch {
     const fuseResults = await this.fuseArticleSearch.search(searchText);
     return fuseResults;
   }
+
+  static $inject = ['articleRepository'];
 }
 
 export { CompositeArticleSearch };

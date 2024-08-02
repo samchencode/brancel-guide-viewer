@@ -37,6 +37,12 @@ type Module = {
   [key: string]: ServiceDeclaration<unknown>;
 };
 
+function identity(key: string) {
+  const idFxn = (x: unknown) => x;
+  idFxn.$inject = [key];
+  return idFxn;
+}
+
 const production = Constants.expoConfig?.extra?.NODE_ENV !== 'development';
 
 const wpApiConfig: Module = production
@@ -67,10 +73,7 @@ export const module: Module = {
   checkCacheEmptyAction: ['type', CheckCacheEmptyAction],
 
   // INFRASTRUCTURE
-  articleRepository: [
-    'factory',
-    (cacheArticleRepository) => cacheArticleRepository,
-  ],
+  articleRepository: ['factory', identity('cacheArticleRepository')],
   articleRenderer: ['type', EjsArticleRenderer],
   guideRepository: ['type', WpApiGuideRepository],
   tableOfContentsRepository: ['type', CacheTableOfContentsRepository],

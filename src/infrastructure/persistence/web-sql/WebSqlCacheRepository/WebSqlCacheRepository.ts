@@ -283,6 +283,8 @@ class WebSqlCacheRepository implements CacheRepository {
     const [result] = await this.executeSql([query]);
     return resultSetToArray<SearchableArticle>(result);
   }
+
+  static $inject = ['webSqlDatabase'];
 }
 
 export { WebSqlCacheRepository };

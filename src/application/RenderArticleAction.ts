@@ -6,6 +6,8 @@ class RenderArticleAction {
   async execute(article: Article) {
     return this.articleRenderer.render(article);
   }
+
+  static $inject = ['articleRenderer'];
 }
 
 export { RenderArticleAction };

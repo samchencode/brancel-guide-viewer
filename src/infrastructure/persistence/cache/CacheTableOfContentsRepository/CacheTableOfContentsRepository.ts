@@ -39,6 +39,8 @@ class CacheTableOfContentsRepository implements TableOfContentsRepository {
       return getFromRepo();
     }
   }
+
+  static $inject = ['cacheSourceTableOfContentsRepository', 'cacheRepository'];
 }
 
 export { CacheTableOfContentsRepository };
