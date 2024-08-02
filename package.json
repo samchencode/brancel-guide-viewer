@@ -6,7 +6,7 @@
     "dev": "NODE_ENV=development expo start --tunnel",
     "android": "NODE_ENV=development expo start --android",
     "ios": "NODE_ENV=development expo start --ios",
-    "start": "expo start --tunnel",
+    "start": "NODE_ENV=production expo start --tunnel",
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
