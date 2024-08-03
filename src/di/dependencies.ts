@@ -9,7 +9,6 @@ import { factory as LicenseScreen } from '@/view/LicenseScreen';
 import { factory as SearchScreen } from '@/view/SearchScreen';
 import { RenderArticleAction } from '@/application/RenderArticleAction';
 import { ExpoAssetFileSystem } from '@/infrastructure/file-system/expo/ExpoFileSystem';
-import { EjsArticleRenderer } from '@/infrastructure/rendering/ejs/EjsArticleRenderer/EjsArticleRenderer';
 import { sanitizeHtml } from '@/infrastructure/html-manipulation/sanitize-html/sanitizeHtml';
 import { getImageUrisFromHtml } from '@/infrastructure/html-manipulation/cheerio/getImageUrisFromHtml';
 import {
@@ -32,6 +31,7 @@ import { CompositeArticleSearch } from '@/infrastructure/search/CompositeArticle
 import { SearchArticlesAction } from '@/application/SearchArticlesAction';
 import { CheckCacheEmptyAction } from '@/application/CheckCacheEmptyAction';
 import Constants from 'expo-constants';
+import { ReplacingArticleRenderer } from '@/infrastructure/rendering/replace/ReplacingArticleRenderer/ReplacingArticleRenderer';
 
 type Module = {
   [key: string]: ServiceDeclaration<unknown>;
@@ -74,7 +74,8 @@ export const module: Module = {
 
   // INFRASTRUCTURE
   articleRepository: ['factory', identity('cacheArticleRepository')],
-  articleRenderer: ['type', EjsArticleRenderer],
+  articleRenderer: ['type', ReplacingArticleRenderer],
+
   guideRepository: ['type', WpApiGuideRepository],
   tableOfContentsRepository: ['type', CacheTableOfContentsRepository],
   fileSystem: ['type', ExpoAssetFileSystem],

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <style>
+    /* Global Styles */
+    :root {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    main {
+      padding: 1em 1em;
+      white-space: pre-wrap;
+    }
+
+    /* Text Styles */
+    h2,
+    h3 {
+      white-space: pre-wrap;
+    }
+
+    p {
+      white-space: pre-wrap;
+    }
+
+    /* Link Styles */
+    a[href],
+    a:visited {
+      border-radius: .2em;
+      padding: 0 .1em;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+    }
+
+    th,
+    td {
+      padding: .3em .5em;
+    }
+
+    .table__wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .table__wrapper::before {
+      content: "(If this table doesn't fit on your screen, scroll sideways!)";
+    }
+
+    tr:nth-child(2n + 1):not(:only-child) td {
+      background: lightgray;
+    }
+
+    /* Image Styles */
+    img {
+      width: 100%;
+    }
+
+    .img__wrapper {
+      width: 100%;
+    }
+
+    .img__wrapper::after {
+      content: "(If this image is too small, pinch to zoom!)";
+    }
+
+    /* List styles */
+    ul,
+    ol {
+      padding-left: .5em;
+      margin-left: 1em;
+      white-space: normal;
+    }
+
+    li {
+      white-space: pre-wrap;
+      padding: 0.5em 0;
+    }
+
+    mark {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Tablet styles */
+    @media screen and (min-width: 900px) {
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      main {
+        width: 900px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="body"><%- body %></main>
+  <script>
+    function notify(event) {
+      var message = JSON.stringify(event);
+      window.ReactNativeWebView.postMessage(message)
+    }
+
+    function notifyLinkPressed(href) {
+      notify({
+        type: 'linkpressed',
+        data: {
+          href: href,
+        }
+      })
+    }
+
+    function notifyError(name, msg) {
+      notify({
+        type: 'error',
+        data: {
+          name: name,
+          message: msg,
+        }
+      })
+    }
+
+    function notifyIndexPressed() {
+      notify({
+        type: 'indexpressed',
+        data: {}
+      })
+    }
+
+    function notifyLog(msg) {
+      notify({
+        type: 'log',
+        data: {
+          message: msg
+        }
+      })
+    }
+
+    function notifyTableOfContentsPressed() {
+      notify({
+        type: 'tableofcontentspressed',
+        data: {}
+      })
+    }
+
+    ; // capture link presses
+    (function() {
+      var INDEX_ID = '#INDEX'
+      var TABLE_OF_CONTENTS_ID = '#TABLE_OF_CONTENTS'
+
+      var anchors = document.querySelectorAll('a[href]');
+      for (var i = 0; i < anchors.length; i++) {
+        anchors[i].addEventListener('click', function(e) {
+          e.preventDefault();
+          var url = new URL(this.href);
+          if (url.hash === INDEX_ID) notifyIndexPressed();
+          else if (url.hash === TABLE_OF_CONTENTS_ID) notifyTableOfContentsPressed();
+          else notifyLinkPressed(this.href);
+        })
+      }
+    })()
+
+    ; // capture errors
+    (function() {
+      window.addEventListener('error', (e) => {
+        notifyError(e.error.name, e.message);
+      })
+    })()
+
+    ; // wrap tables
+    (function() {
+      var tables = document.getElementsByTagName('table');
+      for (var i = 0; i < tables.length; i++) {
+        var wrapper = document.createElement('div');
+        wrapper.className = "table__wrapper";
+        wrapper.appendChild(tables[i].cloneNode(true));
+        tables[i].replaceWith(wrapper);
+      }
+    })()
+
+    ; // wrap images
+    (function() {
+      var images = document.getElementsByTagName('img');
+      for (var i = 0; i < images.length; i++) {
+        var wrapper = document.createElement('div');
+        wrapper.className = "img__wrapper";
+        wrapper.appendChild(images[i].cloneNode());
+        images[i].replaceWith(wrapper);
+      }
+    })()
+
+    ; // get all text nodes to highlight if they match a search term
+    TextMarker = (function() {
+      function htmlEncode(input) {
+        const textArea = document.createElement("textarea");
+        textArea.innerText = input;
+        return textArea.innerHTML.split("<br>").join("\n");
+      }
+
+      function htmlDecode(input) {
+        var textarea = document.createElement("textarea");
+        textarea.innerHTML = input;
+        return textarea.value;
+      }
+
+      /** 
+       * @typedef Range
+       * @type {[number, number]}
+       */
+
+      /** 
+       * @typedef OverlapRange
+       * @type {object}
+       * @property {Range} range
+       * @property {Range} overlap
+       */
+
+      /** 
+       * @typedef Overlap
+       * @type {object}
+       * @property {('Overlap' | 'Coverage')} type
+       * @property {OverlapRange[]} ranges
+       */
+
+      /**
+       * @param {Range} range1
+       * @param {Range} range2
+       * @returns {(Overlap | null)}
+       */
+      function testOverlap(range1, range2) {
+        if (range1[1] <= range2[0] || range1[0] >= range2[1]) {
+          // No overlap
+          return null;
+        } else if (range1[0] <= range2[0] && range1[1] >= range2[1]) {
+          // Complete coverage of range2 by range1
+          const overlapIndices = [range2[0], range2[1]];
+          const overlapInR1 = [
+            overlapIndices[0] - range1[0],
+            overlapIndices[1] - range1[0]
+          ];
+          const overlapInR2 = [0, overlapIndices[1] - range2[0]];
+          return {
+            type: "Coverage",
+            ranges: [{
+                range: range1,
+                overlap: overlapInR1
+              },
+              {
+                range: range2,
+                overlap: overlapInR2
+              }
+            ]
+          };
+        } else if (range1[0] >= range2[0] && range1[1] <= range2[1]) {
+          // Complete coverage of range1 by range2
+          const overlapIndices = [range1[0], range1[1]];
+          const overlapInR1 = [0, overlapIndices[1] - range1[0]];
+          const overlapInR2 = [
+            overlapIndices[0] - range2[0],
+            overlapIndices[1] - range2[0]
+          ];
+          return {
+            type: "Coverage",
+            ranges: [{
+                range: range2,
+                overlap: overlapInR2
+              },
+              {
+                range: range1,
+                overlap: overlapInR1
+              }
+            ]
+          };
+        } else if (range1[1] >= range2[0] && range1[0] < range2[0]) {
+          // Overlap on the left of range2
+          const overlapIndices = [range2[0], range1[1]];
+          const overlapInR1 = [
+            overlapIndices[0] - range1[0],
+            overlapIndices[1] - range1[0]
+          ];
+          const overlapInR2 = [0, overlapIndices[1] - range2[0]];
+          return {
+            type: "Overlap",
+            ranges: [{
+                range: range1,
+                overlap: overlapInR1
+              },
+              {
+                range: range2,
+                overlap: overlapInR2
+              }
+            ]
+          };
+        } else if (range1[0] <= range2[1] && range1[1] > range2[1]) {
+          // Overlap on the right of range2
+          const overlapIndices = [range1[0], range2[1]];
+          const overlapInR1 = [
+            overlapIndices[0] - range1[0],
+            overlapIndices[1] - range1[0]
+          ];
+          const overlapInR2 = [overlapIndices[0] - range2[0], range2[1] - range2[0]];
+          return {
+            type: "Overlap",
+            ranges: [{
+                range: range1,
+                overlap: overlapInR1
+              },
+              {
+                range: range2,
+                overlap: overlapInR2
+              }
+            ]
+          };
+        }
+      }
+
+      // build array of text nodes and body string indicies
+      var n;
+      var walk = document.createTreeWalker(
+        document.querySelector('#body'),
+        NodeFilter.SHOW_TEXT
+      );
+
+      /**
+       * @typedef NodeInfo
+       * @type {object}
+       * @property {Text} node TextNode from DOM. Note that html escape codes are decoded (&amp; -> &)
+       * @property {string} text
+       * @property {Range} range
+       */
+
+      /** @type {NodeInfo[]} */
+      var textNodes = [];
+      var traversedLength = 0;
+      while (n = walk.nextNode()) {
+        var encodedText = htmlEncode(n.wholeText);
+        textNodes.push({
+          node: n,
+          text: encodedText,
+          range: [traversedLength, traversedLength + encodedText.length]
+        })
+        traversedLength = traversedLength + encodedText.length
+      }
+
+      /**
+       * @typedef RegionOfTextContainingMark
+       * @type {object}
+       * @property {'unmarked' | 'marked'} type
+       * @property {string} text
+       */
+
+      /**
+       * Split text into marked and unmarked regions
+       * @param {string} text
+       * @param {Range[]} rangesToMark
+       * @returns {RegionOfTextContainingMark[]}
+       */
+      function splitTextByMark(text, rangesToMark) {
+        if (rangesToMark.length === 0) return [{
+          type: 'unmarked',
+          text: text
+        }]
+        var firstRegionStart = rangesToMark[0][0]
+        var lastRegion = rangesToMark[rangesToMark.length - 1]
+        var firstRegionHasMark = firstRegionStart === 0
+        var lastRegionHasMark = lastRegion[1] === text.length
+        var markedAndUnmarkedRegions = []
+        if (!firstRegionHasMark) {
+          markedAndUnmarkedRegions.push({
+            type: 'unmarked',
+            text: text.slice(0, firstRegionStart)
+          })
+        }
+        for (var i = 0; i < rangesToMark.length; i++) {
+          var thisRange = rangesToMark[i]
+          markedAndUnmarkedRegions.push({
+            type: 'marked',
+            text: text.slice(thisRange[0], thisRange[1]),
+          })
+          var isLastIteration = i === rangesToMark.length - 1
+          if (isLastIteration) continue
+          var nextRange = rangesToMark[i + 1]
+          markedAndUnmarkedRegions.push({
+            type: 'unmarked',
+            text: text.slice(thisRange[1], nextRange[0]),
+          })
+        }
+        if (!lastRegionHasMark) {
+          markedAndUnmarkedRegions.push({
+            type: 'unmarked',
+            text: text.slice(lastRegion[1], text.length)
+          })
+        }
+        return markedAndUnmarkedRegions;
+      }
+
+      /** 
+       * @param {RegionOfTextContainingMark[]} regions
+       * @returns {HTMLSpanElement} 
+       */
+      function makeSpanWithMarksFromTextRegions(regions) {
+        var container = document.createElement('span')
+        for (var i = 0; i < regions.length; i++) {
+          var region = regions[i]
+          var text = htmlDecode(region.text)
+          var textNode = document.createTextNode(text)
+          if (region.type === "marked") {
+            var mark = document.createElement('mark')
+            mark.appendChild(textNode)
+            container.appendChild(mark)
+          } else {
+            container.appendChild(textNode)
+          }
+        }
+        return container
+      }
+
+      /**
+       * @param {Range[]} ranges Ranges of text on the document to mark
+       */
+      function markTextRanges(ranges) {
+        for (var i = 0; i < textNodes.length; i++) { // for each text node go thru all ranges-to-highlight
+          var textInfo = textNodes[i]
+          var rangesToMark = []
+
+          for (var j = 0; j < ranges.length; j++) { // for each range... check overlaps & 
+            var range = ranges[j]
+            var overlap = testOverlap(range, textInfo.range)
+            if (overlap === null) continue
+
+            // Find which of overlap.ranges refers to the range of the text node and get the overlap idxs relative to it
+            var overlappingRange = overlap.ranges[0].range === textInfo.range ?
+              overlap.ranges[0].overlap :
+              overlap.ranges[1].overlap
+
+            rangesToMark.push(overlappingRange)
+          }
+          if (rangesToMark.length === 0) continue
+          var regions = splitTextByMark(textInfo.text, rangesToMark)
+          var newNode = makeSpanWithMarksFromTextRegions(regions)
+          textInfo.node.replaceWith(newNode)
+        }
+      }
+
+      function scrollToFirstMark() {
+        const mark = document.querySelector('mark')
+        mark.scrollIntoView({
+          block: 'center',
+          behavior: 'smooth',
+        })
+      }
+
+      return {
+        markAndScrollTo(ranges) {
+          markTextRanges(ranges)
+          scrollToFirstMark()
+        }
+      }
+    })()
+  </script>
+</body>
+
+</html>

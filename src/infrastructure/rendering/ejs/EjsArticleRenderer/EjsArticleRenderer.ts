@@ -13,11 +13,16 @@ class EjsArticleRenderer implements ArticleRenderer {
     const templateText = await fileSystem.getAssetAsString(
       require('@/infrastructure/rendering/ejs/EjsArticleRenderer/template.ejs')
     );
-    return ejs.compile(templateText);
+    console.log(0, templateText);
+    const complied = ejs.compile(templateText);
+    console.log(0.4, complied);
+
+    return complied;
   }
 
   async render(a: Article) {
     const template = await this.prepareTemplate;
+    console.log(1);
     return template({ title: a.title, body: a.body.html });
   }
 
